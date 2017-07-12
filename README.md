@@ -5,7 +5,7 @@ Utility for calculating common public safety shift schedules.
 
 Using npm:
 ```
-npm install StatEngine/shiftly
+npm install shiftly
 ```
 
 In Node.js:
