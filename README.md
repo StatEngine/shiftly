@@ -1,4 +1,4 @@
-# Shiftly
+# Shiftly [![Build Status](https://travis-ci.org/StatEngine/shiftly.svg?branch=master)](https://travis-ci.org/StatEngine/shiftly)
 Utility for calculating common public safety shift schedules.
 
 ## Installation
