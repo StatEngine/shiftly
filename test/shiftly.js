@@ -19,7 +19,7 @@ describe('ShiftConfiguration', () => {
   it('should work for historic dates', () => {
     const rva = new ShiftConfiguration(richmond);
     (rva.reversePattern()).should.equal('abcbcbabcacacbcababac');
-    (rva.calculateShift('2016-10-17T11:00:30').should.equal('B'));
+    (rva.calculateShift('2016-10-17T11:00:30-0400').should.equal('B'));
   });
 
   it('should work for utc times', () => {
