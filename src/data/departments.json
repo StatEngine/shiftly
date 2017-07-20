@@ -12,7 +12,7 @@
   "81147": {
     "name": "Fairfax County Fire and Rescue Department",
     "timeZone": "US/Eastern",
-    "shiftStart": "0800",
+    "shiftStart": "0700",
     "firstDay": "2016-10-14",
     "pattern": "acababcbc",
     "fd_id": "05900",
