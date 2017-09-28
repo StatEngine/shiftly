@@ -10,15 +10,9 @@ npm install shiftly
 
 In Node.js:
 ```javascript
-var shiftly = require('shiftly');
+const shiftly = require('shiftly');
 
-// http://www.fairfaxcounty.gov/fr/schedule/
-var fairfaxFire = {
-  firstDay: '2016-10-14',
-  pattern: 'acababcbc'
-}
-
-var fairfax = new shiftly.ShiftConfiguration(fairfaxFire);
+const fairfax = shiftly.fairfaxVA();
 fairfax.calculateShift('2017-01-18T09:00:30-0400')
 // returns 'C'
 ```

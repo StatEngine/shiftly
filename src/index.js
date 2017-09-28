@@ -67,3 +67,41 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     return shift;
   }
 }
+
+export function washingtonDC() {
+  return new ShiftConfiguration({
+    firstDay: '2017-09-01',
+    pattern: '1234',
+  });
+}
+
+export function richmondVA() {
+  return new ShiftConfiguration({
+    firstDay: '2016-10-18',
+    pattern: 'acababacbcacacbabcbcb',
+  });
+}
+
+export function fairfaxVA() {
+  return new ShiftConfiguration({
+    firstDay: '2016-10-14',
+    pattern: 'acababcbc',
+    shiftStart: '0700',
+  });
+}
+
+export function PrinceWilliamVA() {
+  return new ShiftConfiguration({
+    firstDay: '2017-07-10',
+    pattern: 'abc',
+    shiftStart: '0600',
+  });
+}
+
+export function OxnardCA() {
+  return new ShiftConfiguration({
+    firstDay: '2017-01-04',
+    timeZone: 'US/Pacific',
+    pattern: 'acacababcbcbcacabababcbc',
+  });
+}
