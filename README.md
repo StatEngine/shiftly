@@ -5,12 +5,12 @@ Utility for calculating common public safety shift schedules.
 
 Using npm:
 ```
-npm install shiftly
+npm install @statengine/shiftly
 ```
 
 In Node.js:
 ```javascript
-const shiftly = require('shiftly');
+const shiftly = require('@statengine/shiftly');
 
 const fairfax = shiftly.fairfaxVA();
 fairfax.calculateShift('2017-01-18T09:00:30-0400')
