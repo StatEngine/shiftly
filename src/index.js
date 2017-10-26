@@ -72,6 +72,7 @@ export function washingtonDC() {
   return new ShiftConfiguration({
     firstDay: '2017-09-01',
     pattern: '1234',
+    shiftStart: '0700',
   });
 }
 
