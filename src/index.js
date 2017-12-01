@@ -66,6 +66,15 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
 
     return shift;
   }
+
+  shiftTimeFrame(date) {
+    /**
+    * Returns the start and end time of the shift for the day.
+    * @param {string} date - The date of the shift as an ISO-8601 compliant string (ie YYYY-MM-DD).
+    */
+    const start = this.normalize(date).hours(this.shiftStartDate.hours());
+    return { start: start.format(), end: start.add(24, 'hours').format() };
+  }
 }
 
 export function washingtonDC() {

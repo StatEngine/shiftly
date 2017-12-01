@@ -27,6 +27,12 @@ describe('ShiftConfiguration', () => {
   it('should work for utc times', () => {
     (richmond.calculateShift('2016-10-17T11:00:30Z').should.equal('C'));
   });
+
+  it('should calculate shift time frame', () => {
+    const timeFrame = richmond.shiftTimeFrame('2017-07-07');
+    (timeFrame.start.should.equal('2017-07-07T08:00:00-04:00'));
+    (timeFrame.end.should.equal('2017-07-08T08:00:00-04:00'));
+  });
 });
 
 describe('Washington, DC', () => {
@@ -42,6 +48,12 @@ describe('Washington, DC', () => {
     tests.forEach((test) => {
       (washingtonDC().calculateShift(test[0])).should.equal(test[1]);
     });
+  });
+
+  it('should calculate shift time frame', () => {
+    const timeFrame = washingtonDC().shiftTimeFrame('2017-07-07');
+    (timeFrame.start.should.equal('2017-07-07T07:00:00-04:00'));
+    (timeFrame.end.should.equal('2017-07-08T07:00:00-04:00'));
   });
 });
 
@@ -101,6 +113,12 @@ describe('Prince William, VA', () => {
       (pwc.calculateShift(test[0])).should.equal(test[1]);
       (pwc.beforeShiftChange(pwc.normalize(test[0]))).should.equal(test[2]);
     });
+  });
+
+  it('should calculate shift time frame', () => {
+    const timeFrame = pwc.shiftTimeFrame('2017-07-07');
+    (timeFrame.start.should.equal('2017-07-07T06:00:00-04:00'));
+    (timeFrame.end.should.equal('2017-07-08T06:00:00-04:00'));
   });
 });
 
