@@ -26,7 +26,7 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
   }
 
   normalize(incomingDate) {
-    return moment(incomingDate).tz(this.timeZone);
+    return moment.tz(incomingDate, this.timeZone);
   }
 
   reversePattern() {
