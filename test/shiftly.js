@@ -28,8 +28,15 @@ describe('ShiftConfiguration', () => {
     (richmond.calculateShift('2016-10-17T11:00:30Z').should.equal('C'));
   });
 
-  it('should calculate shift time frame', () => {
-    const timeFrame = richmond.shiftTimeFrame('2017-07-07');
+  it('should calculate shift time frame that occurs befor shift change', () => {
+    const timeFrame = richmond.shiftTimeFrame('2017-07-07T00:01:00-04:00');
+    (timeFrame.start.should.equal('2017-07-06T08:00:00-04:00'));
+    (timeFrame.end.should.equal('2017-07-07T08:00:00-04:00'));
+  });
+
+  it('should calculate shift time frame that occurs after shift change', () => {
+    // current day
+    const timeFrame = richmond.shiftTimeFrame('2017-07-07T08:01:00-04:00');
     (timeFrame.start.should.equal('2017-07-07T08:00:00-04:00'));
     (timeFrame.end.should.equal('2017-07-08T08:00:00-04:00'));
   });
@@ -52,8 +59,8 @@ describe('Washington, DC', () => {
 
   it('should calculate shift time frame', () => {
     const timeFrame = washingtonDC().shiftTimeFrame('2017-07-07');
-    (timeFrame.start.should.equal('2017-07-07T07:00:00-04:00'));
-    (timeFrame.end.should.equal('2017-07-08T07:00:00-04:00'));
+    (timeFrame.start.should.equal('2017-07-06T07:00:00-04:00'));
+    (timeFrame.end.should.equal('2017-07-07T07:00:00-04:00'));
   });
 });
 
@@ -117,8 +124,8 @@ describe('Prince William, VA', () => {
 
   it('should calculate shift time frame', () => {
     const timeFrame = pwc.shiftTimeFrame('2017-07-07');
-    (timeFrame.start.should.equal('2017-07-07T06:00:00-04:00'));
-    (timeFrame.end.should.equal('2017-07-08T06:00:00-04:00'));
+    (timeFrame.start.should.equal('2017-07-06T06:00:00-04:00'));
+    (timeFrame.end.should.equal('2017-07-07T06:00:00-04:00'));
   });
 });
 

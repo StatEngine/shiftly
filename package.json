@@ -4,6 +4,7 @@
   "description": "Calculate common public safety shift schedules.",
   "main": "lib/",
   "scripts": {
+    "lint": "node_modules/eslint/bin/eslint.js src/** test/**",
     "test": "mocha --compilers js:babel-core/register",
     "compile": "babel -d lib/ src/ --copy-files",
     "prepublish": "npm run compile"

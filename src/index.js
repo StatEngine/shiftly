@@ -72,7 +72,16 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     * Returns the start and end time of the shift for the day.
     * @param {string} date - The date of the shift as an ISO-8601 compliant string (ie YYYY-MM-DD).
     */
-    const start = this.normalize(date).hours(this.shiftStartDate.hours());
+    let momentDate = this.normalize(date);
+
+    if (this.beforeShiftChange(momentDate)) {
+      momentDate = momentDate.subtract(1, 'days');
+    }
+
+    const start = momentDate.hours(this.shiftStartDate.hours())
+                            .minutes(this.shiftStartDate.minutes())
+                            .startOf('minute');
+
     return { start: start.format(), end: start.add(24, 'hours').format() };
   }
 }
