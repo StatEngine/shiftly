@@ -44,7 +44,7 @@ describe('ShiftConfiguration', () => {
 
   it('should return correct shift at turnover time', () => {
     (richmond.calculateShift('2017-07-07T08:00:00-0400').should.equal('A'));
-  })
+  });
 });
 
 describe('Washington, DC', () => {
