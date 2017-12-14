@@ -171,7 +171,7 @@ describe('Tucson, AZ', () => {
 
   it('should calculate shift time frame', () => {
     const timeFrame = tucson.shiftTimeFrame('2017-07-07');
-    (timeFrame.start.should.equal('2017-07-07T08:00:00-06:00'));
-    (timeFrame.end.should.equal('2017-07-08T08:00:00-06:00'));
+    (timeFrame.start.should.equal('2017-07-06T08:00:00-06:00'));
+    (timeFrame.end.should.equal('2017-07-07T08:00:00-06:00'));
   });
 });
