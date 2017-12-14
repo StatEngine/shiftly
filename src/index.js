@@ -124,3 +124,12 @@ export function OxnardCA() {
     pattern: 'acacababcbcbcacabababcbc',
   });
 }
+
+export function TucsonAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2017-01-01',
+    timeZone: 'US/Mountain',
+    pattern: 'acbcbcbababacac',
+    shiftStart: '0800',
+  });
+}
