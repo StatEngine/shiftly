@@ -133,3 +133,11 @@ export function TucsonAZ() {
     shiftStart: '0800',
   });
 }
+
+export function ClarkCountyNV() {
+  return new ShiftConfiguration({
+    firstDay: '2017-01-06',
+    timeZone: 'US/Pacific',
+    pattern: 'cbcbcacacababab',
+  });
+}

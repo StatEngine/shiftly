@@ -2,13 +2,14 @@
 
 import 'chai/register-should';
 import { ShiftConfiguration, washingtonDC, richmondVA, fairfaxVA,
-  PrinceWilliamVA, OxnardCA, TucsonAZ } from '../src';
+  PrinceWilliamVA, OxnardCA, TucsonAZ, ClarkCountyNV } from '../src';
 
 const richmond = richmondVA();
 const fairfax = fairfaxVA();
 const pwc = PrinceWilliamVA();
 const oxnard = OxnardCA();
 const tucson = TucsonAZ();
+const clarkCounty = ClarkCountyNV();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -173,5 +174,28 @@ describe('Tucson, AZ', () => {
     const timeFrame = tucson.shiftTimeFrame('2017-07-07');
     (timeFrame.start.should.equal('2017-07-06T08:00:00-06:00'));
     (timeFrame.end.should.equal('2017-07-07T08:00:00-06:00'));
+  });
+});
+
+describe('Clark County, NV', () => {
+  it('should match Clark County, NV known shifts', () => {
+    const tests = [
+      ['2017-12-01T05:10:30-0800', 'A', true],
+      ['2017-12-01T08:10:30-0800', 'B', false],
+      ['2017-12-02T08:10:30-0800', 'C', false],
+      ['2017-12-19T08:10:30-0800', 'C', false],
+      ['2017-12-22T08:10:30-0800', 'A', false],
+    ];
+
+    tests.forEach((test) => {
+      (clarkCounty.calculateShift(test[0])).should.equal(test[1]);
+      (clarkCounty.beforeShiftChange(clarkCounty.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+
+  it('should calculate shift time frame', () => {
+    const timeFrame = clarkCounty.shiftTimeFrame('2017-07-07');
+    (timeFrame.start.should.equal('2017-07-06T08:00:00-07:00'));
+    (timeFrame.end.should.equal('2017-07-07T08:00:00-07:00'));
   });
 });
