@@ -41,9 +41,9 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     return start.startOf('day').diff(this.patternStart.startOf('day'), 'days');
   }
 
-  calculateShift(date) {
+  calculateShift(date, { dateOnly = false } = {}) {
     const momentDate = this.normalize(date);
-    const checkDate = this.beforeShiftChange(momentDate) ? momentDate.subtract(1, 'days') : momentDate;
+    const checkDate = (!dateOnly && this.beforeShiftChange(momentDate)) ? momentDate.subtract(1, 'days') : momentDate;
 
     let pattern = this.pattern;
     const daysFromStart = this.daysFromPatternStart(checkDate);

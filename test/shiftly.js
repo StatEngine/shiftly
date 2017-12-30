@@ -71,6 +71,10 @@ describe('Washington, DC', () => {
 });
 
 describe('Richmond, VA', () => {
+  it('should calculate shift for day when dateOnly is true', () => {
+    (richmond.calculateShift('2017-12-29', { dateOnly: true })).should.equal('C');
+  });
+
   it('should match Richmond, VA known shifts', () => {
     const tests = [
       ['2017-07-11T07:10:30-0400', 'C', true],
