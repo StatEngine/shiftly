@@ -141,3 +141,12 @@ export function ClarkCountyNV() {
     pattern: 'cbcbcacacababab',
   });
 }
+
+export function RogersAR() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-17',
+    timeZone: 'US/Central',
+    pattern: 'aabbcc',
+    shiftStart: '0700',
+  });
+}

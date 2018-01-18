@@ -2,7 +2,7 @@
 
 import 'chai/register-should';
 import { ShiftConfiguration, washingtonDC, richmondVA, fairfaxVA,
-  PrinceWilliamVA, OxnardCA, TucsonAZ, ClarkCountyNV } from '../src';
+  PrinceWilliamVA, OxnardCA, TucsonAZ, ClarkCountyNV, RogersAR } from '../src';
 
 const richmond = richmondVA();
 const fairfax = fairfaxVA();
@@ -10,6 +10,7 @@ const pwc = PrinceWilliamVA();
 const oxnard = OxnardCA();
 const tucson = TucsonAZ();
 const clarkCounty = ClarkCountyNV();
+const rogers = RogersAR();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -201,5 +202,33 @@ describe('Clark County, NV', () => {
     const timeFrame = clarkCounty.shiftTimeFrame('2017-07-07');
     (timeFrame.start.should.equal('2017-07-06T08:00:00-07:00'));
     (timeFrame.end.should.equal('2017-07-07T08:00:00-07:00'));
+  });
+});
+
+describe.only('Rogers, AR', () => {
+  it('should match Rogers, AR known shifts', () => {
+    const tests = [
+      ['2018-01-17T05:10:30-0600', 'C', true],
+      ['2018-01-17T08:10:30-0600', 'A', false],
+      ['2018-01-18T08:10:30-0600', 'A', false],
+      ['2018-01-19T08:10:30-0600', 'B', false],
+      ['2018-01-20T08:10:30-0600', 'B', false],
+      ['2018-01-21T08:10:30-0600', 'C', false],
+      ['2018-01-22T08:10:30-0600', 'C', false],
+      ['2018-07-23T08:10:30-0500', 'A', false],
+      ['2018-08-12T08:10:30-0500', 'B', false],
+      ['2018-11-23T08:10:30-0600', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (rogers.calculateShift(test[0])).should.equal(test[1]);
+      (rogers.beforeShiftChange(rogers.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+
+  it('should calculate shift time frame', () => {
+    const timeFrame = rogers.shiftTimeFrame('2017-07-07');
+    (timeFrame.start.should.equal('2017-07-06T07:00:00-05:00'));
+    (timeFrame.end.should.equal('2017-07-07T07:00:00-05:00'));
   });
 });
