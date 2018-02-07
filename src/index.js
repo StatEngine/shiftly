@@ -124,3 +124,12 @@ export function OxnardCA() {
     pattern: 'acacababcbcbcacabababcbc',
   });
 }
+
+export function BostonMA() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    timeZone: 'US/Eastern',
+    shiftStart: '0800',
+    pattern: '13243142',
+  });
+}
