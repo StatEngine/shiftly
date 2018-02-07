@@ -1,8 +1,17 @@
 /* eslint-env node, mocha */
 
 import 'chai/register-should';
-import { ShiftConfiguration, washingtonDC, richmondVA, fairfaxVA,
-  PrinceWilliamVA, OxnardCA, TucsonAZ, ClarkCountyNV, RogersAR } from '../src';
+import { ShiftConfiguration,
+  washingtonDC,
+  richmondVA,
+  fairfaxVA,
+  PrinceWilliamVA,
+  OxnardCA,
+  BostonMA,
+  TucsonAZ,
+  ClarkCountyNV,
+  RogersAR
+} from '../src';
 
 const richmond = richmondVA();
 const fairfax = fairfaxVA();
@@ -11,6 +20,7 @@ const oxnard = OxnardCA();
 const tucson = TucsonAZ();
 const clarkCounty = ClarkCountyNV();
 const rogers = RogersAR();
+const bostonMA = BostonMA();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -205,7 +215,7 @@ describe('Clark County, NV', () => {
   });
 });
 
-describe.only('Rogers, AR', () => {
+describe('Rogers, AR', () => {
   it('should match Rogers, AR known shifts', () => {
     const tests = [
       ['2018-01-17T05:10:30-0600', 'C', true],
@@ -230,5 +240,25 @@ describe.only('Rogers, AR', () => {
     const timeFrame = rogers.shiftTimeFrame('2017-07-07');
     (timeFrame.start.should.equal('2017-07-06T07:00:00-05:00'));
     (timeFrame.end.should.equal('2017-07-07T07:00:00-05:00'));
+  });
+});
+
+describe('Boston, MA', () => {
+  it('should match Boston, MA known shifts', () => {
+    const tests = [
+      ['2018-01-01T08:10:30-0800', '1', false],
+      ['2018-01-02T08:10:30-0800', '3', false],
+      ['2018-01-03T08:10:30-0800', '2', false],
+      ['2018-01-04T08:10:30-0800', '4', false],
+      ['2018-01-05T08:10:30-0800', '3', false],
+      ['2018-01-06T08:10:30-0800', '1', false],
+      ['2018-01-07T08:10:30-0800', '4', false],
+      ['2018-01-08T08:10:30-0800', '2', false],
+      ['2018-01-09T08:10:30-0800', '1', false],
+    ];
+    tests.forEach((test) => {
+      (bostonMA.calculateShift(test[0])).should.equal(test[1]);
+      (bostonMA.beforeShiftChange(bostonMA.normalize(test[0]))).should.equal(test[2]);
+    });
   });
 });

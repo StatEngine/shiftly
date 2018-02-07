@@ -150,3 +150,11 @@ export function RogersAR() {
     shiftStart: '0700',
   });
 }
+
+export function BostonMA() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    shiftStart: '0800',
+    pattern: '13243142',
+  });
+}
