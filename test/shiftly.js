@@ -10,7 +10,7 @@ import { ShiftConfiguration,
   BostonMA,
   TucsonAZ,
   ClarkCountyNV,
-  RogersAR
+  RogersAR,
 } from '../src';
 
 const richmond = richmondVA();
