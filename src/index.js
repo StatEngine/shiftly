@@ -158,3 +158,12 @@ export function BostonMA() {
     pattern: '13243142',
   });
 }
+
+export function FairmountCO() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    shiftStart: '0700',
+    pattern: 'BBAACC',
+    timeZone: 'US/Mountain',
+  });
+}

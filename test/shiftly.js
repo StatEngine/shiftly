@@ -11,6 +11,7 @@ import { ShiftConfiguration,
   TucsonAZ,
   ClarkCountyNV,
   RogersAR,
+  FairmountCO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -21,6 +22,7 @@ const tucson = TucsonAZ();
 const clarkCounty = ClarkCountyNV();
 const rogers = RogersAR();
 const bostonMA = BostonMA();
+const fairmountCO = FairmountCO();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -259,6 +261,26 @@ describe('Boston, MA', () => {
     tests.forEach((test) => {
       (bostonMA.calculateShift(test[0])).should.equal(test[1]);
       (bostonMA.beforeShiftChange(bostonMA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Fairmount, CO', () => {
+  it('should match Fairmount, CO known shifts', () => {
+    const tests = [
+      ['2018-01-01T07:10:30-0700', 'B', false],
+      ['2018-01-02T07:10:30-0700', 'B', false],
+      ['2018-01-03T07:10:30-0700', 'A', false],
+      ['2018-01-04T07:10:30-0700', 'A', false],
+      ['2018-01-05T07:10:30-0700', 'C', false],
+      ['2018-01-06T07:10:30-0700', 'C', false],
+      ['2018-01-07T07:10:30-0700', 'B', false],
+      ['2018-01-08T07:10:30-0700', 'B', false],
+      ['2018-01-09T07:10:30-0700', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (fairmountCO.calculateShift(test[0])).should.equal(test[1]);
+      (fairmountCO.beforeShiftChange(fairmountCO.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
