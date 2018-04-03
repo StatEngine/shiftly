@@ -167,3 +167,11 @@ export function FairmountCO() {
     timeZone: 'US/Mountain',
   });
 }
+
+export function KingstonON() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    shiftStart: '0800',
+    pattern: 'DBCDACABCABDADCADCBDBADBACBC',
+  });
+}

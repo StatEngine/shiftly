@@ -12,6 +12,7 @@ import { ShiftConfiguration,
   ClarkCountyNV,
   RogersAR,
   FairmountCO,
+  KingstonON,
 } from '../src';
 
 const richmond = richmondVA();
@@ -23,6 +24,7 @@ const clarkCounty = ClarkCountyNV();
 const rogers = RogersAR();
 const bostonMA = BostonMA();
 const fairmountCO = FairmountCO();
+const kingstonON = KingstonON();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -281,6 +283,27 @@ describe('Fairmount, CO', () => {
     tests.forEach((test) => {
       (fairmountCO.calculateShift(test[0])).should.equal(test[1]);
       (fairmountCO.beforeShiftChange(fairmountCO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+
+describe('Kingston, ON', () => {
+  it('should match Kingston, ON known shifts', () => {
+    const tests = [
+      ['2018-08-01T08:10:30-0400', 'D', false],
+      ['2018-08-02T08:10:30-0400', 'C', false],
+      ['2018-08-03T08:10:30-0400', 'B', false],
+      ['2018-08-04T08:10:30-0400', 'D', false],
+      ['2018-08-05T08:10:30-0400', 'B', false],
+      ['2018-08-06T08:10:30-0400', 'A', false],
+      ['2018-08-07T08:10:30-0400', 'D', false],
+      ['2018-08-08T08:10:30-0400', 'B', false],
+      ['2018-08-09T08:10:30-0400', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (kingstonON.calculateShift(test[0])).should.equal(test[1]);
+      (kingstonON.beforeShiftChange(kingstonON.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
