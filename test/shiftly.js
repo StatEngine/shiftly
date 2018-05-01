@@ -13,7 +13,7 @@ import { ShiftConfiguration,
   RogersAR,
   FairmountCO,
   KingstonON,
-  GreenvilleNC
+  GreenvilleNC,
 } from '../src';
 
 const richmond = richmondVA();
