@@ -175,3 +175,10 @@ export function KingstonON() {
     pattern: 'DBCDACABCABDADCADCBDBADBACBC',
   });
 }
+
+export function GreenvilleNC() {
+  return new ShiftConfiguration({
+    firstDay: '2018-04-30',
+    pattern: '123',
+  });
+}

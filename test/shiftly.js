@@ -13,6 +13,7 @@ import { ShiftConfiguration,
   RogersAR,
   FairmountCO,
   KingstonON,
+  GreenvilleNC
 } from '../src';
 
 const richmond = richmondVA();
@@ -25,6 +26,7 @@ const rogers = RogersAR();
 const bostonMA = BostonMA();
 const fairmountCO = FairmountCO();
 const kingstonON = KingstonON();
+const greenville = GreenvilleNC();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -287,7 +289,6 @@ describe('Fairmount, CO', () => {
   });
 });
 
-
 describe('Kingston, ON', () => {
   it('should match Kingston, ON known shifts', () => {
     const tests = [
@@ -304,6 +305,21 @@ describe('Kingston, ON', () => {
     tests.forEach((test) => {
       (kingstonON.calculateShift(test[0])).should.equal(test[1]);
       (kingstonON.beforeShiftChange(kingstonON.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Greenville, NC', () => {
+  it('should match Greenville, NC known shifts', () => {
+    const tests = [
+      ['2018-05-01T08:10:30-0400', '2', false],
+      ['2018-05-02T08:10:30-0400', '3', false],
+      ['2018-05-03T08:10:30-0400', '1', false],
+      ['2018-05-04T08:10:30-0400', '2', false],
+    ];
+    tests.forEach((test) => {
+      (greenville.calculateShift(test[0])).should.equal(test[1]);
+      (greenville.beforeShiftChange(greenville.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
