@@ -182,3 +182,12 @@ export function GreenvilleNC() {
     pattern: '123',
   });
 }
+
+export function CosumnesCA() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-05',
+    pattern: 'AABBCC',
+    shiftStart: '0700',
+    timeZone: 'US/Pacific',
+  });
+}
