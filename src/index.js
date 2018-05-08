@@ -201,3 +201,11 @@ export function StLouisPark() {
     timeZone: 'US/Central',
   });
 }
+
+export function HiltonHeadSC() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'ABC',
+    shiftStart: '0800',
+  });
+}
