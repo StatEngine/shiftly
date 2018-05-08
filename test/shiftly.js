@@ -15,6 +15,7 @@ import { ShiftConfiguration,
   KingstonON,
   GreenvilleNC,
   CosumnesCA,
+  StLouisPark,
 } from '../src';
 
 const richmond = richmondVA();
@@ -29,6 +30,7 @@ const fairmountCO = FairmountCO();
 const kingstonON = KingstonON();
 const greenville = GreenvilleNC();
 const cosumnes = CosumnesCA();
+const stlpark = StLouisPark();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -337,6 +339,21 @@ describe('Cosumnes, CA', () => {
     tests.forEach((test) => {
       (cosumnes.calculateShift(test[0])).should.equal(test[1]);
       (cosumnes.beforeShiftChange(cosumnes.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('St Louis Park, MN', () => {
+  it('should match St Louis Park, MN known shifts', () => {
+    const tests = [
+      ['2018-04-04T07:10:30-0500', 'A', true],
+      ['2018-04-05T07:31:30-0500', 'C', false],
+      ['2018-04-06T07:31:30-0500', 'A', false],
+      ['2018-04-07T07:31:30-0500', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (stlpark.calculateShift(test[0])).should.equal(test[1]);
+      (stlpark.beforeShiftChange(stlpark.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
