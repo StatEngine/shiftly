@@ -34,7 +34,9 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
   }
 
   beforeShiftChange(date) {
-    return date.hours() < this.shiftStartDate.hours();
+    const startDate = this.shiftStartDate;
+    return date.hours() < startDate.hours() || (date.hours() === startDate.hours()
+      && date.minutes() < startDate.minutes());
   }
 
   daysFromPatternStart(start) {
@@ -81,7 +83,6 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     const start = momentDate.hours(this.shiftStartDate.hours())
                             .minutes(this.shiftStartDate.minutes())
                             .startOf('minute');
-
     return { start: start.format(), end: start.add(24, 'hours').format() };
   }
 }
@@ -189,5 +190,14 @@ export function CosumnesCA() {
     pattern: 'AABBCC',
     shiftStart: '0700',
     timeZone: 'US/Pacific',
+  });
+}
+
+export function StLouisPark() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'ACABCBCBABCACACBCABAB',
+    shiftStart: '0730',
+    timeZone: 'US/Central',
   });
 }
