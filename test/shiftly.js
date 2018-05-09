@@ -17,6 +17,7 @@ import { ShiftConfiguration,
   CosumnesCA,
   StLouisPark,
   HiltonHeadSC,
+  PolkCountyFL
 } from '../src';
 
 const richmond = richmondVA();
@@ -33,6 +34,7 @@ const greenville = GreenvilleNC();
 const cosumnes = CosumnesCA();
 const stlpark = StLouisPark();
 const hiltonHead = HiltonHeadSC();
+const polkCounty = PolkCountyFL();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -371,6 +373,21 @@ describe('Hilton Head, SC', () => {
     tests.forEach((test) => {
       (hiltonHead.calculateShift(test[0])).should.equal(test[1]);
       (hiltonHead.beforeShiftChange(hiltonHead.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Polk County, FL', () => {
+  it('should match Polk County, FL known shifts', () => {
+    const tests = [
+      ['2018-05-23T07:10:30-0400', 'C', true],
+      ['2018-05-23T08:30:00-0400', 'A', false],
+      ['2018-05-24T08:00:00-0400', 'B', false],
+      ['2018-05-25T08:00:00-0400', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (polkCounty.calculateShift(test[0])).should.equal(test[1]);
+      (polkCounty.beforeShiftChange(polkCounty.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
