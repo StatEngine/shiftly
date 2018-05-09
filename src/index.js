@@ -209,3 +209,11 @@ export function HiltonHeadSC() {
     shiftStart: '0800',
   });
 }
+
+export function PolkCountyFL() {
+  return new ShiftConfiguration({
+    firstDay: '2018-05-08',
+    pattern: 'ABC',
+    shiftStart: '0800',
+  });
+}
