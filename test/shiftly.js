@@ -17,7 +17,8 @@ import { ShiftConfiguration,
   CosumnesCA,
   StLouisPark,
   HiltonHeadSC,
-  PolkCountyFL
+  PolkCountyFL,
+  FirecaresLookup,
 } from '../src';
 
 const richmond = richmondVA();
@@ -72,6 +73,28 @@ describe('ShiftConfiguration', () => {
     (richmond.calculateShift('2017-07-07T08:00:00-0400').should.equal('A'));
   });
 });
+
+describe('Firecares Lookup', () => {
+  it('should export a lookup based on firecares id', () => {
+    FirecaresLookup['98606'].should.equal(washingtonDC);
+    FirecaresLookup['93345'].should.equal(richmondVA);
+    FirecaresLookup['81147'].should.equal(fairfaxVA);
+    FirecaresLookup['81154'].should.equal(fairfaxVA);
+    FirecaresLookup['92724'].should.equal(PrinceWilliamVA);
+    FirecaresLookup['77818'].should.equal(OxnardCA);
+    FirecaresLookup['97477'].should.equal(TucsonAZ);
+    FirecaresLookup['77989'].should.equal(ClarkCountyNV);
+    FirecaresLookup['93717'].should.equal(RogersAR);
+    FirecaresLookup['75500'].should.equal(BostonMA);
+    FirecaresLookup['81205'].should.equal(FairmountCO);
+    FirecaresLookup['100262'].should.equal(KingstonON);
+    FirecaresLookup['83175'].should.equal(GreenvilleNC);
+    FirecaresLookup['78827'].should.equal(CosumnesCA);
+    FirecaresLookup['95940'].should.equal(StLouisPark);
+    FirecaresLookup['96833'].should.equal(HiltonHeadSC);
+    FirecaresLookup['05102'].should.equal(PolkCountyFL);
+  })
+})
 
 describe('Washington, DC', () => {
   it('should match known Washington DC shifts', () => {
