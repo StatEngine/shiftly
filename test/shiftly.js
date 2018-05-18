@@ -19,6 +19,7 @@ import { ShiftConfiguration,
   HiltonHeadSC,
   PolkCountyFL,
   FirecaresLookup,
+  FtMyersFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -36,6 +37,7 @@ const cosumnes = CosumnesCA();
 const stlpark = StLouisPark();
 const hiltonHead = HiltonHeadSC();
 const polkCounty = PolkCountyFL();
+const ftMyers = FtMyersFL();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -411,6 +413,21 @@ describe('Polk County, FL', () => {
     tests.forEach((test) => {
       (polkCounty.calculateShift(test[0])).should.equal(test[1]);
       (polkCounty.beforeShiftChange(polkCounty.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Fort Myers, FL', () => {
+  it('should match Fort Myers, FL known shifts', () => {
+    const tests = [
+      ['2018-05-17T06:10:30-0400', 'C', true],
+      ['2018-05-17T08:30:00-0400', 'A', false],
+      ['2018-05-18T08:00:00-0400', 'B', false],
+      ['2018-05-19T08:00:00-0400', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (ftMyers.calculateShift(test[0])).should.equal(test[1]);
+      (ftMyers.beforeShiftChange(ftMyers.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
