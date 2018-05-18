@@ -237,3 +237,11 @@ export function PolkCountyFL() {
     shiftStart: '0800',
   });
 }
+
+export function FtMyersFL() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-02',
+    pattern: 'ABC',
+    shiftStart: '0700',
+  });
+}
