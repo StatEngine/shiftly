@@ -20,6 +20,7 @@ import { ShiftConfiguration,
   PolkCountyFL,
   FirecaresLookup,
   FtMyersFL,
+  OrangeCountyFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -38,6 +39,7 @@ const stlpark = StLouisPark();
 const hiltonHead = HiltonHeadSC();
 const polkCounty = PolkCountyFL();
 const ftMyers = FtMyersFL();
+const orangeCounty = OrangeCountyFL();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -96,6 +98,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['96833'].should.equal(HiltonHeadSC);
     FirecaresLookup['05102'].should.equal(PolkCountyFL);
     FirecaresLookup['77656'].should.equal(FtMyersFL);
+    FirecaresLookup['91106'].should.equal(OrangeCountyFL);
   });
 });
 
@@ -429,6 +432,21 @@ describe('Fort Myers, FL', () => {
     tests.forEach((test) => {
       (ftMyers.calculateShift(test[0])).should.equal(test[1]);
       (ftMyers.beforeShiftChange(ftMyers.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Orange County, FL', () => {
+  it('should match Orange County, FL known shifts', () => {
+    const tests = [
+      ['2018-05-16T07:10:30-0400', 'C', true],
+      ['2018-05-16T08:30:00-0400', 'A', false],
+      ['2018-05-17T08:00:00-0400', 'B', false],
+      ['2018-05-18T08:00:00-0400', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (orangeCounty.calculateShift(test[0])).should.equal(test[1]);
+      (orangeCounty.beforeShiftChange(orangeCounty.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
