@@ -87,26 +87,6 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
   }
 }
 
-export const FirecaresLookup = {
-  98606: washingtonDC,
-  93345: richmondVA,
-  81147: fairfaxVA,
-  81154: fairfaxVA,
-  92724: PrinceWilliamVA,
-  77818: OxnardCA,
-  97477: TucsonAZ,
-  77989: ClarkCountyNV,
-  93717: RogersAR,
-  75500: BostonMA,
-  81205: FairmountCO,
-  100262: KingstonON,
-  83175: GreenvilleNC,
-  78827: CosumnesCA,
-  95940: StLouisPark,
-  96833: HiltonHeadSC,
-  '05102': PolkCountyFL
-}
-
 export function washingtonDC() {
   return new ShiftConfiguration({
     firstDay: '2017-09-01',
@@ -245,3 +225,24 @@ export function FtMyersFL() {
     shiftStart: '0700',
   });
 }
+
+export const FirecaresLookup = {
+  98606: washingtonDC,
+  93345: richmondVA,
+  81147: fairfaxVA,
+  81154: fairfaxVA,
+  92724: PrinceWilliamVA,
+  77818: OxnardCA,
+  97477: TucsonAZ,
+  77989: ClarkCountyNV,
+  93717: RogersAR,
+  75500: BostonMA,
+  81205: FairmountCO,
+  100262: KingstonON,
+  83175: GreenvilleNC,
+  78827: CosumnesCA,
+  95940: StLouisPark,
+  96833: HiltonHeadSC,
+  '05102': PolkCountyFL,
+  77656: FtMyersFL,
+};

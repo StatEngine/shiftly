@@ -95,8 +95,9 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['95940'].should.equal(StLouisPark);
     FirecaresLookup['96833'].should.equal(HiltonHeadSC);
     FirecaresLookup['05102'].should.equal(PolkCountyFL);
-  })
-})
+    FirecaresLookup['77656'].should.equal(FtMyersFL);
+  });
+});
 
 describe('Washington, DC', () => {
   it('should match known Washington DC shifts', () => {
