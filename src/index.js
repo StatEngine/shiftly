@@ -226,6 +226,14 @@ export function FtMyersFL() {
   });
 }
 
+export function OrangeCountyFL() {
+  return new ShiftConfiguration({
+    firstDay: '2018-05-01',
+    pattern: 'ABC',
+    shiftStart: '0730',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -245,4 +253,5 @@ export const FirecaresLookup = {
   96833: HiltonHeadSC,
   '05102': PolkCountyFL,
   77656: FtMyersFL,
+  91106: OrangeCountyFL,
 };
