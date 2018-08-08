@@ -21,6 +21,7 @@ import { ShiftConfiguration,
   FirecaresLookup,
   FtMyersFL,
   OrangeCountyFL,
+  StPaulMN,
 } from '../src';
 
 const richmond = richmondVA();
@@ -40,6 +41,7 @@ const hiltonHead = HiltonHeadSC();
 const polkCounty = PolkCountyFL();
 const ftMyers = FtMyersFL();
 const orangeCounty = OrangeCountyFL();
+const stPaulMN = StPaulMN();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -99,6 +101,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['05102'].should.equal(PolkCountyFL);
     FirecaresLookup['77656'].should.equal(FtMyersFL);
     FirecaresLookup['91106'].should.equal(OrangeCountyFL);
+    FirecaresLookup['77863'].should.equal(StPaulMN);
   });
 });
 
@@ -447,6 +450,24 @@ describe('Orange County, FL', () => {
     tests.forEach((test) => {
       (orangeCounty.calculateShift(test[0])).should.equal(test[1]);
       (orangeCounty.beforeShiftChange(orangeCounty.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('St Paul, MN', () => {
+  it('should match St Paul, MN known shifts', () => {
+    const tests = [
+      ['2018-05-16T07:10:30-0400', 'A', true],
+      ['2018-05-16T08:30:00-0400', 'B', false],
+      ['2018-05-17T08:00:00-0400', 'C', false],
+      ['2018-05-18T08:00:00-0400', 'B', false],
+      ['2018-08-01T08:00:00-0400', 'C', false],
+      ['2018-08-02T08:00:00-0400', 'A', false],
+      ['2018-08-03T08:00:00-0400', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (stPaulMN.calculateShift(test[0])).should.equal(test[1]);
+      (stPaulMN.beforeShiftChange(stPaulMN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

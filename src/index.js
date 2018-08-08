@@ -234,6 +234,14 @@ export function OrangeCountyFL() {
   });
 }
 
+export function StPaulMN() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'BABCBCBCACABABABCBCACACA',
+    shiftStart: '0800',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -254,4 +262,5 @@ export const FirecaresLookup = {
   '05102': PolkCountyFL,
   77656: FtMyersFL,
   91106: OrangeCountyFL,
+  77863: StPaulMN,
 };
