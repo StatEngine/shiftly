@@ -92,6 +92,7 @@ export function washingtonDC() {
     firstDay: '2017-09-01',
     pattern: '1234',
     shiftStart: '0700',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -99,6 +100,8 @@ export function richmondVA() {
   return new ShiftConfiguration({
     firstDay: '2016-10-18',
     pattern: 'acababacbcacacbabcbcb',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -107,6 +110,7 @@ export function fairfaxVA() {
     firstDay: '2016-10-14',
     pattern: 'acababcbc',
     shiftStart: '0700',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -115,56 +119,60 @@ export function PrinceWilliamVA() {
     firstDay: '2017-07-10',
     pattern: 'abc',
     shiftStart: '0600',
+    timeZone: 'US/Eastern',
   });
 }
 
 export function OxnardCA() {
   return new ShiftConfiguration({
     firstDay: '2017-01-04',
-    timeZone: 'US/Pacific',
     pattern: 'acacababcbcbcacabababcbc',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
   });
 }
 
 export function TucsonAZ() {
   return new ShiftConfiguration({
     firstDay: '2017-01-01',
-    timeZone: 'US/Arizona',
     pattern: 'acbcbcbababacac',
     shiftStart: '0800',
+    timeZone: 'US/Arizona',
   });
 }
 
 export function ClarkCountyNV() {
   return new ShiftConfiguration({
     firstDay: '2017-01-06',
-    timeZone: 'US/Pacific',
     pattern: 'cbcbcacacababab',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
   });
 }
 
 export function RogersAR() {
   return new ShiftConfiguration({
     firstDay: '2018-01-17',
-    timeZone: 'US/Central',
     pattern: 'aabbcc',
     shiftStart: '0700',
+    timeZone: 'US/Central',
   });
 }
 
 export function BostonMA() {
   return new ShiftConfiguration({
     firstDay: '2018-01-01',
-    shiftStart: '0800',
     pattern: '13243142',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
 export function FairmountCO() {
   return new ShiftConfiguration({
     firstDay: '2018-01-01',
-    shiftStart: '0700',
     pattern: 'BBAACC',
+    shiftStart: '0700',
     timeZone: 'US/Mountain',
   });
 }
@@ -172,8 +180,9 @@ export function FairmountCO() {
 export function KingstonON() {
   return new ShiftConfiguration({
     firstDay: '2018-01-01',
-    shiftStart: '0800',
     pattern: 'DBCDACABCABDADCADCBDBADBACBC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -181,6 +190,8 @@ export function GreenvilleNC() {
   return new ShiftConfiguration({
     firstDay: '2018-04-30',
     pattern: '123',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -207,6 +218,7 @@ export function HiltonHeadSC() {
     firstDay: '2018-01-01',
     pattern: 'ABC',
     shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -215,6 +227,7 @@ export function PolkCountyFL() {
     firstDay: '2018-05-08',
     pattern: 'ABC',
     shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -223,6 +236,7 @@ export function FtMyersFL() {
     firstDay: '2018-01-02',
     pattern: 'ABC',
     shiftStart: '0700',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -231,6 +245,7 @@ export function OrangeCountyFL() {
     firstDay: '2018-05-01',
     pattern: 'ABC',
     shiftStart: '0730',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -239,6 +254,16 @@ export function StPaulMN() {
     firstDay: '2018-01-01',
     pattern: 'BABCBCBCACABABABCBCACACA',
     shiftStart: '0800',
+    timeZone: 'US/Central',
+  });
+}
+
+export function WestMetroCO() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'BBAACC',
+    shiftStart: '0800',
+    timeZone: 'US/Mountain',
   });
 }
 
@@ -263,4 +288,5 @@ export const FirecaresLookup = {
   77656: FtMyersFL,
   91106: OrangeCountyFL,
   77863: StPaulMN,
+  99082: WestMetroCO,
 };

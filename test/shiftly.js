@@ -22,6 +22,7 @@ import { ShiftConfiguration,
   FtMyersFL,
   OrangeCountyFL,
   StPaulMN,
+  WestMetroCO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -42,6 +43,7 @@ const polkCounty = PolkCountyFL();
 const ftMyers = FtMyersFL();
 const orangeCounty = OrangeCountyFL();
 const stPaulMN = StPaulMN();
+const westMetroCO = WestMetroCO();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -457,17 +459,39 @@ describe('Orange County, FL', () => {
 describe('St Paul, MN', () => {
   it('should match St Paul, MN known shifts', () => {
     const tests = [
-      ['2018-05-16T07:10:30-0400', 'A', true],
-      ['2018-05-16T08:30:00-0400', 'B', false],
-      ['2018-05-17T08:00:00-0400', 'C', false],
-      ['2018-05-18T08:00:00-0400', 'B', false],
-      ['2018-08-01T08:00:00-0400', 'C', false],
-      ['2018-08-02T08:00:00-0400', 'A', false],
-      ['2018-08-03T08:00:00-0400', 'C', false],
+      ['2018-05-16T07:10:30-0500', 'A', true],
+      ['2018-05-16T08:30:00-0500', 'B', false],
+      ['2018-05-17T08:00:00-0500', 'C', false],
+      ['2018-05-18T08:00:00-0500', 'B', false],
+      ['2018-08-01T08:00:00-0500', 'C', false],
+      ['2018-08-02T08:00:00-0500', 'A', false],
+      ['2018-08-03T08:00:00-0500', 'C', false],
     ];
     tests.forEach((test) => {
       (stPaulMN.calculateShift(test[0])).should.equal(test[1]);
       (stPaulMN.beforeShiftChange(stPaulMN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+
+describe('West Metro, CO', () => {
+  it('should match West Metro, CO known shifts', () => {
+    const tests = [
+      ['2018-01-02T06:10:30-0700', 'B', true],
+      ['2018-01-02T08:10:30-0700', 'B', false],
+      ['2018-01-03T08:10:30-0700', 'A', false],
+      ['2018-01-04T08:10:30-0700', 'A', false],
+      ['2018-01-05T08:10:30-0700', 'C', false],
+      ['2018-01-06T08:10:30-0700', 'C', false],
+      ['2018-08-23T08:10:30-0600', 'B', false],
+      ['2018-08-24T08:10:30-0600', 'B', false],
+      ['2018-08-25T08:10:30-0600', 'A', false],
+
+    ];
+    tests.forEach((test) => {
+      (westMetroCO.calculateShift(test[0])).should.equal(test[1]);
+      (westMetroCO.beforeShiftChange(westMetroCO.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
