@@ -262,7 +262,7 @@ export function WestMetroCO() {
   return new ShiftConfiguration({
     firstDay: '2018-01-01',
     pattern: 'BBAACC',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Mountain',
   });
 }
