@@ -23,6 +23,7 @@ import { ShiftConfiguration,
   OrangeCountyFL,
   StPaulMN,
   WestMetroCO,
+  BellevueWA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -44,6 +45,7 @@ const ftMyers = FtMyersFL();
 const orangeCounty = OrangeCountyFL();
 const stPaulMN = StPaulMN();
 const westMetroCO = WestMetroCO();
+const bellevueWA = BellevueWA();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -104,6 +106,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['77656'].should.equal(FtMyersFL);
     FirecaresLookup['91106'].should.equal(OrangeCountyFL);
     FirecaresLookup['77863'].should.equal(StPaulMN);
+    FirecaresLookup['74731'].should.equal(BellevueWA);
   });
 });
 
@@ -492,6 +495,24 @@ describe('West Metro, CO', () => {
     tests.forEach((test) => {
       (westMetroCO.calculateShift(test[0])).should.equal(test[1]);
       (westMetroCO.beforeShiftChange(westMetroCO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Bellevue, WA', () => {
+  it('should match Bellevue, WA known shifts', () => {
+    const tests = [
+      ['2018-05-16T07:10:00-0700', 'C', true],
+      ['2018-05-16T08:30:00-0700', 'B', false],
+      ['2018-05-17T08:00:00-0700', 'A', false],
+      ['2018-05-18T08:00:00-0700', 'B', false],
+      ['2018-07-20T08:00:00-0700', 'B', false],
+      ['2018-07-21T22:00:00-0700', 'A', false],
+      ['2018-07-22T14:00:00-0700', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (bellevueWA.calculateShift(test[0])).should.equal(test[1]);
+      (bellevueWA.beforeShiftChange(bellevueWA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
