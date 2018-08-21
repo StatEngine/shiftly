@@ -267,6 +267,15 @@ export function WestMetroCO() {
   });
 }
 
+export function BellevueWA() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'BABACACBC',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -289,4 +298,5 @@ export const FirecaresLookup = {
   91106: OrangeCountyFL,
   77863: StPaulMN,
   99082: WestMetroCO,
+  74731: BellevueWA,
 };
