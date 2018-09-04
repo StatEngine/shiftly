@@ -276,6 +276,15 @@ export function BellevueWA() {
   });
 }
 
+export function DelrayBeachFL() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'CABCAB',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -299,4 +308,5 @@ export const FirecaresLookup = {
   77863: StPaulMN,
   99082: WestMetroCO,
   74731: BellevueWA,
+  79592: DelrayBeachFL,
 };

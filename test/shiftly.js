@@ -24,6 +24,8 @@ import { ShiftConfiguration,
   StPaulMN,
   WestMetroCO,
   BellevueWA,
+  DelrayBeachFL,
+
 } from '../src';
 
 const richmond = richmondVA();
@@ -46,6 +48,7 @@ const orangeCounty = OrangeCountyFL();
 const stPaulMN = StPaulMN();
 const westMetroCO = WestMetroCO();
 const bellevueWA = BellevueWA();
+const delrayBeachFL = DelrayBeachFL();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -513,6 +516,21 @@ describe('Bellevue, WA', () => {
     tests.forEach((test) => {
       (bellevueWA.calculateShift(test[0])).should.equal(test[1]);
       (bellevueWA.beforeShiftChange(bellevueWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Delray Beach, FL', () => {
+  it('should match Delray Beach, FL known shifts', () => {
+    const tests = [
+      ['2018-01-01T09:10:00-0400', 'C', false],
+      ['2018-01-02T07:10:00-0400', 'C', true],
+      ['2018-01-02T09:10:00-0400', 'A', false],
+      ['2018-01-03T09:10:00-0400', 'B', false],
+    ];
+    tests.forEach((test) => {
+      (delrayBeachFL.calculateShift(test[0])).should.equal(test[1]);
+      (delrayBeachFL.beforeShiftChange(delrayBeachFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
