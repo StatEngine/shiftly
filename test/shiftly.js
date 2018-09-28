@@ -25,7 +25,7 @@ import { ShiftConfiguration,
   WestMetroCO,
   BellevueWA,
   DelrayBeachFL,
-
+  NewRochelleNY,
 } from '../src';
 
 const richmond = richmondVA();
@@ -49,6 +49,7 @@ const stPaulMN = StPaulMN();
 const westMetroCO = WestMetroCO();
 const bellevueWA = BellevueWA();
 const delrayBeachFL = DelrayBeachFL();
+const newRochelleNY = NewRochelleNY();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -531,6 +532,22 @@ describe('Delray Beach, FL', () => {
     tests.forEach((test) => {
       (delrayBeachFL.calculateShift(test[0])).should.equal(test[1]);
       (delrayBeachFL.beforeShiftChange(delrayBeachFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('New Rochelle, NY', () => {
+  it('should match New Rochelle, NY known shifts', () => {
+    const tests = [
+      ['2019-01-01T09:10:00-0400', '1', false],
+      ['2019-01-02T07:10:00-0400', '1', true],
+      ['2019-01-02T09:10:00-0400', '2', false],
+      ['2019-01-03T09:10:00-0400', '3', false],
+      ['2019-01-04T09:10:00-0400', '4', false],
+    ];
+    tests.forEach((test) => {
+      (newRochelleNY.calculateShift(test[0])).should.equal(test[1]);
+      (newRochelleNY.beforeShiftChange(newRochelleNY.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

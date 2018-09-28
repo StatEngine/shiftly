@@ -285,6 +285,16 @@ export function DelrayBeachFL() {
   });
 }
 
+export function NewRochelleNY() {
+  return new ShiftConfiguration({
+    firstDay: '2018-09-03',
+    pattern: '12341234',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
