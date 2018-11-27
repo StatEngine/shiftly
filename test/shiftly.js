@@ -26,6 +26,7 @@ import { ShiftConfiguration,
   BellevueWA,
   DelrayBeachFL,
   NewRochelleNY,
+  MiamiDadeFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -50,6 +51,7 @@ const westMetroCO = WestMetroCO();
 const bellevueWA = BellevueWA();
 const delrayBeachFL = DelrayBeachFL();
 const newRochelleNY = NewRochelleNY();
+const miamiDadeFL = MiamiDadeFL();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -111,6 +113,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['91106'].should.equal(OrangeCountyFL);
     FirecaresLookup['77863'].should.equal(StPaulMN);
     FirecaresLookup['74731'].should.equal(BellevueWA);
+    FirecaresLookup['88539'].should.equal(MiamiDadeFL);
   });
 });
 
@@ -548,6 +551,21 @@ describe('New Rochelle, NY', () => {
     tests.forEach((test) => {
       (newRochelleNY.calculateShift(test[0])).should.equal(test[1]);
       (newRochelleNY.beforeShiftChange(newRochelleNY.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+
+describe('Miami Dade, FL', () => {
+  it('should match Miami Dade, FL known shifts', () => {
+    const tests = [
+      ['2018-12-01T08:10:00-0400', 'A', false],
+      ['2018-12-01T06:10:00-0400', 'C', true],
+      ['2018-12-02T08:10:00-0400', 'B', false],
+    ];
+    tests.forEach((test) => {
+      (miamiDadeFL.calculateShift(test[0])).should.equal(test[1]);
+      (miamiDadeFL.beforeShiftChange(miamiDadeFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

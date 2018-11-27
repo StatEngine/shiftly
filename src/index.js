@@ -294,6 +294,15 @@ export function NewRochelleNY() {
   });
 }
 
+export function MiamiDadeFL() {
+  return new ShiftConfiguration({
+    firstDay: '2017-12-03',
+    pattern: 'abcabc',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
+
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -319,4 +328,5 @@ export const FirecaresLookup = {
   99082: WestMetroCO,
   74731: BellevueWA,
   79592: DelrayBeachFL,
+  88539: MiamiDadeFL,
 };
