@@ -303,6 +303,14 @@ export function MiamiDadeFL() {
   });
 }
 
+export function SouthernPlatteMO() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'BABCBCACABABCBCACA',
+    shiftStart: '0800',
+    timeZone: 'US/Central',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -329,4 +337,5 @@ export const FirecaresLookup = {
   74731: BellevueWA,
   79592: DelrayBeachFL,
   88539: MiamiDadeFL,
+  95671: SouthernPlatteMO,
 };

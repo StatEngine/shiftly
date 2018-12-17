@@ -27,6 +27,7 @@ import { ShiftConfiguration,
   DelrayBeachFL,
   NewRochelleNY,
   MiamiDadeFL,
+  SouthernPlatteMO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -52,6 +53,7 @@ const bellevueWA = BellevueWA();
 const delrayBeachFL = DelrayBeachFL();
 const newRochelleNY = NewRochelleNY();
 const miamiDadeFL = MiamiDadeFL();
+const southernPlatteMO = SouthernPlatteMO();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -114,6 +116,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['77863'].should.equal(StPaulMN);
     FirecaresLookup['74731'].should.equal(BellevueWA);
     FirecaresLookup['88539'].should.equal(MiamiDadeFL);
+    FirecaresLookup['95671'].should.equal(SouthernPlatteMO);
   });
 });
 
@@ -566,6 +569,24 @@ describe('Miami Dade, FL', () => {
     tests.forEach((test) => {
       (miamiDadeFL.calculateShift(test[0])).should.equal(test[1]);
       (miamiDadeFL.beforeShiftChange(miamiDadeFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+
+  describe('Southern Platte, MO', () => {
+    it('should match Southern Platte, MO known shifts', () => {
+      const tests = [
+        ['2018-01-01T08:10:00-0600', 'B', false],
+        ['2018-01-02T07:10:00-0600', 'B', true],
+        ['2018-01-02T08:10:00-0600', 'A', false],
+        ['2018-01-03T08:10:00-0600', 'B', false],
+        ['2018-01-04T08:10:00-0600', 'C', false],
+        ['2018-01-05T08:10:00-0600', 'B', false],
+        ['2018-01-06T08:10:00-0600', 'C', false],
+      ];
+      tests.forEach((test) => {
+        (southernPlatteMO.calculateShift(test[0])).should.equal(test[1]);
+        (southernPlatteMO.beforeShiftChange(southernPlatteMO.normalize(test[0]))).should.equal(test[2]);
+      });
     });
   });
 });
