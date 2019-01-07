@@ -28,6 +28,7 @@ import { ShiftConfiguration,
   NewRochelleNY,
   MiamiDadeFL,
   SouthernPlatteMO,
+  AdamsCountyCO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -54,6 +55,7 @@ const delrayBeachFL = DelrayBeachFL();
 const newRochelleNY = NewRochelleNY();
 const miamiDadeFL = MiamiDadeFL();
 const southernPlatteMO = SouthernPlatteMO();
+const adamsCountyCO = AdamsCountyCO();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -117,6 +119,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['74731'].should.equal(BellevueWA);
     FirecaresLookup['88539'].should.equal(MiamiDadeFL);
     FirecaresLookup['95671'].should.equal(SouthernPlatteMO);
+    FirecaresLookup['90552'].should.equal(AdamsCountyCO);
   });
 });
 
@@ -571,22 +574,41 @@ describe('Miami Dade, FL', () => {
       (miamiDadeFL.beforeShiftChange(miamiDadeFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
+});
 
-  describe('Southern Platte, MO', () => {
-    it('should match Southern Platte, MO known shifts', () => {
-      const tests = [
-        ['2018-01-01T08:10:00-0600', 'B', false],
-        ['2018-01-02T07:10:00-0600', 'B', true],
-        ['2018-01-02T08:10:00-0600', 'A', false],
-        ['2018-01-03T08:10:00-0600', 'B', false],
-        ['2018-01-04T08:10:00-0600', 'C', false],
-        ['2018-01-05T08:10:00-0600', 'B', false],
-        ['2018-01-06T08:10:00-0600', 'C', false],
-      ];
-      tests.forEach((test) => {
-        (southernPlatteMO.calculateShift(test[0])).should.equal(test[1]);
-        (southernPlatteMO.beforeShiftChange(southernPlatteMO.normalize(test[0]))).should.equal(test[2]);
-      });
+describe('Southern Platte, MO', () => {
+  it('should match Southern Platte, MO known shifts', () => {
+    const tests = [
+      ['2018-01-01T08:10:00-0600', 'B', false],
+      ['2018-01-02T07:10:00-0600', 'B', true],
+      ['2018-01-02T08:10:00-0600', 'A', false],
+      ['2018-01-03T08:10:00-0600', 'B', false],
+      ['2018-01-04T08:10:00-0600', 'C', false],
+      ['2018-01-05T08:10:00-0600', 'B', false],
+      ['2018-01-06T08:10:00-0600', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (southernPlatteMO.calculateShift(test[0])).should.equal(test[1]);
+      (southernPlatteMO.beforeShiftChange(southernPlatteMO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Adams County, CO', () => {
+  it('should match Adams County, CO known shifts', () => {
+    const tests = [
+      ['2019-01-02T08:10:00-0700', 'B', false],
+      ['2019-01-03T08:10:00-0700', 'B', false],
+      ['2019-01-04T08:10:00-0700', 'A', false],
+      ['2019-01-05T08:10:00-0700', 'A', false],
+      ['2019-01-06T08:10:00-0700', 'C', false],
+      ['2019-01-07T08:10:00-0700', 'C', false],
+      ['2019-01-08T08:10:00-0700', 'B', false],
+      ['2019-01-08T06:10:00-0700', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (adamsCountyCO.calculateShift(test[0])).should.equal(test[1]);
+      (adamsCountyCO.beforeShiftChange(adamsCountyCO.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

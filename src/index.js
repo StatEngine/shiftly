@@ -312,6 +312,15 @@ export function SouthernPlatteMO() {
   });
 }
 
+export function AdamsCountyCO() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-02',
+    pattern: 'BBAACCBBAACC',
+    shiftStart: '0700',
+    timeZone: 'US/Mountain',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -338,4 +347,5 @@ export const FirecaresLookup = {
   79592: DelrayBeachFL,
   88539: MiamiDadeFL,
   95671: SouthernPlatteMO,
+  90552: AdamsCountyCO,
 };
