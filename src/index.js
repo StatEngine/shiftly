@@ -321,11 +321,20 @@ export function AdamsCountyCO() {
   });
 }
 
-export function FishersCountyIN() {
+export function FishersIN() {
   return new ShiftConfiguration({
     firstDay: '2018-12-01',
     pattern: 'CAB',
     shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
+export function NoblesvilleIN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-02',
+    pattern: 'BABCBCACA',
+    shiftStart: '0730',
     timeZone: 'US/Eastern',
   });
 }
@@ -357,5 +366,6 @@ export const FirecaresLookup = {
   88539: MiamiDadeFL,
   95671: SouthernPlatteMO,
   90552: AdamsCountyCO,
-  81508: FishersCountyIN
+  81508: FishersIN,
+  90227: NoblesvilleIN,
 };
