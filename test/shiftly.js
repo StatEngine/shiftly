@@ -620,42 +620,42 @@ describe('Adams County, CO', () => {
       (adamsCountyCO.beforeShiftChange(adamsCountyCO.normalize(test[0]))).should.equal(test[2]);
     });
   });
+});
 
-  describe('Fishers, IN', () => {
-    it('should match Fishers, IN known shifts', () => {
-      const tests = [
-        ['2019-01-02T08:10:00-0500', 'B', false],
-        ['2019-01-03T08:10:00-0500', 'C', false],
-        ['2019-01-04T08:10:00-0500', 'A', false],
-        ['2019-01-05T08:10:00-0500', 'B', false],
-        ['2019-01-06T08:10:00-0500', 'C', false],
-        ['2019-01-07T08:10:00-0500', 'A', false],
-        ['2019-01-16T08:10:00-0500', 'A', false],
-        ['2019-01-08T05:10:00-0500', 'A', true],
-      ];
-      tests.forEach((test) => {
-        (fishersIN.calculateShift(test[0])).should.equal(test[1]);
-        (fishersIN.beforeShiftChange(fishersIN.normalize(test[0]))).should.equal(test[2]);
-      });
+describe('Fishers, IN', () => {
+  it('should match Fishers, IN known shifts', () => {
+    const tests = [
+      ['2019-01-02T08:10:00-0500', 'B', false],
+      ['2019-01-03T08:10:00-0500', 'C', false],
+      ['2019-01-04T08:10:00-0500', 'A', false],
+      ['2019-01-05T08:10:00-0500', 'B', false],
+      ['2019-01-06T08:10:00-0500', 'C', false],
+      ['2019-01-07T08:10:00-0500', 'A', false],
+      ['2019-01-16T08:10:00-0500', 'A', false],
+      ['2019-01-08T05:10:00-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (fishersIN.calculateShift(test[0])).should.equal(test[1]);
+      (fishersIN.beforeShiftChange(fishersIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
+});
 
-  describe('Noblesville, IN', () => {
-    it('should match Noblesville, IN known shifts', () => {
-      const tests = [
-        ['2019-01-02T07:40:00-0500', 'B', false],
-        ['2019-01-03T07:40:00-0500', 'A', false],
-        ['2019-01-04T07:40:00-0500', 'B', false],
-        ['2019-02-01T07:40:00-0500', 'C', false],
-        ['2019-02-06T07:40:00-0500', 'A', false],
-        ['2019-02-07T07:40:00-0500', 'B', false],
-        ['2019-02-16T07:40:00-0500', 'B', false],
-        ['2019-01-08T07:20:00-0500', 'C', true],
-      ];
-      tests.forEach((test) => {
-        (noblesvilleIN.calculateShift(test[0])).should.equal(test[1]);
-        (noblesvilleIN.beforeShiftChange(noblesvilleIN.normalize(test[0]))).should.equal(test[2]);
-      });
+describe('Noblesville, IN', () => {
+  it('should match Noblesville, IN known shifts', () => {
+    const tests = [
+      ['2019-01-02T07:40:00-0500', 'B', false],
+      ['2019-01-03T07:40:00-0500', 'A', false],
+      ['2019-01-04T07:40:00-0500', 'B', false],
+      ['2019-02-01T07:40:00-0500', 'C', false],
+      ['2019-02-06T07:40:00-0500', 'A', false],
+      ['2019-02-07T07:40:00-0500', 'B', false],
+      ['2019-02-16T07:40:00-0500', 'B', false],
+      ['2019-01-08T07:20:00-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (noblesvilleIN.calculateShift(test[0])).should.equal(test[1]);
+      (noblesvilleIN.beforeShiftChange(noblesvilleIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
