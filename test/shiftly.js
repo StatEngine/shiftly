@@ -29,6 +29,7 @@ import { ShiftConfiguration,
   MiamiDadeFL,
   SouthernPlatteMO,
   AdamsCountyCO,
+  FishersCountyIN
 } from '../src';
 
 const richmond = richmondVA();
@@ -56,6 +57,7 @@ const newRochelleNY = NewRochelleNY();
 const miamiDadeFL = MiamiDadeFL();
 const southernPlatteMO = SouthernPlatteMO();
 const adamsCountyCO = AdamsCountyCO();
+const fishersCountyIN = FishersCountyIN();
 
 describe('ShiftConfiguration', () => {
   it('should correctly parse shiftStart', () => {
@@ -120,6 +122,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['88539'].should.equal(MiamiDadeFL);
     FirecaresLookup['95671'].should.equal(SouthernPlatteMO);
     FirecaresLookup['90552'].should.equal(AdamsCountyCO);
+    FirecaresLookup['81508'].should.equal(FishersCountyIN);
   });
 });
 
@@ -609,6 +612,25 @@ describe('Adams County, CO', () => {
     tests.forEach((test) => {
       (adamsCountyCO.calculateShift(test[0])).should.equal(test[1]);
       (adamsCountyCO.beforeShiftChange(adamsCountyCO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+
+  describe('Fishers County, IN', () => {
+    it('should match Fishers County, IN known shifts', () => {
+      const tests = [
+        ['2019-01-02T08:10:00-0800', 'B', false],
+        ['2019-01-03T08:10:00-0800', 'C', false],
+        ['2019-01-04T08:10:00-0800', 'A', false],
+        ['2019-01-05T08:10:00-0800', 'B', false],
+        ['2019-01-06T08:10:00-0800', 'C', false],
+        ['2019-01-07T08:10:00-0800', 'A', false],
+        ['2019-01-16T08:10:00-0800', 'A', false],
+        ['2019-01-08T05:10:00-0700', 'A', true],
+      ];
+      tests.forEach((test) => {
+        (fishersCountyIN.calculateShift(test[0])).should.equal(test[1]);
+        (fishersCountyIN.beforeShiftChange(fishersCountyIN.normalize(test[0]))).should.equal(test[2]);
+      });
     });
   });
 });

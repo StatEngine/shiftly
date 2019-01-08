@@ -321,6 +321,15 @@ export function AdamsCountyCO() {
   });
 }
 
+export function FishersCountyIN() {
+  return new ShiftConfiguration({
+    firstDay: '2018-12-01',
+    pattern: 'CAB',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -348,4 +357,5 @@ export const FirecaresLookup = {
   88539: MiamiDadeFL,
   95671: SouthernPlatteMO,
   90552: AdamsCountyCO,
+  81508: FishersCountyIN
 };
