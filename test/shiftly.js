@@ -32,6 +32,7 @@ import { ShiftConfiguration,
   AdamsCountyCO,
   FishersIN,
   NoblesvilleIN,
+  MesaAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -61,6 +62,7 @@ const southernPlatteMO = SouthernPlatteMO();
 const adamsCountyCO = AdamsCountyCO();
 const fishersIN = FishersIN();
 const noblesvilleIN = NoblesvilleIN();
+const mesa = MesaAZ();
 
 
 describe('ShiftConfiguration', () => {
@@ -656,6 +658,21 @@ describe('Noblesville, IN', () => {
     tests.forEach((test) => {
       (noblesvilleIN.calculateShift(test[0])).should.equal(test[1]);
       (noblesvilleIN.beforeShiftChange(noblesvilleIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Mesa, AZ', () => {
+  it('should match Mesa, AZ known shifts', () => {
+    const tests = [
+      ['2018-01-02T07:40:00-0700', 'C', false],
+      ['2018-02-02T07:40:00-0700', 'B', false],
+      ['2018-02-02T04:40:00-0700', 'A', true],
+      ['2018-02-23T07:40:00-0700', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (mesa.calculateShift(test[0])).should.equal(test[1]);
+      (mesa.beforeShiftChange(mesa.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

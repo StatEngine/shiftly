@@ -339,6 +339,15 @@ export function NoblesvilleIN() {
   });
 }
 
+export function MesaAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2018-01-07',
+    pattern: 'ABCBCACAB',
+    shiftStart: '0700',
+    timeZone: 'US/Arizona',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -368,4 +377,5 @@ export const FirecaresLookup = {
   90552: AdamsCountyCO,
   81508: FishersIN,
   90227: NoblesvilleIN,
+  88490: MesaAZ,
 };
