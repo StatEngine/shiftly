@@ -330,6 +330,15 @@ export function FishersIN() {
   });
 }
 
+export function WestfieldIN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export function NoblesvilleIN() {
   return new ShiftConfiguration({
     firstDay: '2019-01-02',
@@ -376,6 +385,7 @@ export const FirecaresLookup = {
   95671: SouthernPlatteMO,
   90552: AdamsCountyCO,
   81508: FishersIN,
+  77934: WestfieldIN,
   90227: NoblesvilleIN,
   88490: MesaAZ,
 };

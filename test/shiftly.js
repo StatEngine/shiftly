@@ -31,6 +31,7 @@ import { ShiftConfiguration,
   SouthernPlatteMO,
   AdamsCountyCO,
   FishersIN,
+  WestfieldIN,
   NoblesvilleIN,
   MesaAZ,
 } from '../src';
@@ -61,6 +62,7 @@ const miamiDadeFL = MiamiDadeFL();
 const southernPlatteMO = SouthernPlatteMO();
 const adamsCountyCO = AdamsCountyCO();
 const fishersIN = FishersIN();
+const westfieldIN = WestfieldIN();
 const noblesvilleIN = NoblesvilleIN();
 const mesa = MesaAZ();
 
@@ -639,6 +641,25 @@ describe('Fishers, IN', () => {
     tests.forEach((test) => {
       (fishersIN.calculateShift(test[0])).should.equal(test[1]);
       (fishersIN.beforeShiftChange(fishersIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Westfield, IN', () => {
+  it('should match Westfield, IN known shifts', () => {
+    const tests = [
+      ['2019-01-02T08:10:00-0500', 'B', false],
+      ['2019-01-03T08:10:00-0500', 'C', false],
+      ['2019-01-04T08:10:00-0500', 'A', false],
+      ['2019-01-05T08:10:00-0500', 'B', false],
+      ['2019-01-06T08:10:00-0500', 'C', false],
+      ['2019-01-07T08:10:00-0500', 'A', false],
+      ['2019-01-16T08:10:00-0500', 'A', false],
+      ['2019-01-08T05:10:00-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (westfieldIN.calculateShift(test[0])).should.equal(test[1]);
+      (westfieldIN.beforeShiftChange(westfieldIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
