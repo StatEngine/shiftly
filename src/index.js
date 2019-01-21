@@ -33,6 +33,11 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     return `${this.pattern.charAt(0)}${reverse(this.pattern.substring(1, this.pattern.length))}`;
   }
 
+  afterShiftStartDate(date) {
+    const incomingDate = this.normalize(date);
+    return (this.daysFromPatternStart(incomingDate) >= 0);
+  }
+
   beforeShiftChange(date) {
     const startDate = this.shiftStartDate;
     return date.hours() < startDate.hours() || (date.hours() === startDate.hours()
