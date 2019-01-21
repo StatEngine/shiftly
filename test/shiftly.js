@@ -102,6 +102,15 @@ describe('ShiftConfiguration', () => {
   it('should return correct shift at turnover time', () => {
     (richmond.calculateShift('2017-07-07T08:00:00-0400').should.equal('A'));
   });
+
+  it('should return true for dates and times after shift start date', () => {
+    const testDateAfter = '2016-10-22';
+    const testDateBefore = '2016-10-10';
+    const onDate = '2016-10-18';
+    (richmond.afterShiftStartDate(testDateAfter).should.equal(true));
+    (richmond.afterShiftStartDate(testDateBefore).should.equal(false));
+    (richmond.afterShiftStartDate(onDate).should.equal(true));
+  });
 });
 
 describe('Firecares Lookup', () => {
