@@ -343,6 +343,22 @@ export function WestfieldIN() {
     timeZone: 'US/Eastern',
   });
 }
+export function CiceroIN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'acababcbc',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
+export function SheridanIN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'acababcbc',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
 export function CarmelIN() {
   return [new ShiftConfiguration({
     firstDay: '2019-01-01',
@@ -404,6 +420,8 @@ export const FirecaresLookup = {
   90552: AdamsCountyCO,
   81508: FishersIN,
   77934: WestfieldIN,
+  77485: CiceroIN,
+  94967: SheridanIN,
   76662: CarmelIN,
   90227: NoblesvilleIN,
   88490: MesaAZ,
