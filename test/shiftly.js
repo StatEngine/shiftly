@@ -32,6 +32,8 @@ import { ShiftConfiguration,
   AdamsCountyCO,
   FishersIN,
   WestfieldIN,
+  CiceroIN,
+  SheridanIN,
   CarmelIN,
   NoblesvilleIN,
   MesaAZ,
@@ -64,6 +66,8 @@ const southernPlatteMO = SouthernPlatteMO();
 const adamsCountyCO = AdamsCountyCO();
 const fishersIN = FishersIN();
 const westfieldIN = WestfieldIN();
+const ciceroIN = CiceroIN();
+const sheridanIN = SheridanIN();
 const carmelIN = CarmelIN();
 const noblesvilleIN = NoblesvilleIN();
 const mesa = MesaAZ();
@@ -143,6 +147,8 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['90552'].should.equal(AdamsCountyCO);
     FirecaresLookup['81508'].should.equal(FishersIN);
     FirecaresLookup['77934'].should.equal(WestfieldIN);
+    FirecaresLookup['77485'].should.equal(CiceroIN);
+    FirecaresLookup['94967'].should.equal(SheridanIN);
     FirecaresLookup['76662'].should.equal(CarmelIN);
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
   });
@@ -673,6 +679,44 @@ describe('Westfield, IN', () => {
     tests.forEach((test) => {
       (westfieldIN.calculateShift(test[0])).should.equal(test[1]);
       (westfieldIN.beforeShiftChange(westfieldIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Cicero, IN', () => {
+  it('should match Cicero, IN known shifts', () => {
+    const tests = [
+      ['2019-01-02T08:10:00-0500', 'C', false],
+      ['2019-01-03T08:10:00-0500', 'A', false],
+      ['2019-01-04T08:10:00-0500', 'B', false],
+      ['2019-01-05T08:10:00-0500', 'A', false],
+      ['2019-01-06T08:10:00-0500', 'B', false],
+      ['2019-01-07T08:10:00-0500', 'C', false],
+      ['2019-01-16T08:10:00-0500', 'C', false],
+      ['2019-01-08T05:10:00-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (ciceroIN.calculateShift(test[0])).should.equal(test[1]);
+      (ciceroIN.beforeShiftChange(ciceroIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Sheridan, IN', () => {
+  it('should match Sheridan, IN known shifts', () => {
+    const tests = [
+      ['2019-01-02T08:10:00-0500', 'C', false],
+      ['2019-01-03T08:10:00-0500', 'A', false],
+      ['2019-01-04T08:10:00-0500', 'B', false],
+      ['2019-01-05T08:10:00-0500', 'A', false],
+      ['2019-01-06T08:10:00-0500', 'B', false],
+      ['2019-01-07T08:10:00-0500', 'C', false],
+      ['2019-01-16T08:10:00-0500', 'C', false],
+      ['2019-01-08T05:10:00-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (sheridanIN.calculateShift(test[0])).should.equal(test[1]);
+      (sheridanIN.beforeShiftChange(sheridanIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
