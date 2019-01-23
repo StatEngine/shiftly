@@ -343,6 +343,19 @@ export function WestfieldIN() {
     timeZone: 'US/Eastern',
   });
 }
+export function CarmelIN() {
+  return [new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'abacacbcb',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  }), new ShiftConfiguration({
+    firstDay: '2018-01-01',
+    pattern: 'abcbcacab',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  })].sort((a, b) => a.daysFromPatternStart(b.patternStart));
+}
 
 export function NoblesvilleIN() {
   return new ShiftConfiguration({
@@ -391,6 +404,7 @@ export const FirecaresLookup = {
   90552: AdamsCountyCO,
   81508: FishersIN,
   77934: WestfieldIN,
+  76662: CarmelIN,
   90227: NoblesvilleIN,
   88490: MesaAZ,
 };

@@ -32,6 +32,7 @@ import { ShiftConfiguration,
   AdamsCountyCO,
   FishersIN,
   WestfieldIN,
+  CarmelIN,
   NoblesvilleIN,
   MesaAZ,
 } from '../src';
@@ -63,6 +64,7 @@ const southernPlatteMO = SouthernPlatteMO();
 const adamsCountyCO = AdamsCountyCO();
 const fishersIN = FishersIN();
 const westfieldIN = WestfieldIN();
+const carmelIN = CarmelIN();
 const noblesvilleIN = NoblesvilleIN();
 const mesa = MesaAZ();
 
@@ -140,6 +142,8 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['95671'].should.equal(SouthernPlatteMO);
     FirecaresLookup['90552'].should.equal(AdamsCountyCO);
     FirecaresLookup['81508'].should.equal(FishersIN);
+    FirecaresLookup['77934'].should.equal(WestfieldIN);
+    FirecaresLookup['76662'].should.equal(CarmelIN);
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
   });
 });
@@ -669,6 +673,41 @@ describe('Westfield, IN', () => {
     tests.forEach((test) => {
       (westfieldIN.calculateShift(test[0])).should.equal(test[1]);
       (westfieldIN.beforeShiftChange(westfieldIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Carmel, IN', () => {
+  it('should match Carmel, IN known shifts', () => {
+    const tests = [
+      ['2019-01-02T08:40:00-0500', 'B', false],
+      ['2019-01-03T08:40:00-0500', 'A', false],
+      ['2019-01-04T08:40:00-0500', 'C', false],
+      ['2019-02-01T08:40:00-0500', 'A', false],
+      ['2019-02-06T08:40:00-0500', 'A', false],
+      ['2018-02-07T08:40:00-0500', 'B', false],
+      ['2018-02-16T08:40:00-0500', 'B', false],
+      ['2018-01-08T07:20:00-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      let shiftConfig = carmelIN;
+      if (Array.isArray(shiftConfig)) {
+        // Shift configurations are ordered from latest to oldest.
+        // first config that incoming date is after is configuration to use.
+        let i;
+        for (i = 0; i < shiftConfig.length; i += 1) {
+          if (shiftConfig[i].afterShiftStartDate(test[0])) {
+            shiftConfig = shiftConfig[i];
+            break;
+          }
+        }
+        // We went through above without finding a valid config
+        if (i >= shiftConfig.length) {
+          return null;
+        }
+      }
+      (shiftConfig.calculateShift(test[0])).should.equal(test[1]);
+      (shiftConfig.beforeShiftChange(shiftConfig.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
