@@ -147,7 +147,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['90552'].should.equal(AdamsCountyCO);
     FirecaresLookup['81508'].should.equal(FishersIN);
     FirecaresLookup['77934'].should.equal(WestfieldIN);
-    FirecaresLookup['77485'].should.equal(CiceroIN);
+    FirecaresLookup['77482'].should.equal(CiceroIN);
     FirecaresLookup['94967'].should.equal(SheridanIN);
     FirecaresLookup['76662'].should.equal(CarmelIN);
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
@@ -752,6 +752,7 @@ describe('Carmel, IN', () => {
       }
       (shiftConfig.calculateShift(test[0])).should.equal(test[1]);
       (shiftConfig.beforeShiftChange(shiftConfig.normalize(test[0]))).should.equal(test[2]);
+      return null;
     });
   });
 });

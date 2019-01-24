@@ -420,7 +420,7 @@ export const FirecaresLookup = {
   90552: AdamsCountyCO,
   81508: FishersIN,
   77934: WestfieldIN,
-  77485: CiceroIN,
+  77482: CiceroIN,
   94967: SheridanIN,
   76662: CarmelIN,
   90227: NoblesvilleIN,
