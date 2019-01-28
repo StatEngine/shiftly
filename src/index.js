@@ -8,9 +8,9 @@ function reverse(s) {
   return o.join('');
 }
 
-export class ShiftConfiguration { // eslint-disable-line import/prefer-default-export
-   /**
-   * Create a ShiftConfiguration.
+class ShiftInformation {
+  /**
+   * Individual shift information and pattern for ShiftConfiguration
    * @param {string} pattern - The department's shift pattern.
    * @param {string} timeZone - The department's timezone.
    * @param {string} shiftStart - The start time of the department's shift.
@@ -41,7 +41,7 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
   beforeShiftChange(date) {
     const startDate = this.shiftStartDate;
     return date.hours() < startDate.hours() || (date.hours() === startDate.hours()
-      && date.minutes() < startDate.minutes());
+        && date.minutes() < startDate.minutes());
   }
 
   daysFromPatternStart(start) {
@@ -76,9 +76,9 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
 
   shiftTimeFrame(date) {
     /**
-    * Returns the start and end time of the shift for the day.
-    * @param {string} date - The date of the shift as an ISO-8601 compliant string (ie YYYY-MM-DD).
-    */
+     * Returns the start and end time of the shift for the day.
+     * @param {string} date - The date of the shift as an ISO-8601 compliant string (ie YYYY-MM-DD).
+     */
     let momentDate = this.normalize(date);
 
     if (this.beforeShiftChange(momentDate)) {
@@ -86,9 +86,59 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     }
 
     const start = momentDate.hours(this.shiftStartDate.hours())
-                            .minutes(this.shiftStartDate.minutes())
-                            .startOf('minute');
+        .minutes(this.shiftStartDate.minutes())
+        .startOf('minute');
     return { start: start.format(), end: start.add(24, 'hours').format() };
+  }
+}
+
+export class ShiftConfiguration { // eslint-disable-line import/prefer-default-export
+  /**
+   * Create a ShiftConfiguration.
+   * @param shifts
+   */
+  constructor(shifts = { timeZone: 'US/Eastern', shiftStart: '0800', firstDay: '2016-10-30' }) {
+    if (Array.isArray(shifts)) {
+      this.shifts = shifts.map(shiftInfo => new ShiftInformation(shiftInfo));
+    } else {
+      this.shifts = [new ShiftInformation(shifts)];
+    }
+    this.shifts = this.shifts.sort((a, b) => a.daysFromPatternStart(b.patternStart));
+  }
+
+  determineShiftPattern(date) {
+    let i;
+    for (i = 0; i < this.shifts.length; i += 1) {
+      if (this.shifts[i].afterShiftStartDate(date)) {
+        return this.shifts[i];
+      }
+    }
+    // Return oldest known shift if none found for date
+    return this.shifts[this.shifts.length - 1];
+  }
+
+  normalize(incomingDate) {
+    const shiftPattern = this.determineShiftPattern(incomingDate);
+    return shiftPattern.normalize(incomingDate);
+  }
+
+  calculateShift(date, { dateOnly = false } = {}) {
+    const shiftPattern = this.determineShiftPattern(date);
+    return shiftPattern.calculateShift(date, { dateOnly });
+  }
+
+  shiftTimeFrame(date) {
+    const shiftPattern = this.determineShiftPattern(date);
+    return shiftPattern.shiftTimeFrame(date);
+  }
+
+  beforeShiftChange(date) {
+    const shiftPattern = this.determineShiftPattern(date);
+    return shiftPattern.beforeShiftChange(date);
+  }
+
+  reversePattern(shiftIndex = 0) {
+    return this.shifts[shiftIndex].reversePattern();
   }
 }
 
@@ -360,17 +410,17 @@ export function SheridanIN() {
   });
 }
 export function CarmelIN() {
-  return [new ShiftConfiguration({
+  return new ShiftConfiguration([{
     firstDay: '2019-01-01',
     pattern: 'abacacbcb',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
-  }), new ShiftConfiguration({
+  }, {
     firstDay: '2018-01-01',
     pattern: 'abcbcacab',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
-  })].sort((a, b) => a.daysFromPatternStart(b.patternStart));
+  }]);
 }
 
 export function NoblesvilleIN() {
