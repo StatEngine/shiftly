@@ -117,6 +117,62 @@ describe('ShiftInformation', () => {
     (richmond.shifts[0].afterShiftStartDate(testDateBefore).should.equal(false));
     (richmond.shifts[0].afterShiftStartDate(onDate).should.equal(true));
   });
+
+  it('should order shifts from latest to oldest configuration', () => {
+    const earlyShiftConfig = {
+      firstDay: '2016-10-18',
+      pattern: 'bac',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const midShiftConfig = {
+      firstDay: '2017-10-20',
+      pattern: 'abc',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const latestShiftConfig = {
+      firstDay: '2018-10-18',
+      pattern: 'acb',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const testDate = '2017-10-21T09:53:00';
+    const sc = new ShiftConfiguration([earlyShiftConfig, latestShiftConfig, midShiftConfig]);
+    sc.shifts[0].firstDay.should.equal(latestShiftConfig.firstDay);
+    sc.shifts[1].firstDay.should.equal(midShiftConfig.firstDay);
+    sc.shifts[2].firstDay.should.equal(earlyShiftConfig.firstDay);
+
+    sc.calculateShift(testDate).should.equal('B');
+  });
+
+  it('should determine the correct ShiftInformation to use', () => {
+    const firstConfig = {
+      firstDay: '2016-10-18',
+      pattern: 'bac',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const secondConfig = {
+      firstDay: '2017-10-20',
+      pattern: 'abc',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const tests = [
+      ['2017-07-11T05:10:30-0400', firstConfig],
+      ['2017-11-11T08:10:30-0400', secondConfig],
+      ['2016-07-04T08:10:30-0400', secondConfig],
+      ['2016-10-18T08:10:30-0400', firstConfig],
+      ['2017-10-20T08:10:30-0400', secondConfig],
+    ];
+    const single = new ShiftConfiguration(firstConfig);
+    (single.determineShiftPattern(tests[0][0]).firstDay.should.equal(firstConfig.firstDay));
+    const sc = new ShiftConfiguration([firstConfig, secondConfig]);
+    tests.forEach((test) => {
+      (sc.determineShiftPattern(test[0]).firstDay.should.equal(test[1].firstDay));
+    });
+  });
 });
 
 describe('Firecares Lookup', () => {

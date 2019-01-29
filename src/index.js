@@ -113,8 +113,8 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
         return this.shifts[i];
       }
     }
-    // Return oldest known shift if none found for date
-    return this.shifts[this.shifts.length - 1];
+    // Return newest known shift if none found for date
+    return this.shifts[0];
   }
 
   normalize(incomingDate) {
