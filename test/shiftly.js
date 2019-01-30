@@ -73,14 +73,14 @@ const noblesvilleIN = NoblesvilleIN();
 const mesa = MesaAZ();
 
 
-describe('ShiftConfiguration', () => {
+describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
-    (richmond.shiftStartDate.hours()).should.equal(8);
+    (richmond.shifts[0].shiftStartDate.hours()).should.equal(8);
   });
 
   it('should allow for different start times', () => {
     const sc = new ShiftConfiguration({ shiftStart: '0700' });
-    sc.shiftStart.should.equal('0700');
+    sc.shifts[0].shiftStart.should.equal('0700');
   });
 
   it('should work for historic dates', () => {
@@ -113,9 +113,65 @@ describe('ShiftConfiguration', () => {
     const testDateAfter = '2016-10-22';
     const testDateBefore = '2016-10-10';
     const onDate = '2016-10-18';
-    (richmond.afterShiftStartDate(testDateAfter).should.equal(true));
-    (richmond.afterShiftStartDate(testDateBefore).should.equal(false));
-    (richmond.afterShiftStartDate(onDate).should.equal(true));
+    (richmond.shifts[0].afterShiftStartDate(testDateAfter).should.equal(true));
+    (richmond.shifts[0].afterShiftStartDate(testDateBefore).should.equal(false));
+    (richmond.shifts[0].afterShiftStartDate(onDate).should.equal(true));
+  });
+
+  it('should order shifts from latest to oldest configuration', () => {
+    const earlyShiftConfig = {
+      firstDay: '2016-10-18',
+      pattern: 'bac',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const midShiftConfig = {
+      firstDay: '2017-10-20',
+      pattern: 'abc',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const latestShiftConfig = {
+      firstDay: '2018-10-18',
+      pattern: 'acb',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const testDate = '2017-10-21T09:53:00';
+    const sc = new ShiftConfiguration([earlyShiftConfig, latestShiftConfig, midShiftConfig]);
+    sc.shifts[0].firstDay.should.equal(latestShiftConfig.firstDay);
+    sc.shifts[1].firstDay.should.equal(midShiftConfig.firstDay);
+    sc.shifts[2].firstDay.should.equal(earlyShiftConfig.firstDay);
+
+    sc.calculateShift(testDate).should.equal('B');
+  });
+
+  it('should determine the correct ShiftInformation to use', () => {
+    const firstConfig = {
+      firstDay: '2016-10-18',
+      pattern: 'bac',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const secondConfig = {
+      firstDay: '2017-10-20',
+      pattern: 'abc',
+      shiftStart: '0800',
+      timeZone: 'US/Eastern',
+    };
+    const tests = [
+      ['2017-07-11T05:10:30-0400', firstConfig],
+      ['2017-11-11T08:10:30-0400', secondConfig],
+      ['2016-07-04T08:10:30-0400', secondConfig],
+      ['2016-10-18T08:10:30-0400', firstConfig],
+      ['2017-10-20T08:10:30-0400', secondConfig],
+    ];
+    const single = new ShiftConfiguration(firstConfig);
+    (single.determineShiftPattern(tests[0][0]).firstDay.should.equal(firstConfig.firstDay));
+    const sc = new ShiftConfiguration([firstConfig, secondConfig]);
+    tests.forEach((test) => {
+      (sc.determineShiftPattern(test[0]).firstDay.should.equal(test[1].firstDay));
+    });
   });
 });
 
@@ -734,24 +790,8 @@ describe('Carmel, IN', () => {
       ['2018-01-08T07:20:00-0500', 'C', true],
     ];
     tests.forEach((test) => {
-      let shiftConfig = carmelIN;
-      if (Array.isArray(shiftConfig)) {
-        // Shift configurations are ordered from latest to oldest.
-        // first config that incoming date is after is configuration to use.
-        let i;
-        for (i = 0; i < shiftConfig.length; i += 1) {
-          if (shiftConfig[i].afterShiftStartDate(test[0])) {
-            shiftConfig = shiftConfig[i];
-            break;
-          }
-        }
-        // We went through above without finding a valid config
-        if (i >= shiftConfig.length) {
-          return null;
-        }
-      }
-      (shiftConfig.calculateShift(test[0])).should.equal(test[1]);
-      (shiftConfig.beforeShiftChange(shiftConfig.normalize(test[0]))).should.equal(test[2]);
+      (carmelIN.calculateShift(test[0])).should.equal(test[1]);
+      (carmelIN.beforeShiftChange(carmelIN.normalize(test[0]))).should.equal(test[2]);
       return null;
     });
   });
