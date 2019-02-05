@@ -37,6 +37,7 @@ import { ShiftConfiguration,
   CarmelIN,
   NoblesvilleIN,
   MesaAZ,
+  RivieraBeachFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -71,6 +72,7 @@ const sheridanIN = SheridanIN();
 const carmelIN = CarmelIN();
 const noblesvilleIN = NoblesvilleIN();
 const mesa = MesaAZ();
+const riviera = RivieraBeachFL();
 
 
 describe('ShiftInformation', () => {
@@ -827,6 +829,21 @@ describe('Mesa, AZ', () => {
     tests.forEach((test) => {
       (mesa.calculateShift(test[0])).should.equal(test[1]);
       (mesa.beforeShiftChange(mesa.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Riviera Beach, FL', () => {
+  it('should match Rivieria Beach, FL known shifts', () => {
+    const tests = [
+      ['2019-01-01T08:40:00-0500', 'B', false],
+      ['2019-01-02T08:40:00-0500', 'C', false],
+      ['2019-01-02T07:40:00-0500', 'B', true],
+      ['2019-02-23T08:40:00-0500', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (riviera.calculateShift(test[0])).should.equal(test[1]);
+      (riviera.beforeShiftChange(riviera.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

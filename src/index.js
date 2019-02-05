@@ -441,6 +441,15 @@ export function MesaAZ() {
   });
 }
 
+export function RivieraBeachFL() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-03',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -475,4 +484,5 @@ export const FirecaresLookup = {
   76662: CarmelIN,
   90227: NoblesvilleIN,
   88490: MesaAZ,
+  93535: RivieraBeachFL,
 };
