@@ -450,6 +450,15 @@ export function RivieraBeachFL() {
   });
 }
 
+export function WayneTownshipIN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-02-01',
+    pattern: 'cab',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -485,4 +494,5 @@ export const FirecaresLookup = {
   90227: NoblesvilleIN,
   88490: MesaAZ,
   93535: RivieraBeachFL,
+  98751: WayneTownshipIN,
 };
