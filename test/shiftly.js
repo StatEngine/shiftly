@@ -39,6 +39,7 @@ import { ShiftConfiguration,
   MesaAZ,
   RivieraBeachFL,
   WayneTownshipIN,
+  WestPalmBeachFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -75,6 +76,7 @@ const noblesvilleIN = NoblesvilleIN();
 const mesa = MesaAZ();
 const riviera = RivieraBeachFL();
 const wayne = WayneTownshipIN();
+const wpb = WestPalmBeachFL();
 
 
 describe('ShiftInformation', () => {
@@ -860,6 +862,21 @@ describe('Wayne Township, IN', () => {
     tests.forEach((test) => {
       (wayne.calculateShift(test[0])).should.equal(test[1]);
       (wayne.beforeShiftChange(mesa.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('West Palm Beach, FL', () => {
+  it('should match West Palm Beach, FL known shifts', () => {
+    const tests = [
+      ['2019-01-01T08:40:00-0500', '2', false],
+      ['2019-01-02T08:40:00-0500', '3', false],
+      ['2019-01-02T07:40:00-0500', '2', true],
+      ['2019-02-23T08:40:00-0500', '1', false],
+    ];
+    tests.forEach((test) => {
+      (wpb.calculateShift(test[0])).should.equal(test[1]);
+      (wpb.beforeShiftChange(wpb.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
