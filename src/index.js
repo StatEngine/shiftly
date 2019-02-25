@@ -412,7 +412,7 @@ export function SheridanIN() {
 export function CarmelIN() {
   return new ShiftConfiguration([{
     firstDay: '2019-01-01',
-    pattern: 'abacacbcb',
+    pattern: 'acababcbc',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
   }, {
