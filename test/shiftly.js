@@ -793,7 +793,7 @@ describe('Carmel, IN', () => {
       ['2019-02-25T08:40:00-0500', 'C', false],
       ['2018-02-07T08:40:00-0500', 'B', false],
       ['2018-02-16T08:40:00-0500', 'B', false],
-      ['2018-01-08T07:20:00-0500', 'C', true],
+      ['2018-01-08T06:20:00-0500', 'C', true],
     ];
     tests.forEach((test) => {
       (carmelIN.calculateShift(test[0])).should.equal(test[1]);

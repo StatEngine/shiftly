@@ -413,12 +413,12 @@ export function CarmelIN() {
   return new ShiftConfiguration([{
     firstDay: '2019-01-01',
     pattern: 'acababcbc',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Eastern',
   }, {
     firstDay: '2018-01-01',
     pattern: 'abcbcacab',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Eastern',
   }]);
 }
