@@ -380,7 +380,7 @@ export function FishersIN() {
   return new ShiftConfiguration({
     firstDay: '2018-12-01',
     pattern: 'CAB',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Eastern',
   });
 }
