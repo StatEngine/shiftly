@@ -468,6 +468,15 @@ export function WestPalmBeachFL() {
   });
 }
 
+// Demo SF Data
+export function SanFranciscoCA() {
+  return new ShiftConfiguration({
+    firstDay: '2016-10-18',
+    pattern: 'acababacbcacacbabcbcb',
+    shiftStart: '0800',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -505,4 +514,5 @@ export const FirecaresLookup = {
   93535: RivieraBeachFL,
   98751: WayneTownshipIN,
   99102: WestPalmBeachFL,
+  94264: SanFranciscoCA,
 };
