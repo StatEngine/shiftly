@@ -515,4 +515,5 @@ export const FirecaresLookup = {
   98751: WayneTownshipIN,
   99102: WestPalmBeachFL,
   94264: SanFranciscoCA,
+  90011: NewRochelleNY,
 };
