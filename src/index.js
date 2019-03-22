@@ -468,6 +468,15 @@ export function WestPalmBeachFL() {
   });
 }
 
+export function SacramentoCA() { //Not Complete, don't believe the numbers here
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'abbcca',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -516,4 +525,5 @@ export const FirecaresLookup = {
   99102: WestPalmBeachFL,
   94264: SanFranciscoCA,
   90011: NewRochelleNY,
+  94042: SacramentoCA,
 };

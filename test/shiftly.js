@@ -40,6 +40,7 @@ import { ShiftConfiguration,
   RivieraBeachFL,
   WayneTownshipIN,
   WestPalmBeachFL,
+  SacramentoCA
 } from '../src';
 
 const richmond = richmondVA();
@@ -77,6 +78,7 @@ const mesa = MesaAZ();
 const riviera = RivieraBeachFL();
 const wayne = WayneTownshipIN();
 const wpb = WestPalmBeachFL();
+const sacramentoCA = SacramentoCA();
 
 
 describe('ShiftInformation', () => {
@@ -213,6 +215,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['94967'].should.equal(SheridanIN);
     FirecaresLookup['76662'].should.equal(CarmelIN);
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
+    FirecaresLookup['94042'].should.equal(SacramentoCA);
   });
 });
 
@@ -877,6 +880,24 @@ describe('West Palm Beach, FL', () => {
     tests.forEach((test) => {
       (wpb.calculateShift(test[0])).should.equal(test[1]);
       (wpb.beforeShiftChange(wpb.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Sacramento, CA', () => {
+  it('should match Sacramento, CA known shifts', () => {
+    const tests = [
+      ['2019-01-01T08:10:30-0800', 'A', false],
+      ['2019-01-02T08:10:30-0800', 'B', false],
+      ['2019-01-04T08:10:30-0800', 'C', false],
+      ['2019-05-13T08:10:30-0800', 'A', false],
+      ['2019-06-04T08:10:30-0800', 'C', false],
+      ['2019-09-12T08:10:30-0800', 'B', false],
+      ['2019-01-02T07:10:30-0800', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (sacramentoCA.calculateShift(test[0])).should.equal(test[1]);
+      (sacramentoCA.beforeShiftChange(sacramentoCA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
