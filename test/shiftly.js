@@ -40,7 +40,7 @@ import { ShiftConfiguration,
   RivieraBeachFL,
   WayneTownshipIN,
   WestPalmBeachFL,
-  SacramentoCA
+  SacramentoCA,
 } from '../src';
 
 const richmond = richmondVA();

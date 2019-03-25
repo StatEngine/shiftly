@@ -468,7 +468,7 @@ export function WestPalmBeachFL() {
   });
 }
 
-export function SacramentoCA() { //Not Complete, don't believe the numbers here
+export function SacramentoCA() {
   return new ShiftConfiguration({
     firstDay: '2019-01-01',
     pattern: 'abbcca',
