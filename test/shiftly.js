@@ -872,10 +872,10 @@ describe('Wayne Township, IN', () => {
 describe('West Palm Beach, FL', () => {
   it('should match West Palm Beach, FL known shifts', () => {
     const tests = [
-      ['2019-01-01T08:40:00-0500', '2', false],
-      ['2019-01-02T08:40:00-0500', '3', false],
-      ['2019-01-02T07:40:00-0500', '2', true],
-      ['2019-02-23T08:40:00-0500', '1', false],
+      ['2019-01-01T08:40:00-0500', '1', false],
+      ['2019-01-02T08:40:00-0500', '2', false],
+      ['2019-01-02T07:40:00-0500', '1', true],
+      ['2019-02-23T08:40:00-0500', '3', false],
     ];
     tests.forEach((test) => {
       (wpb.calculateShift(test[0])).should.equal(test[1]);

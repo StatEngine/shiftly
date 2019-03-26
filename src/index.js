@@ -461,7 +461,7 @@ export function WayneTownshipIN() {
 
 export function WestPalmBeachFL() {
   return new ShiftConfiguration({
-    firstDay: '2019-01-03',
+    firstDay: '2019-01-01',
     pattern: '123',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
