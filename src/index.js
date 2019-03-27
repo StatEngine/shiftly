@@ -477,6 +477,15 @@ export function SacramentoCA() {
   });
 }
 
+export function WashoeCountyNV() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'caabbc',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -526,4 +535,5 @@ export const FirecaresLookup = {
   94264: SanFranciscoCA,
   90011: NewRochelleNY,
   94042: SacramentoCA,
+  97450: WashoeCountyNV,
 };

@@ -41,6 +41,7 @@ import { ShiftConfiguration,
   WayneTownshipIN,
   WestPalmBeachFL,
   SacramentoCA,
+  WashoeCountyNV,
 } from '../src';
 
 const richmond = richmondVA();
@@ -79,6 +80,7 @@ const riviera = RivieraBeachFL();
 const wayne = WayneTownshipIN();
 const wpb = WestPalmBeachFL();
 const sacramentoCA = SacramentoCA();
+const washoeCountyNV = WashoeCountyNV();
 
 
 describe('ShiftInformation', () => {
@@ -216,6 +218,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['76662'].should.equal(CarmelIN);
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
     FirecaresLookup['94042'].should.equal(SacramentoCA);
+    FirecaresLookup['97450'].should.equal(WashoeCountyNV);
   });
 });
 
@@ -898,6 +901,21 @@ describe('Sacramento, CA', () => {
     tests.forEach((test) => {
       (sacramentoCA.calculateShift(test[0])).should.equal(test[1]);
       (sacramentoCA.beforeShiftChange(sacramentoCA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Washoe County, NV', () => {
+  it('should match Washoe County, NV known shifts', () => {
+    const tests = [
+      ['2019-01-01T08:40:00-0800', 'C', false],
+      ['2019-01-02T08:40:00-0800', 'A', false],
+      ['2019-01-02T07:40:00-0800', 'C', true],
+      ['2019-01-28T08:40:00-0800', 'B', false],
+    ];
+    tests.forEach((test) => {
+      (washoeCountyNV.calculateShift(test[0])).should.equal(test[1]);
+      (washoeCountyNV.beforeShiftChange(washoeCountyNV.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
