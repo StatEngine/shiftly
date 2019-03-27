@@ -42,6 +42,7 @@ import { ShiftConfiguration,
   WestPalmBeachFL,
   SacramentoCA,
   WashoeCountyNV,
+  JacksonTownshipIN,
 } from '../src';
 
 const richmond = richmondVA();
@@ -81,6 +82,7 @@ const wayne = WayneTownshipIN();
 const wpb = WestPalmBeachFL();
 const sacramentoCA = SacramentoCA();
 const washoeCountyNV = WashoeCountyNV();
+const jacksonTownshipIN = JacksonTownshipIN();
 
 
 describe('ShiftInformation', () => {
@@ -219,6 +221,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
     FirecaresLookup['94042'].should.equal(SacramentoCA);
     FirecaresLookup['97450'].should.equal(WashoeCountyNV);
+    FirecaresLookup['85090'].should.equal(JacksonTownshipIN);
   });
 });
 
@@ -916,6 +919,25 @@ describe('Washoe County, NV', () => {
     tests.forEach((test) => {
       (washoeCountyNV.calculateShift(test[0])).should.equal(test[1]);
       (washoeCountyNV.beforeShiftChange(washoeCountyNV.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Jackson Township, IN', () => {
+  it('should match Jackson Township, IN known shifts', () => {
+    const tests = [
+      ['2019-01-01T08:10:30-0500', 'A', false],
+      ['2019-01-02T08:10:30-0500', 'C', false],
+      ['2019-01-04T08:10:30-0500', 'B', false],
+      ['2019-05-13T08:10:30-0500', 'C', false],
+      ['2019-06-04T08:10:30-0500', 'C', false],
+      ['2019-09-12T08:10:30-0500', 'A', false],
+      ['2019-01-02T07:10:30-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (jacksonTownshipIN.calculateShift(test[0])).should.equal(test[1]);
+      (jacksonTownshipIN.beforeShiftChange(
+        jacksonTownshipIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
