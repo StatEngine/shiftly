@@ -477,6 +477,15 @@ export function SacramentoCA() {
   });
 }
 
+export function JacksonTownshipIN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'acababcbc',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -526,4 +535,5 @@ export const FirecaresLookup = {
   94264: SanFranciscoCA,
   90011: NewRochelleNY,
   94042: SacramentoCA,
+  85090: JacksonTownshipIN,
 };
