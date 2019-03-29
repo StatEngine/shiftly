@@ -932,7 +932,7 @@ describe('Jackson Township, IN', () => {
       ['2019-05-13T08:10:30-0500', 'C', false],
       ['2019-06-04T08:10:30-0500', 'C', false],
       ['2019-09-12T08:10:30-0500', 'A', false],
-      ['2019-01-02T07:10:30-0500', 'A', true],
+      ['2019-01-02T05:10:30-0500', 'A', true],
     ];
     tests.forEach((test) => {
       (jacksonTownshipIN.calculateShift(test[0])).should.equal(test[1]);

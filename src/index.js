@@ -490,7 +490,7 @@ export function JacksonTownshipIN() {
   return new ShiftConfiguration({
     firstDay: '2019-01-01',
     pattern: 'acababcbc',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Eastern',
   });
 }
