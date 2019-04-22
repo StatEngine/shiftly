@@ -40,7 +40,7 @@ import { ShiftConfiguration,
   RivieraBeachFL,
   WayneTownshipIN,
   WestPalmBeachFL,
-  SacramentoCA,
+  SacramentoMetroCA,
   WashoeCountyNV,
   JacksonTownshipIN,
 } from '../src';
@@ -80,7 +80,7 @@ const mesa = MesaAZ();
 const riviera = RivieraBeachFL();
 const wayne = WayneTownshipIN();
 const wpb = WestPalmBeachFL();
-const sacramentoCA = SacramentoCA();
+const sacramentoCA = SacramentoMetroCA();
 const washoeCountyNV = WashoeCountyNV();
 const jacksonTownshipIN = JacksonTownshipIN();
 
@@ -219,7 +219,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['94967'].should.equal(SheridanIN);
     FirecaresLookup['76662'].should.equal(CarmelIN);
     FirecaresLookup['90227'].should.equal(NoblesvilleIN);
-    FirecaresLookup['94042'].should.equal(SacramentoCA);
+    FirecaresLookup['94043'].should.equal(SacramentoMetroCA);
     FirecaresLookup['97450'].should.equal(WashoeCountyNV);
     FirecaresLookup['85090'].should.equal(JacksonTownshipIN);
   });

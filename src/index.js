@@ -468,7 +468,7 @@ export function WestPalmBeachFL() {
   });
 }
 
-export function SacramentoCA() {
+export function SacramentoMetroCA() {
   return new ShiftConfiguration({
     firstDay: '2019-01-01',
     pattern: 'abbcca',
@@ -543,7 +543,7 @@ export const FirecaresLookup = {
   99102: WestPalmBeachFL,
   94264: SanFranciscoCA,
   90011: NewRochelleNY,
-  94042: SacramentoCA,
+  94043: SacramentoMetroCA,
   97450: WashoeCountyNV,
   85090: JacksonTownshipIN,
 };
