@@ -495,6 +495,15 @@ export function JacksonTownshipIN() {
   });
 }
 
+export function DelawareOH() {
+  return new ShiftConfiguration({
+    firstDay: '2019-03-21',
+    pattern: 'abcabc',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -546,4 +555,5 @@ export const FirecaresLookup = {
   94043: SacramentoMetroCA,
   97450: WashoeCountyNV,
   85090: JacksonTownshipIN,
+  79555: DelawareOH,
 };

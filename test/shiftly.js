@@ -43,6 +43,7 @@ import { ShiftConfiguration,
   SacramentoMetroCA,
   WashoeCountyNV,
   JacksonTownshipIN,
+  DelawareOH,
 } from '../src';
 
 const richmond = richmondVA();
@@ -83,7 +84,7 @@ const wpb = WestPalmBeachFL();
 const sacramentoCA = SacramentoMetroCA();
 const washoeCountyNV = WashoeCountyNV();
 const jacksonTownshipIN = JacksonTownshipIN();
-
+const delawareOH = DelawareOH();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -222,6 +223,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['94043'].should.equal(SacramentoMetroCA);
     FirecaresLookup['97450'].should.equal(WashoeCountyNV);
     FirecaresLookup['85090'].should.equal(JacksonTownshipIN);
+    FirecaresLookup['79555'].should.equal(DelawareOH);
   });
 });
 
@@ -938,6 +940,25 @@ describe('Jackson Township, IN', () => {
       (jacksonTownshipIN.calculateShift(test[0])).should.equal(test[1]);
       (jacksonTownshipIN.beforeShiftChange(
         jacksonTownshipIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+
+  describe('Delaware, OH', () => {
+    it('should match Delaware, OH known shifts', () => {
+      const tests = [
+        ['2019-03-21T08:10:30-0400', 'A', false],
+        ['2019-03-22T08:10:30-0400', 'B', false],
+        ['2019-03-23T08:10:30-0400', 'C', false],
+        ['2019-03-24T08:10:30-0400', 'A', false],
+        ['2019-03-25T08:10:30-0400', 'B', false],
+        ['2019-03-26T08:10:30-0400', 'C', false],
+        ['2019-03-22T07:10:30-0400', 'A', true],
+      ];
+      tests.forEach((test) => {
+        (delawareOH.calculateShift(test[0])).should.equal(test[1]);
+        (delawareOH.beforeShiftChange(
+          delawareOH.normalize(test[0]))).should.equal(test[2]);
+      });
     });
   });
 });
