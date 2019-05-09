@@ -504,6 +504,14 @@ export function DelawareOH() {
   });
 }
 
+export function AnneArundelMD() {
+  return new ShiftConfiguration({
+    firstDay: '2019-05-02',
+    pattern: 'ABCD',
+    shiftStart: '0800',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -556,4 +564,5 @@ export const FirecaresLookup = {
   97450: WashoeCountyNV,
   85090: JacksonTownshipIN,
   79555: DelawareOH,
+  73693: AnneArundelMD,
 };

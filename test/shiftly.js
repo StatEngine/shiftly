@@ -44,6 +44,7 @@ import { ShiftConfiguration,
   WashoeCountyNV,
   JacksonTownshipIN,
   DelawareOH,
+  AnneArundelMD,
 } from '../src';
 
 const richmond = richmondVA();
@@ -85,6 +86,7 @@ const sacramentoCA = SacramentoMetroCA();
 const washoeCountyNV = WashoeCountyNV();
 const jacksonTownshipIN = JacksonTownshipIN();
 const delawareOH = DelawareOH();
+const anneArundelMD = AnneArundelMD();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -224,6 +226,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['97450'].should.equal(WashoeCountyNV);
     FirecaresLookup['85090'].should.equal(JacksonTownshipIN);
     FirecaresLookup['79555'].should.equal(DelawareOH);
+    FirecaresLookup['73693'].should.equal(AnneArundelMD);
   });
 });
 
@@ -942,23 +945,42 @@ describe('Jackson Township, IN', () => {
         jacksonTownshipIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
+});
 
-  describe('Delaware, OH', () => {
-    it('should match Delaware, OH known shifts', () => {
-      const tests = [
-        ['2019-03-21T08:10:30-0400', 'A', false],
-        ['2019-03-22T08:10:30-0400', 'B', false],
-        ['2019-03-23T08:10:30-0400', 'C', false],
-        ['2019-03-24T08:10:30-0400', 'A', false],
-        ['2019-03-25T08:10:30-0400', 'B', false],
-        ['2019-03-26T08:10:30-0400', 'C', false],
-        ['2019-03-22T07:10:30-0400', 'A', true],
-      ];
-      tests.forEach((test) => {
-        (delawareOH.calculateShift(test[0])).should.equal(test[1]);
-        (delawareOH.beforeShiftChange(
-          delawareOH.normalize(test[0]))).should.equal(test[2]);
-      });
+describe('Delaware, OH', () => {
+  it('should match Delaware, OH known shifts', () => {
+    const tests = [
+      ['2019-03-21T08:10:30-0400', 'A', false],
+      ['2019-03-22T08:10:30-0400', 'B', false],
+      ['2019-03-23T08:10:30-0400', 'C', false],
+      ['2019-03-24T08:10:30-0400', 'A', false],
+      ['2019-03-25T08:10:30-0400', 'B', false],
+      ['2019-03-26T08:10:30-0400', 'C', false],
+      ['2019-03-22T07:10:30-0400', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (delawareOH.calculateShift(test[0])).should.equal(test[1]);
+      (delawareOH.beforeShiftChange(
+        delawareOH.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Anne Arundel, MD', () => {
+  it('should match Anne Arundel, MD known shifts', () => {
+    const tests = [
+      ['2019-04-03T08:10:30-0400', 'D', false],
+      ['2019-04-08T08:10:30-0400', 'A', false],
+      ['2019-04-17T08:10:30-0400', 'B', false],
+      ['2019-04-22T08:10:30-0400', 'C', false],
+      ['2019-05-02T08:10:30-0400', 'A', false],
+      ['2019-05-21T08:10:30-0400', 'D', false],
+      ['2019-05-21T07:10:30-0400', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (anneArundelMD.calculateShift(test[0])).should.equal(test[1]);
+      (anneArundelMD.beforeShiftChange(
+        anneArundelMD.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
