@@ -45,6 +45,7 @@ import { ShiftConfiguration,
   JacksonTownshipIN,
   DelawareOH,
   AnneArundelMD,
+  ColumbusOH,
 } from '../src';
 
 const richmond = richmondVA();
@@ -87,6 +88,7 @@ const washoeCountyNV = WashoeCountyNV();
 const jacksonTownshipIN = JacksonTownshipIN();
 const delawareOH = DelawareOH();
 const anneArundelMD = AnneArundelMD();
+const columbusOH = ColumbusOH();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -227,6 +229,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['85090'].should.equal(JacksonTownshipIN);
     FirecaresLookup['79555'].should.equal(DelawareOH);
     FirecaresLookup['73693'].should.equal(AnneArundelMD);
+    FirecaresLookup['78503'].should.equal(ColumbusOH);
   });
 });
 
@@ -981,6 +984,25 @@ describe('Anne Arundel, MD', () => {
       (anneArundelMD.calculateShift(test[0])).should.equal(test[1]);
       (anneArundelMD.beforeShiftChange(
         anneArundelMD.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Columbus, OH', () => {
+  it('should match Columbus, OH known shifts', () => {
+    const tests = [
+      ['2019-04-03T08:10:30-0400', '2', false],
+      ['2019-04-08T08:10:30-0400', '1', false],
+      ['2019-04-17T08:10:30-0400', '1', false],
+      ['2019-04-22T08:10:30-0400', '3', false],
+      ['2019-05-02T08:10:30-0400', '1', false],
+      ['2019-05-21T08:10:30-0400', '2', false],
+      ['2019-05-21T07:10:30-0400', '1', true],
+    ];
+    tests.forEach((test) => {
+      (columbusOH.calculateShift(test[0])).should.equal(test[1]);
+      (columbusOH.beforeShiftChange(
+        columbusOH.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

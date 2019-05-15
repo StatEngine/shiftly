@@ -512,6 +512,14 @@ export function AnneArundelMD() {
   });
 }
 
+export function ColumbusOH() {
+  return new ShiftConfiguration({
+    firstDay: '2019-05-02',
+    pattern: '123',
+    shiftStart: '0800',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -565,4 +573,5 @@ export const FirecaresLookup = {
   85090: JacksonTownshipIN,
   79555: DelawareOH,
   73693: AnneArundelMD,
+  78503: ColumbusOH,
 };
