@@ -46,6 +46,7 @@ import { ShiftConfiguration,
   DelawareOH,
   AnneArundelMD,
   ColumbusOH,
+  RosevilleCA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -89,6 +90,7 @@ const jacksonTownshipIN = JacksonTownshipIN();
 const delawareOH = DelawareOH();
 const anneArundelMD = AnneArundelMD();
 const columbusOH = ColumbusOH();
+const rosevilleCA = RosevilleCA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -230,6 +232,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['79555'].should.equal(DelawareOH);
     FirecaresLookup['73693'].should.equal(AnneArundelMD);
     FirecaresLookup['78503'].should.equal(ColumbusOH);
+    FirecaresLookup['77855'].should.equal(RosevilleCA);
   });
 });
 
@@ -1003,6 +1006,25 @@ describe('Columbus, OH', () => {
       (columbusOH.calculateShift(test[0])).should.equal(test[1]);
       (columbusOH.beforeShiftChange(
         columbusOH.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Roseville, CA', () => {
+  it('should match Roseville, CA known shifts', () => {
+    const tests = [
+      ['2019-04-03T08:10:30-0400', 'B', false],
+      ['2019-04-08T08:10:30-0400', 'B', false],
+      ['2019-04-17T08:10:30-0400', 'C', false],
+      ['2019-04-22T08:10:30-0400', 'C', false],
+      ['2019-05-02T08:10:30-0400', 'B', false],
+      ['2019-05-19T08:10:30-0400', 'A', false],
+      ['2019-05-19T06:10:30-0400', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (rosevilleCA.calculateShift(test[0])).should.equal(test[1]);
+      (rosevilleCA.beforeShiftChange(
+        rosevilleCA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
