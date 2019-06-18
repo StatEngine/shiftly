@@ -525,6 +525,7 @@ export function RosevilleCA() {
     firstDay: '2019-01-06',
     pattern: 'aabbcc',
     shiftStart: '0700',
+    timeZone: 'US/Pacific',
   });
 }
 

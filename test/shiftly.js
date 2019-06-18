@@ -1013,13 +1013,13 @@ describe('Columbus, OH', () => {
 describe('Roseville, CA', () => {
   it('should match Roseville, CA known shifts', () => {
     const tests = [
-      ['2019-04-03T08:10:30-0400', 'B', false],
-      ['2019-04-08T08:10:30-0400', 'B', false],
-      ['2019-04-17T08:10:30-0400', 'C', false],
-      ['2019-04-22T08:10:30-0400', 'C', false],
-      ['2019-05-02T08:10:30-0400', 'B', false],
-      ['2019-05-19T08:10:30-0400', 'A', false],
-      ['2019-05-19T06:10:30-0400', 'A', true],
+      ['2019-04-03T08:10:30-0700', 'B', false],
+      ['2019-04-08T08:10:30-0700', 'B', false],
+      ['2019-04-17T08:10:30-0700', 'C', false],
+      ['2019-04-22T08:10:30-0700', 'C', false],
+      ['2019-05-02T08:10:30-0700', 'B', false],
+      ['2019-05-19T08:10:30-0700', 'A', false],
+      ['2019-05-19T06:10:30-0700', 'A', true],
     ];
     tests.forEach((test) => {
       (rosevilleCA.calculateShift(test[0])).should.equal(test[1]);
