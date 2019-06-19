@@ -520,6 +520,15 @@ export function ColumbusOH() {
   });
 }
 
+export function RosevilleCA() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-06',
+    pattern: 'aabbcc',
+    shiftStart: '0700',
+    timeZone: 'US/Pacific',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -574,4 +583,5 @@ export const FirecaresLookup = {
   79555: DelawareOH,
   73693: AnneArundelMD,
   78503: ColumbusOH,
+  77855: RosevilleCA,
 };
