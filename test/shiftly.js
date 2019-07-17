@@ -47,6 +47,7 @@ import { ShiftConfiguration,
   AnneArundelMD,
   ColumbusOH,
   RosevilleCA,
+  TorringtonCT,
 } from '../src';
 
 const richmond = richmondVA();
@@ -91,6 +92,7 @@ const delawareOH = DelawareOH();
 const anneArundelMD = AnneArundelMD();
 const columbusOH = ColumbusOH();
 const rosevilleCA = RosevilleCA();
+const torringtonCT = TorringtonCT();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -233,6 +235,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['73693'].should.equal(AnneArundelMD);
     FirecaresLookup['78503'].should.equal(ColumbusOH);
     FirecaresLookup['77855'].should.equal(RosevilleCA);
+    FirecaresLookup['97104'].should.equal(TorringtonCT);
   });
 });
 
@@ -1025,6 +1028,28 @@ describe('Roseville, CA', () => {
       (rosevilleCA.calculateShift(test[0])).should.equal(test[1]);
       (rosevilleCA.beforeShiftChange(
         rosevilleCA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Torrington, CT', () => {
+  it('should match Torrington, CT known shifts', () => {
+    const tests = [
+      ['2019-06-25T08:10:30-0400', '1', false],
+      ['2019-06-26T08:10:30-0400', '2', false],
+      ['2019-06-27T08:10:30-0400', '3', false],
+      ['2019-06-28T08:10:30-0400', '4', false],
+      ['2019-06-30T08:10:30-0400', '2', false],
+      ['2019-07-05T08:10:30-0400', '3', false],
+      ['2019-07-10T08:10:30-0400', '4', false],
+      ['2019-10-07T08:10:30-0400', '1', false],
+      ['2019-11-11T08:10:30-0500', '4', false],
+      ['2019-06-25T06:10:30-0400', '4', true],
+    ];
+    tests.forEach((test) => {
+      (torringtonCT.calculateShift(test[0])).should.equal(test[1]);
+      (torringtonCT.beforeShiftChange(
+        torringtonCT.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

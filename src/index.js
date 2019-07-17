@@ -529,6 +529,15 @@ export function RosevilleCA() {
   });
 }
 
+export function TorringtonCT() {
+  return new ShiftConfiguration({
+    firstDay: '2019-06-25',
+    pattern: '1234',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -584,4 +593,5 @@ export const FirecaresLookup = {
   73693: AnneArundelMD,
   78503: ColumbusOH,
   77855: RosevilleCA,
+  97104: TorringtonCT,
 };
