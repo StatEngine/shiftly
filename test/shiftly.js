@@ -48,6 +48,7 @@ import { ShiftConfiguration,
   ColumbusOH,
   RosevilleCA,
   TorringtonCT,
+  MemphisTN,
 } from '../src';
 
 const richmond = richmondVA();
@@ -93,6 +94,7 @@ const anneArundelMD = AnneArundelMD();
 const columbusOH = ColumbusOH();
 const rosevilleCA = RosevilleCA();
 const torringtonCT = TorringtonCT();
+const memphisTN = MemphisTN();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1050,6 +1052,24 @@ describe('Torrington, CT', () => {
       (torringtonCT.calculateShift(test[0])).should.equal(test[1]);
       (torringtonCT.beforeShiftChange(
         torringtonCT.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+
+describe('Memphis, TN', () => {
+  it('should match Memphis, TN known shifts', () => {
+    const tests = [
+      ['2019-07-01T08:10:30-0500', 'B', false],
+      ['2019-07-02T08:10:30-0500', 'A', false],
+      ['2019-07-03T08:10:30-0500', 'B', false],
+      ['2019-07-04T06:10:30-0500', 'B', true],
+      ['2019-07-04T09:10:30-0500', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (memphisTN.calculateShift(test[0])).should.equal(test[1]);
+      (memphisTN.beforeShiftChange(
+        memphisTN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

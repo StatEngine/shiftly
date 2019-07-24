@@ -538,12 +538,22 @@ export function TorringtonCT() {
   });
 }
 
+export function MemphisTN() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'ababcbcac',
+    shiftStart: '0700',
+    timeZone: 'US/Central',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
     firstDay: '2016-10-18',
     pattern: 'acababacbcacacbabcbcb',
     shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -594,4 +604,5 @@ export const FirecaresLookup = {
   78503: ColumbusOH,
   77855: RosevilleCA,
   97104: TorringtonCT,
+  88403: MemphisTN,
 };
