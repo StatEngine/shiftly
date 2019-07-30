@@ -547,6 +547,15 @@ export function MemphisTN() {
   });
 }
 
+export function JacksonCountyOR() {
+  return new ShiftConfiguration({
+    firstDay: '2019-07-05',
+    pattern: 'aabbcc',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -605,4 +614,5 @@ export const FirecaresLookup = {
   77855: RosevilleCA,
   97104: TorringtonCT,
   88403: MemphisTN,
+  85063: JacksonCountyOR,
 };
