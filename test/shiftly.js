@@ -49,6 +49,7 @@ import { ShiftConfiguration,
   RosevilleCA,
   TorringtonCT,
   MemphisTN,
+  JacksonCountyOR,
 } from '../src';
 
 const richmond = richmondVA();
@@ -95,6 +96,7 @@ const columbusOH = ColumbusOH();
 const rosevilleCA = RosevilleCA();
 const torringtonCT = TorringtonCT();
 const memphisTN = MemphisTN();
+const jacksonCountyOR = JacksonCountyOR();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1056,7 +1058,6 @@ describe('Torrington, CT', () => {
   });
 });
 
-
 describe('Memphis, TN', () => {
   it('should match Memphis, TN known shifts', () => {
     const tests = [
@@ -1070,6 +1071,23 @@ describe('Memphis, TN', () => {
       (memphisTN.calculateShift(test[0])).should.equal(test[1]);
       (memphisTN.beforeShiftChange(
         memphisTN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Jackson County, OR', () => {
+  it('should match Jackson County, OR known shifts', () => {
+    const tests = [
+      ['2019-07-01T08:10:30-0700', 'B', false],
+      ['2019-07-02T08:10:30-0700', 'B', false],
+      ['2019-07-03T08:10:30-0700', 'C', false],
+      ['2019-07-05T06:10:30-0700', 'C', true],
+      ['2019-07-06T09:10:30-0700', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (jacksonCountyOR.calculateShift(test[0])).should.equal(test[1]);
+      (jacksonCountyOR.beforeShiftChange(
+        jacksonCountyOR.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
