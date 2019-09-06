@@ -556,6 +556,15 @@ export function JacksonCountyOR() {
   });
 }
 
+export function LexingtonKy() {
+  return new ShiftConfiguration({
+    firstDay: '2019-07-12',
+    pattern: '123',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -615,4 +624,5 @@ export const FirecaresLookup = {
   97104: TorringtonCT,
   88403: MemphisTN,
   85063: JacksonCountyOR,
+  86743: LexingtonKy,
 };
