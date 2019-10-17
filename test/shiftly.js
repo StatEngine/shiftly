@@ -50,6 +50,7 @@ import { ShiftConfiguration,
   TorringtonCT,
   MemphisTN,
   JacksonCountyOR,
+  LexingtonKy,
 } from '../src';
 
 const richmond = richmondVA();
@@ -97,6 +98,7 @@ const rosevilleCA = RosevilleCA();
 const torringtonCT = TorringtonCT();
 const memphisTN = MemphisTN();
 const jacksonCountyOR = JacksonCountyOR();
+const lexingtonKY = LexingtonKy();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1088,6 +1090,23 @@ describe('Jackson County, OR', () => {
       (jacksonCountyOR.calculateShift(test[0])).should.equal(test[1]);
       (jacksonCountyOR.beforeShiftChange(
         jacksonCountyOR.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Lexington, KY', () => {
+  it('should match Lexington, KY known shifts', () => {
+    const tests = [
+      ['2019-07-01T08:10:30-0400', '2', false],
+      ['2019-07-02T08:10:30-0400', '3', false],
+      ['2019-07-03T08:10:30-0400', '1', false],
+      ['2019-07-05T06:10:30-0400', '2', true],
+      ['2019-07-06T09:10:30-0400', '1', false],
+    ];
+    tests.forEach((test) => {
+      (lexingtonKY.calculateShift(test[0])).should.equal(test[1]);
+      (lexingtonKY.beforeShiftChange(
+        lexingtonKY.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
