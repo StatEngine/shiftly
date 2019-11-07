@@ -51,6 +51,7 @@ import { ShiftConfiguration,
   MemphisTN,
   JacksonCountyOR,
   LexingtonKy,
+  PlainfieldIL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -99,6 +100,7 @@ const torringtonCT = TorringtonCT();
 const memphisTN = MemphisTN();
 const jacksonCountyOR = JacksonCountyOR();
 const lexingtonKY = LexingtonKy();
+const plainfieldIL = PlainfieldIL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1107,6 +1109,23 @@ describe('Lexington, KY', () => {
       (lexingtonKY.calculateShift(test[0])).should.equal(test[1]);
       (lexingtonKY.beforeShiftChange(
         lexingtonKY.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Plainfield, IL', () => {
+  it('should match Plainfield, IL known shifts', () => {
+    const tests = [
+      ['2019-07-01T08:10:30-0500', 'G', false],
+      ['2019-07-02T08:10:30-0500', 'B', false],
+      ['2019-07-03T08:10:30-0500', 'R', false],
+      ['2019-07-05T07:10:30-0500', 'G', true],
+      ['2019-07-06T09:10:30-0500', 'R', false],
+    ];
+    tests.forEach((test) => {
+      (plainfieldIL.calculateShift(test[0])).should.equal(test[1]);
+      (plainfieldIL.beforeShiftChange(
+        plainfieldIL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

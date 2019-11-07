@@ -565,6 +565,15 @@ export function LexingtonKy() {
   });
 }
 
+export function PlainfieldIL() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'RGB',
+    shiftStart: '0800',
+    timeZone: 'US/Central',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -625,4 +634,5 @@ export const FirecaresLookup = {
   88403: MemphisTN,
   85063: JacksonCountyOR,
   86743: LexingtonKy,
+  92216: PlainfieldIL,
 };
