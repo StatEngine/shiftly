@@ -1116,11 +1116,11 @@ describe('Lexington, KY', () => {
 describe('Plainfield, IL', () => {
   it('should match Plainfield, IL known shifts', () => {
     const tests = [
-      ['2019-07-01T08:10:30-0500', 'G', false],
-      ['2019-07-02T08:10:30-0500', 'B', false],
-      ['2019-07-03T08:10:30-0500', 'R', false],
-      ['2019-07-05T07:10:30-0500', 'G', true],
-      ['2019-07-06T09:10:30-0500', 'R', false],
+      ['2019-07-01T07:10:30-0500', 'G', false],
+      ['2019-07-02T07:10:30-0500', 'B', false],
+      ['2019-07-03T07:10:30-0500', 'R', false],
+      ['2019-07-05T06:10:30-0500', 'G', true],
+      ['2019-07-06T08:10:30-0500', 'R', false],
     ];
     tests.forEach((test) => {
       (plainfieldIL.calculateShift(test[0])).should.equal(test[1]);

@@ -569,7 +569,7 @@ export function PlainfieldIL() {
   return new ShiftConfiguration({
     firstDay: '2019-01-01',
     pattern: 'RGB',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Central',
   });
 }
