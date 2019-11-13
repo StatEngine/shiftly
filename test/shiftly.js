@@ -52,6 +52,7 @@ import { ShiftConfiguration,
   JacksonCountyOR,
   LexingtonKy,
   PlainfieldIL,
+  ManchesterCT,
 } from '../src';
 
 const richmond = richmondVA();
@@ -101,6 +102,7 @@ const memphisTN = MemphisTN();
 const jacksonCountyOR = JacksonCountyOR();
 const lexingtonKY = LexingtonKy();
 const plainfieldIL = PlainfieldIL();
+const manchesterCT = ManchesterCT();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -244,6 +246,11 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['78503'].should.equal(ColumbusOH);
     FirecaresLookup['77855'].should.equal(RosevilleCA);
     FirecaresLookup['97104'].should.equal(TorringtonCT);
+    FirecaresLookup['88403'].should.equal(MemphisTN);
+    FirecaresLookup['85063'].should.equal(JacksonCountyOR);
+    FirecaresLookup['86743'].should.equal(LexingtonKy);
+    FirecaresLookup['92216'].should.equal(PlainfieldIL);
+    FirecaresLookup['97175'].should.equal(ManchesterCT);
   });
 });
 
@@ -1126,6 +1133,23 @@ describe('Plainfield, IL', () => {
       (plainfieldIL.calculateShift(test[0])).should.equal(test[1]);
       (plainfieldIL.beforeShiftChange(
         plainfieldIL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Manchester, CT', () => {
+  it('should match Manchester, CT known shifts', () => {
+    const tests = [
+      ['2019-07-01T08:10:30-0400', '4', false],
+      ['2019-07-02T08:10:30-0400', '2', false],
+      ['2019-07-03T08:10:30-0400', '1', false],
+      ['2019-07-05T07:10:30-0400', '3', true],
+      ['2019-07-06T09:10:30-0400', '4', false],
+    ];
+    tests.forEach((test) => {
+      (manchesterCT.calculateShift(test[0])).should.equal(test[1]);
+      (manchesterCT.beforeShiftChange(
+        manchesterCT.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

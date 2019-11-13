@@ -574,6 +574,15 @@ export function PlainfieldIL() {
   });
 }
 
+export function ManchesterCT() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-08',
+    pattern: '13243142',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -635,4 +644,5 @@ export const FirecaresLookup = {
   85063: JacksonCountyOR,
   86743: LexingtonKy,
   92216: PlainfieldIL,
+  97175: ManchesterCT,
 };
