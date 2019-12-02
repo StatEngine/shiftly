@@ -508,7 +508,7 @@ export function AnneArundelMD() {
   return new ShiftConfiguration({
     firstDay: '2019-05-02',
     pattern: 'ABCD',
-    shiftStart: '0800',
+    shiftStart: '0700',
   });
 }
 
