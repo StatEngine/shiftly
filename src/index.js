@@ -508,7 +508,7 @@ export function AnneArundelMD() {
   return new ShiftConfiguration({
     firstDay: '2019-05-02',
     pattern: 'ABCD',
-    shiftStart: '0800',
+    shiftStart: '0700',
   });
 }
 
@@ -620,6 +620,7 @@ export const FirecaresLookup = {
   88539: MiamiDadeFL,
   95671: SouthernPlatteMO,
   90552: AdamsCountyCO,
+  95402: AdamsCountyCO,
   81508: FishersIN,
   77934: WestfieldIN,
   77482: CiceroIN,

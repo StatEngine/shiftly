@@ -993,13 +993,13 @@ describe('Delaware, OH', () => {
 describe('Anne Arundel, MD', () => {
   it('should match Anne Arundel, MD known shifts', () => {
     const tests = [
-      ['2019-04-03T08:10:30-0400', 'D', false],
-      ['2019-04-08T08:10:30-0400', 'A', false],
-      ['2019-04-17T08:10:30-0400', 'B', false],
-      ['2019-04-22T08:10:30-0400', 'C', false],
-      ['2019-05-02T08:10:30-0400', 'A', false],
-      ['2019-05-21T08:10:30-0400', 'D', false],
-      ['2019-05-21T07:10:30-0400', 'C', true],
+      ['2019-04-03T07:10:30-0400', 'D', false],
+      ['2019-04-08T07:10:30-0400', 'A', false],
+      ['2019-04-17T07:10:30-0400', 'B', false],
+      ['2019-04-22T07:10:30-0400', 'C', false],
+      ['2019-05-02T07:10:30-0400', 'A', false],
+      ['2019-05-21T07:10:30-0400', 'D', false],
+      ['2019-05-21T06:10:30-0400', 'C', true],
     ];
     tests.forEach((test) => {
       (anneArundelMD.calculateShift(test[0])).should.equal(test[1]);
