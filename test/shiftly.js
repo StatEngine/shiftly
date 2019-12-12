@@ -53,7 +53,7 @@ import { ShiftConfiguration,
   LexingtonKy,
   PlainfieldIL,
   ManchesterCT,
-  PalmBeachCountyFL
+  PalmBeachCountyFL,
 } from '../src';
 
 const richmond = richmondVA();
