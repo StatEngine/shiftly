@@ -53,6 +53,7 @@ import { ShiftConfiguration,
   LexingtonKy,
   PlainfieldIL,
   ManchesterCT,
+  PalmBeachCountyFL
 } from '../src';
 
 const richmond = richmondVA();
@@ -103,6 +104,7 @@ const jacksonCountyOR = JacksonCountyOR();
 const lexingtonKY = LexingtonKy();
 const plainfieldIL = PlainfieldIL();
 const manchesterCT = ManchesterCT();
+const palmBeachCountyFL = PalmBeachCountyFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -251,6 +253,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['86743'].should.equal(LexingtonKy);
     FirecaresLookup['92216'].should.equal(PlainfieldIL);
     FirecaresLookup['97175'].should.equal(ManchesterCT);
+    FirecaresLookup['91407'].should.equal(PalmBeachCountyFL);
   });
 });
 
@@ -1150,6 +1153,23 @@ describe('Manchester, CT', () => {
       (manchesterCT.calculateShift(test[0])).should.equal(test[1]);
       (manchesterCT.beforeShiftChange(
         manchesterCT.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Palm Beach County, FL', () => {
+  it('should match Palm Beach County, FL known shifts', () => {
+    const tests = [
+      ['2019-12-01T08:10:30-0500', 'C', false],
+      ['2019-12-02T08:10:30-0500', 'A', false],
+      ['2019-12-03T08:10:30-0500', 'B', false],
+      ['2019-12-05T07:10:30-0500', 'C', true],
+      ['2019-12-06T09:10:30-0500', 'B', false],
+    ];
+    tests.forEach((test) => {
+      (palmBeachCountyFL.calculateShift(test[0])).should.equal(test[1]);
+      (palmBeachCountyFL.beforeShiftChange(
+        palmBeachCountyFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
