@@ -583,6 +583,15 @@ export function ManchesterCT() {
   });
 }
 
+export function PalmBeachCountyFL() {
+  return new ShiftConfiguration({
+    firstDay: '2019-12-02',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -646,4 +655,5 @@ export const FirecaresLookup = {
   86743: LexingtonKy,
   92216: PlainfieldIL,
   97175: ManchesterCT,
+  91407: PalmBeachCountyFL,
 };
