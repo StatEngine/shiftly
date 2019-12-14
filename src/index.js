@@ -592,6 +592,16 @@ export function PalmBeachCountyFL() {
   });
 }
 
+export function CedarRapidsIA() {
+  return new ShiftConfiguration({
+    firstDay: '2019-01-01',
+    pattern: 'BRG',
+    shiftStart: '0700',
+    timeZone: 'US/Central',
+  });
+}
+
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -656,4 +666,5 @@ export const FirecaresLookup = {
   92216: PlainfieldIL,
   97175: ManchesterCT,
   91407: PalmBeachCountyFL,
+  76927: CedarRapidsIA,
 };

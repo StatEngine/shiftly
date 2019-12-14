@@ -54,6 +54,7 @@ import { ShiftConfiguration,
   PlainfieldIL,
   ManchesterCT,
   PalmBeachCountyFL,
+  CedarRapidsIA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -105,6 +106,7 @@ const lexingtonKY = LexingtonKy();
 const plainfieldIL = PlainfieldIL();
 const manchesterCT = ManchesterCT();
 const palmBeachCountyFL = PalmBeachCountyFL();
+const cedarRapidsIA = CedarRapidsIA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -254,6 +256,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['92216'].should.equal(PlainfieldIL);
     FirecaresLookup['97175'].should.equal(ManchesterCT);
     FirecaresLookup['91407'].should.equal(PalmBeachCountyFL);
+    FirecaresLookup['76927'].should.equal(CedarRapidsIA);
   });
 });
 
@@ -1170,6 +1173,22 @@ describe('Palm Beach County, FL', () => {
       (palmBeachCountyFL.calculateShift(test[0])).should.equal(test[1]);
       (palmBeachCountyFL.beforeShiftChange(
         palmBeachCountyFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Cedar Rapids, IA', () => {
+  it('should match Cedar Rapids known shifts', () => {
+    const tests = [
+      ['2019-01-01T08:10:30-0500', 'B', false],
+      ['2019-01-04T08:10:30-0500', 'B', false],
+      ['2019-05-05T08:10:30-0500', 'R', false],
+      ['2019-05-06T08:10:30-0500', 'G', false],
+    ];
+    tests.forEach((test) => {
+      (cedarRapidsIA.calculateShift(test[0])).should.equal(test[1]);
+      (cedarRapidsIA.beforeShiftChange(
+        cedarRapidsIA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
