@@ -601,6 +601,15 @@ export function CedarRapidsIA() {
   });
 }
 
+export function AlexandriaVA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-08',
+    pattern: 'ABABCBCAC',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
+
 
 // Demo SF Data
 export function SanFranciscoCA() {
@@ -667,4 +676,5 @@ export const FirecaresLookup = {
   97175: ManchesterCT,
   91407: PalmBeachCountyFL,
   76927: CedarRapidsIA,
+  73375: AlexandriaVA,
 };
