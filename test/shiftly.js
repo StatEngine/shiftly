@@ -55,6 +55,7 @@ import { ShiftConfiguration,
   ManchesterCT,
   PalmBeachCountyFL,
   CedarRapidsIA,
+  AlexandriaVA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -107,6 +108,7 @@ const plainfieldIL = PlainfieldIL();
 const manchesterCT = ManchesterCT();
 const palmBeachCountyFL = PalmBeachCountyFL();
 const cedarRapidsIA = CedarRapidsIA();
+const alexandriaVA = AlexandriaVA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -257,6 +259,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['97175'].should.equal(ManchesterCT);
     FirecaresLookup['91407'].should.equal(PalmBeachCountyFL);
     FirecaresLookup['76927'].should.equal(CedarRapidsIA);
+    FirecaresLookup['73375'].should.equal(AlexandriaVA);
   });
 });
 
@@ -1192,3 +1195,21 @@ describe('Cedar Rapids, IA', () => {
     });
   });
 });
+
+describe('Alexandria, VA', () => {
+  it('should match Alexandria, VA known shifts', () => {
+    const tests = [
+      ['2020-01-01T07:10:30-0500', 'A', false],
+      ['2020-01-02T07:10:30-0500', 'B', false],
+      ['2020-01-03T07:10:30-0500', 'C', false],
+      ['2020-01-05T06:10:30-0500', 'B', true],
+      ['2020-01-06T08:10:30-0500', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (alexandriaVA.calculateShift(test[0])).should.equal(test[1]);
+      (alexandriaVA.beforeShiftChange(
+        alexandriaVA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
