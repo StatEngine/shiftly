@@ -56,6 +56,7 @@ import { ShiftConfiguration,
   PalmBeachCountyFL,
   CedarRapidsIA,
   AlexandriaVA,
+  PascoWA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -109,6 +110,7 @@ const manchesterCT = ManchesterCT();
 const palmBeachCountyFL = PalmBeachCountyFL();
 const cedarRapidsIA = CedarRapidsIA();
 const alexandriaVA = AlexandriaVA();
+const pascoWA = PascoWA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -260,6 +262,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['91407'].should.equal(PalmBeachCountyFL);
     FirecaresLookup['76927'].should.equal(CedarRapidsIA);
     FirecaresLookup['73375'].should.equal(AlexandriaVA);
+    FirecaresLookup['91576'].should.equal(PascoWA);
   });
 });
 
@@ -1213,3 +1216,19 @@ describe('Alexandria, VA', () => {
   });
 });
 
+describe('Pasco, WA', () => {
+  it('should match Pasco, WA known shifts', () => {
+    const tests = [
+      ['2020-01-01T08:10:30-0800', 'A', false],
+      ['2020-01-02T08:10:30-0800', 'B', false],
+      ['2020-01-03T08:10:30-0800', 'B', false],
+      ['2020-01-05T07:10:30-0800', 'C', true],
+      ['2020-01-06T09:10:30-0800', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (pascoWA.calculateShift(test[0])).should.equal(test[1]);
+      (pascoWA.beforeShiftChange(
+        pascoWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});

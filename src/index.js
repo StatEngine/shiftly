@@ -610,6 +610,15 @@ export function AlexandriaVA() {
   });
 }
 
+export function PascoWA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-06',
+    pattern: 'AABBCC',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 
 // Demo SF Data
 export function SanFranciscoCA() {
@@ -677,4 +686,5 @@ export const FirecaresLookup = {
   91407: PalmBeachCountyFL,
   76927: CedarRapidsIA,
   73375: AlexandriaVA,
+  91576: PascoWA,
 };
