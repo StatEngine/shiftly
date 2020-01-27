@@ -587,7 +587,7 @@ export function PalmBeachCountyFL() {
   return new ShiftConfiguration({
     firstDay: '2019-12-02',
     pattern: 'ABC',
-    shiftStart: '0800',
+    shiftStart: '0730',
     timeZone: 'US/Eastern',
   });
 }
