@@ -619,6 +619,15 @@ export function PascoWA() {
   });
 }
 
+export function JerseyCityNJ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-04',
+    pattern: 'ABCD',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 
 // Demo SF Data
 export function SanFranciscoCA() {
@@ -687,4 +696,5 @@ export const FirecaresLookup = {
   76927: CedarRapidsIA,
   73375: AlexandriaVA,
   91576: PascoWA,
+  85300: JerseyCityNJ,
 };

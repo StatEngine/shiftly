@@ -57,6 +57,7 @@ import { ShiftConfiguration,
   CedarRapidsIA,
   AlexandriaVA,
   PascoWA,
+  JerseyCityNJ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -111,6 +112,7 @@ const palmBeachCountyFL = PalmBeachCountyFL();
 const cedarRapidsIA = CedarRapidsIA();
 const alexandriaVA = AlexandriaVA();
 const pascoWA = PascoWA();
+const jerseyCityNJ = JerseyCityNJ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -263,6 +265,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['76927'].should.equal(CedarRapidsIA);
     FirecaresLookup['73375'].should.equal(AlexandriaVA);
     FirecaresLookup['91576'].should.equal(PascoWA);
+    FirecaresLookup['85300'].should.equal(JerseyCityNJ);
   });
 });
 
@@ -1229,6 +1232,23 @@ describe('Pasco, WA', () => {
       (pascoWA.calculateShift(test[0])).should.equal(test[1]);
       (pascoWA.beforeShiftChange(
         pascoWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Jersey City, NJ', () => {
+  it('should match Jersey City, NJ known shifts', () => {
+    const tests = [
+      ['2020-01-01T08:10:30-0500', 'B', false],
+      ['2020-01-02T08:10:30-0500', 'C', false],
+      ['2020-01-03T08:10:30-0500', 'D', false],
+      ['2020-01-05T07:10:30-0500', 'A', true],
+      ['2020-01-06T09:10:30-0500', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (jerseyCityNJ.calculateShift(test[0])).should.equal(test[1]);
+      (jerseyCityNJ.beforeShiftChange(
+        jerseyCityNJ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
