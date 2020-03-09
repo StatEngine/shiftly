@@ -495,6 +495,15 @@ export function JacksonTownshipIN() {
   });
 }
 
+export function JerseyCityNJ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-04',
+    pattern: 'ABCD',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export function DelawareOH() {
   return new ShiftConfiguration({
     firstDay: '2019-03-21',
@@ -513,11 +522,15 @@ export function AnneArundelMD() {
 }
 
 export function ColumbusOH() {
-  return new ShiftConfiguration({
+  return new ShiftConfiguration([{
     firstDay: '2019-05-02',
     pattern: '123',
     shiftStart: '0800',
-  });
+  }, {
+    firstDay: '2020-03-01',
+    pattern: '123',
+    shiftStart: '0800',
+  }]);
 }
 
 export function RosevilleCA() {
@@ -616,15 +629,6 @@ export function PascoWA() {
     pattern: 'AABBCC',
     shiftStart: '0800',
     timeZone: 'US/Pacific',
-  });
-}
-
-export function JerseyCityNJ() {
-  return new ShiftConfiguration({
-    firstDay: '2020-01-04',
-    pattern: 'ABCD',
-    shiftStart: '0800',
-    timeZone: 'US/Eastern',
   });
 }
 

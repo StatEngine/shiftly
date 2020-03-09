@@ -1027,13 +1027,10 @@ describe('Anne Arundel, MD', () => {
 describe('Columbus, OH', () => {
   it('should match Columbus, OH known shifts', () => {
     const tests = [
-      ['2019-04-03T08:10:30-0400', '2', false],
-      ['2019-04-08T08:10:30-0400', '1', false],
-      ['2019-04-17T08:10:30-0400', '1', false],
-      ['2019-04-22T08:10:30-0400', '3', false],
-      ['2019-05-02T08:10:30-0400', '1', false],
-      ['2019-05-21T08:10:30-0400', '2', false],
-      ['2019-05-21T07:10:30-0400', '1', true],
+        ['2019-05-02T08:10:30-0400', '1', false],
+        ['2019-05-21T08:10:30-0400', '2', false],
+        ['2019-05-21T07:10:30-0400', '1', true],
+        ['2020-03-02T10:10:30-0400', '2', false],
     ];
     tests.forEach((test) => {
       (columbusOH.calculateShift(test[0])).should.equal(test[1]);
