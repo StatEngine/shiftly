@@ -58,6 +58,7 @@ import { ShiftConfiguration,
   AlexandriaVA,
   PascoWA,
   JerseyCityNJ,
+  RinconValleyAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -113,6 +114,7 @@ const cedarRapidsIA = CedarRapidsIA();
 const alexandriaVA = AlexandriaVA();
 const pascoWA = PascoWA();
 const jerseyCityNJ = JerseyCityNJ();
+const rinconValleyAZ = RinconValleyAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -266,6 +268,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['73375'].should.equal(AlexandriaVA);
     FirecaresLookup['91576'].should.equal(PascoWA);
     FirecaresLookup['85300'].should.equal(JerseyCityNJ);
+    FirecaresLookup['93429'].should.equal(RinconValleyAZ);
   });
 });
 
@@ -1246,6 +1249,23 @@ describe('Jersey City, NJ', () => {
       (jerseyCityNJ.calculateShift(test[0])).should.equal(test[1]);
       (jerseyCityNJ.beforeShiftChange(
         jerseyCityNJ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Rincon Valley, AZ', () => {
+  it('should match Rincon Valley, AZ known shifts', () => {
+    const tests = [
+      ['2017-12-01T06:10:30-0700', 'C', true],
+      ['2017-12-01T07:10:30-0700', 'B', false],
+      ['2017-12-02T07:10:30-0700', 'C', false],
+      ['2017-12-19T07:10:30-0700', 'A', false],
+      ['2017-12-22T07:10:30-0700', 'B', false],
+    ];
+
+    tests.forEach((test) => {
+      (rinconValleyAZ.calculateShift(test[0])).should.equal(test[1]);
+      (rinconValleyAZ.beforeShiftChange(rinconValleyAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

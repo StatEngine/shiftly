@@ -632,6 +632,14 @@ export function PascoWA() {
   });
 }
 
+export function RinconValleyAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2017-01-01',
+    pattern: 'acbcbcbababacac',
+    shiftStart: '0700',
+    timeZone: 'US/Arizona',
+  });
+}
 
 // Demo SF Data
 export function SanFranciscoCA() {
@@ -701,4 +709,5 @@ export const FirecaresLookup = {
   73375: AlexandriaVA,
   91576: PascoWA,
   85300: JerseyCityNJ,
+  93429: RinconValleyAZ,
 };
