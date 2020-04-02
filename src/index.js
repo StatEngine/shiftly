@@ -650,6 +650,15 @@ export function EastPierceWA() {
   });
 }
 
+export function NorthwestAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-02',
+    pattern: 'ACABABCBC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -720,4 +729,5 @@ export const FirecaresLookup = {
   85300: JerseyCityNJ,
   93429: RinconValleyAZ,
   80336: EastPierceWA,
+  90649: NorthwestAZ,
 };

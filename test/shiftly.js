@@ -60,6 +60,7 @@ import { ShiftConfiguration,
   JerseyCityNJ,
   RinconValleyAZ,
   EastPierceWA,
+  NorthwestAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -117,6 +118,7 @@ const pascoWA = PascoWA();
 const jerseyCityNJ = JerseyCityNJ();
 const rinconValleyAZ = RinconValleyAZ();
 const eastPierceWA = EastPierceWA();
+const northwestAZ = NorthwestAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -272,6 +274,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['85300'].should.equal(JerseyCityNJ);
     FirecaresLookup['93429'].should.equal(RinconValleyAZ);
     FirecaresLookup['80336'].should.equal(EastPierceWA);
+    FirecaresLookup['90649'].should.equal(NorthwestAZ);
   });
 });
 
@@ -1286,6 +1289,23 @@ describe('East Pierce, WA', () => {
       (eastPierceWA.calculateShift(test[0])).should.equal(test[1]);
       (eastPierceWA.beforeShiftChange(
         eastPierceWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Northwest, AZ', () => {
+  it('should match Northwest, AZ known shifts', () => {
+    const tests = [
+      ['2020-01-01T08:10:30-0700', 'C', false],
+      ['2020-01-02T08:10:30-0700', 'A', false],
+      ['2020-01-03T08:10:30-0700', 'C', false],
+      ['2020-01-05T07:10:30-0700', 'A', true],
+      ['2020-01-06T09:10:30-0700', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (northwestAZ.calculateShift(test[0])).should.equal(test[1]);
+      (northwestAZ.beforeShiftChange(
+        northwestAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
