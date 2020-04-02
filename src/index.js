@@ -632,6 +632,14 @@ export function PascoWA() {
   });
 }
 
+export function EastPierceWA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-02',
+    pattern: 'ACABABCBC',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
 
 // Demo SF Data
 export function SanFranciscoCA() {
@@ -701,4 +709,5 @@ export const FirecaresLookup = {
   73375: AlexandriaVA,
   91576: PascoWA,
   85300: JerseyCityNJ,
+  80336: EastPierceWA,
 };
