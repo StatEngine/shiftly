@@ -650,6 +650,15 @@ export function EastPierceWA() {
   });
 }
 
+export function CapeCoralFL() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-01',
+    pattern: 'BCA',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -720,4 +729,5 @@ export const FirecaresLookup = {
   85300: JerseyCityNJ,
   93429: RinconValleyAZ,
   80336: EastPierceWA,
+  76590: CapeCoralFL,
 };
