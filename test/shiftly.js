@@ -60,6 +60,7 @@ import { ShiftConfiguration,
   JerseyCityNJ,
   RinconValleyAZ,
   EastPierceWA,
+  CapeCoralFL,
   NorthwestAZ,
   GolderRanchAZ,
 } from '../src';
@@ -119,6 +120,7 @@ const pascoWA = PascoWA();
 const jerseyCityNJ = JerseyCityNJ();
 const rinconValleyAZ = RinconValleyAZ();
 const eastPierceWA = EastPierceWA();
+const capeCoralFL = CapeCoralFL();
 const northwestAZ = NorthwestAZ();
 const golderRanchAZ = GolderRanchAZ();
 
@@ -276,6 +278,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['85300'].should.equal(JerseyCityNJ);
     FirecaresLookup['93429'].should.equal(RinconValleyAZ);
     FirecaresLookup['80336'].should.equal(EastPierceWA);
+    FirecaresLookup['76590'].should.equal(CapeCoralFL);
     FirecaresLookup['90649'].should.equal(NorthwestAZ);
     FirecaresLookup['82670'].should.equal(GolderRanchAZ);
   });
@@ -1292,6 +1295,22 @@ describe('East Pierce, WA', () => {
       (eastPierceWA.calculateShift(test[0])).should.equal(test[1]);
       (eastPierceWA.beforeShiftChange(
         eastPierceWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Cape Coral, FL', () => {
+  it('should match Cape Coral, FL known shifts', () => {
+    const tests = [
+      ['2020-01-01T08:10:30-0500', 'B', false],
+      ['2020-02-29T08:10:30-0500', 'A', false],
+      ['2020-03-01T08:10:30-0500', 'B', false],
+      ['2020-02-29T07:10:30-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (capeCoralFL.calculateShift(test[0])).should.equal(test[1]);
+      (capeCoralFL.beforeShiftChange(
+        capeCoralFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

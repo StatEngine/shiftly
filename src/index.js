@@ -650,6 +650,15 @@ export function EastPierceWA() {
   });
 }
 
+export function CapeCoralFL() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-01',
+    pattern: 'BCA',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export function NorthwestAZ() {
   return new ShiftConfiguration({
     firstDay: '2020-01-02',
@@ -657,8 +666,6 @@ export function NorthwestAZ() {
     shiftStart: '0800',
     timeZone: 'US/Arizona',
   });
-}
-
 export function GolderRanchAZ() {
   return new ShiftConfiguration({
     firstDay: '2020-04-01',
@@ -738,6 +745,7 @@ export const FirecaresLookup = {
   85300: JerseyCityNJ,
   93429: RinconValleyAZ,
   80336: EastPierceWA,
+  76590: CapeCoralFL,
   82670: GolderRanchAZ,
   90649: NorthwestAZ,
 };
