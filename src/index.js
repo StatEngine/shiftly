@@ -659,6 +659,22 @@ export function CapeCoralFL() {
   });
 }
 
+export function NorthwestAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-02',
+    pattern: 'ACABABCBC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+export function GolderRanchAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-04-01',
+    pattern: 'ACABABCBC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -730,4 +746,6 @@ export const FirecaresLookup = {
   93429: RinconValleyAZ,
   80336: EastPierceWA,
   76590: CapeCoralFL,
+  82670: GolderRanchAZ,
+  90649: NorthwestAZ,
 };
