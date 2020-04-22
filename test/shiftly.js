@@ -61,6 +61,7 @@ import { ShiftConfiguration,
   RinconValleyAZ,
   EastPierceWA,
   NorthwestAZ,
+  GolderRanchAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -119,6 +120,7 @@ const jerseyCityNJ = JerseyCityNJ();
 const rinconValleyAZ = RinconValleyAZ();
 const eastPierceWA = EastPierceWA();
 const northwestAZ = NorthwestAZ();
+const golderRanchAZ = GolderRanchAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -275,6 +277,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['93429'].should.equal(RinconValleyAZ);
     FirecaresLookup['80336'].should.equal(EastPierceWA);
     FirecaresLookup['90649'].should.equal(NorthwestAZ);
+    FirecaresLookup['82670'].should.equal(GolderRanchAZ);
   });
 });
 
@@ -1306,6 +1309,23 @@ describe('Northwest, AZ', () => {
       (northwestAZ.calculateShift(test[0])).should.equal(test[1]);
       (northwestAZ.beforeShiftChange(
         northwestAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Golder Ranch, AZ', () => {
+  it('should match Golder Ranch, AZ known shifts', () => {
+    const tests = [
+      ['2020-04-01T08:10:30-0700', 'A', false],
+      ['2020-04-02T08:10:30-0700', 'C', false],
+      ['2020-04-03T08:10:30-0700', 'A', false],
+      ['2020-04-05T07:10:30-0700', 'B', true],
+      ['2020-04-06T09:10:30-0700', 'B', false],
+    ];
+
+    tests.forEach((test) => {
+      (golderRanchAZ.calculateShift(test[0])).should.equal(test[1]);
+      (golderRanchAZ.beforeShiftChange(golderRanchAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
