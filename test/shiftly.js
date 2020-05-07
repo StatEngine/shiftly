@@ -63,6 +63,7 @@ import { ShiftConfiguration,
   CapeCoralFL,
   NorthwestAZ,
   GolderRanchAZ,
+  TheVillagesFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -123,6 +124,7 @@ const eastPierceWA = EastPierceWA();
 const capeCoralFL = CapeCoralFL();
 const northwestAZ = NorthwestAZ();
 const golderRanchAZ = GolderRanchAZ();
+const theVillagesFL = TheVillagesFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -281,6 +283,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['76590'].should.equal(CapeCoralFL);
     FirecaresLookup['90649'].should.equal(NorthwestAZ);
     FirecaresLookup['82670'].should.equal(GolderRanchAZ);
+    FirecaresLookup['98151'].should.equal(TheVillagesFL);
   });
 });
 
@@ -1345,6 +1348,23 @@ describe('Golder Ranch, AZ', () => {
     tests.forEach((test) => {
       (golderRanchAZ.calculateShift(test[0])).should.equal(test[1]);
       (golderRanchAZ.beforeShiftChange(golderRanchAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('The Villages, FL', () => {
+  it('should match The Villages, FL known shifts', () => {
+    const tests = [
+      ['2020-05-01T08:10:30-0400', 'A', false],
+      ['2020-05-02T08:10:30-0400', 'B', false],
+      ['2020-05-03T08:10:30-0400', 'C', false],
+      ['2020-05-05T07:10:30-0400', 'A', true],
+      ['2020-05-06T09:10:30-0400', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (theVillagesFL.calculateShift(test[0])).should.equal(test[1]);
+      (theVillagesFL.beforeShiftChange(theVillagesFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

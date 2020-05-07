@@ -666,12 +666,23 @@ export function NorthwestAZ() {
     shiftStart: '0800',
     timeZone: 'US/Arizona',
   });
+}
+
 export function GolderRanchAZ() {
   return new ShiftConfiguration({
     firstDay: '2020-04-01',
     pattern: 'ACABABCBC',
     shiftStart: '0800',
     timeZone: 'US/Arizona',
+  });
+}
+
+export function TheVillagesFL() {
+  return new ShiftConfiguration({
+    firstDay: '2020-05-01',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
   });
 }
 
@@ -748,4 +759,5 @@ export const FirecaresLookup = {
   76590: CapeCoralFL,
   82670: GolderRanchAZ,
   90649: NorthwestAZ,
+  98151: TheVillagesFL,
 };
