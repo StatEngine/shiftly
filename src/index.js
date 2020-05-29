@@ -686,6 +686,15 @@ export function TheVillagesFL() {
   });
 }
 
+export function MadisonWI() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-05',
+    pattern: 'ababcbcac',
+    shiftStart: '0800',
+    timeZone: 'US/Central',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -760,4 +769,5 @@ export const FirecaresLookup = {
   82670: GolderRanchAZ,
   90649: NorthwestAZ,
   98151: TheVillagesFL,
+  87545: MadisonWI,
 };

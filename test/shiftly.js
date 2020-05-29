@@ -64,6 +64,7 @@ import { ShiftConfiguration,
   NorthwestAZ,
   GolderRanchAZ,
   TheVillagesFL,
+  MadisonWI,
 } from '../src';
 
 const richmond = richmondVA();
@@ -125,6 +126,7 @@ const capeCoralFL = CapeCoralFL();
 const northwestAZ = NorthwestAZ();
 const golderRanchAZ = GolderRanchAZ();
 const theVillagesFL = TheVillagesFL();
+const madisonWI = MadisonWI();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -284,6 +286,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['90649'].should.equal(NorthwestAZ);
     FirecaresLookup['82670'].should.equal(GolderRanchAZ);
     FirecaresLookup['98151'].should.equal(TheVillagesFL);
+    FirecaresLookup['87545'].should.equal(MadisonWI);
   });
 });
 
@@ -1365,6 +1368,23 @@ describe('The Villages, FL', () => {
     tests.forEach((test) => {
       (theVillagesFL.calculateShift(test[0])).should.equal(test[1]);
       (theVillagesFL.beforeShiftChange(theVillagesFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Madison, WI', () => {
+  it('should match Madison, WI known shifts', () => {
+    const tests = [
+      ['2020-01-05T08:10:30-0600', 'A', false],
+      ['2020-01-06T08:10:30-0600', 'B', false],
+      ['2020-01-07T08:10:30-0600', 'A', false],
+      ['2020-01-09T07:10:30-0600', 'B', true],
+      ['2020-01-10T09:10:30-0600', 'B', false],
+    ];
+
+    tests.forEach((test) => {
+      (madisonWI.calculateShift(test[0])).should.equal(test[1]);
+      (madisonWI.beforeShiftChange(madisonWI.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
