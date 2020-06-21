@@ -65,6 +65,7 @@ import { ShiftConfiguration,
   GolderRanchAZ,
   TheVillagesFL,
   MadisonWI,
+  HallCountyGA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -127,6 +128,7 @@ const northwestAZ = NorthwestAZ();
 const golderRanchAZ = GolderRanchAZ();
 const theVillagesFL = TheVillagesFL();
 const madisonWI = MadisonWI();
+const hallCountyGA = HallCountyGA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -287,6 +289,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['82670'].should.equal(GolderRanchAZ);
     FirecaresLookup['98151'].should.equal(TheVillagesFL);
     FirecaresLookup['87545'].should.equal(MadisonWI);
+    FirecaresLookup['83412'].should.equal(HallCountyGA);
   });
 });
 
@@ -1385,6 +1388,23 @@ describe('Madison, WI', () => {
     tests.forEach((test) => {
       (madisonWI.calculateShift(test[0])).should.equal(test[1]);
       (madisonWI.beforeShiftChange(madisonWI.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Hall County, GA', () => {
+  it('should match Hall County, GA known shifts', () => {
+    const tests = [
+      ['2020-06-01T08:10:30-0400', 'A', false],
+      ['2020-06-02T08:10:30-0400', 'B', false],
+      ['2020-06-03T08:10:30-0400', 'C', false],
+      ['2020-06-05T07:10:30-0400', 'A', true],
+      ['2020-06-06T09:10:30-0400', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (hallCountyGA.calculateShift(test[0])).should.equal(test[1]);
+      (hallCountyGA.beforeShiftChange(hallCountyGA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

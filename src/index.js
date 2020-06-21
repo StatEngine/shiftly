@@ -695,6 +695,15 @@ export function MadisonWI() {
   });
 }
 
+export function HallCountyGA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-06-01',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -770,4 +779,5 @@ export const FirecaresLookup = {
   90649: NorthwestAZ,
   98151: TheVillagesFL,
   87545: MadisonWI,
+  83412: HallCountyGA,
 };
