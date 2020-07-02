@@ -66,6 +66,7 @@ import { ShiftConfiguration,
   TheVillagesFL,
   MadisonWI,
   HallCountyGA,
+  CoralGablesFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -129,6 +130,7 @@ const golderRanchAZ = GolderRanchAZ();
 const theVillagesFL = TheVillagesFL();
 const madisonWI = MadisonWI();
 const hallCountyGA = HallCountyGA();
+const coralGablesFL = CoralGablesFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -290,6 +292,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['98151'].should.equal(TheVillagesFL);
     FirecaresLookup['87545'].should.equal(MadisonWI);
     FirecaresLookup['83412'].should.equal(HallCountyGA);
+    FirecaresLookup['78725'].should.equal(HallCountyGA);
   });
 });
 
@@ -1405,6 +1408,23 @@ describe('Hall County, GA', () => {
     tests.forEach((test) => {
       (hallCountyGA.calculateShift(test[0])).should.equal(test[1]);
       (hallCountyGA.beforeShiftChange(hallCountyGA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Coral Gables, FL', () => {
+  it('should match Coral Gables, FL known shifts', () => {
+    const tests = [
+      ['2020-06-11T07:10:30-0400', 'A', false],
+      ['2020-06-12T07:10:30-0400', 'B', false],
+      ['2020-06-13T07:10:30-0400', 'C', false],
+      ['2020-06-15T06:10:30-0400', 'A', true],
+      ['2020-06-16T08:10:30-0400', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (coralGablesFL.calculateShift(test[0])).should.equal(test[1]);
+      (coralGablesFL.beforeShiftChange(coralGablesFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

@@ -704,6 +704,15 @@ export function HallCountyGA() {
   });
 }
 
+export function CoralGablesFL() {
+  return new ShiftConfiguration({
+    firstDay: '2020-06-11',
+    pattern: 'ABC',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -780,4 +789,5 @@ export const FirecaresLookup = {
   98151: TheVillagesFL,
   87545: MadisonWI,
   83412: HallCountyGA,
+  78725: CoralGablesFL,
 };
