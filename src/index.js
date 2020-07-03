@@ -713,6 +713,15 @@ export function CoralGablesFL() {
   });
 }
 
+export function OntarioCA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-01',
+    pattern: 'cabababcbcacacababcbcbca',
+    shiftStart: '0700',
+    timeZone: 'US/Pacific',
+  });
+}
+
 // Demo SF Data
 export function SanFranciscoCA() {
   return new ShiftConfiguration({
@@ -790,4 +799,5 @@ export const FirecaresLookup = {
   87545: MadisonWI,
   83412: HallCountyGA,
   78725: CoralGablesFL,
+  91073: OntarioCA,
 };

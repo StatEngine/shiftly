@@ -67,6 +67,7 @@ import { ShiftConfiguration,
   MadisonWI,
   HallCountyGA,
   CoralGablesFL,
+  OntarioCA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -131,6 +132,7 @@ const theVillagesFL = TheVillagesFL();
 const madisonWI = MadisonWI();
 const hallCountyGA = HallCountyGA();
 const coralGablesFL = CoralGablesFL();
+const ontarioCA = OntarioCA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -292,7 +294,8 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['98151'].should.equal(TheVillagesFL);
     FirecaresLookup['87545'].should.equal(MadisonWI);
     FirecaresLookup['83412'].should.equal(HallCountyGA);
-    FirecaresLookup['78725'].should.equal(HallCountyGA);
+    FirecaresLookup['78725'].should.equal(CoralGablesFL);
+    FirecaresLookup['91073'].should.equal(OntarioCA);
   });
 });
 
@@ -1425,6 +1428,28 @@ describe('Coral Gables, FL', () => {
     tests.forEach((test) => {
       (coralGablesFL.calculateShift(test[0])).should.equal(test[1]);
       (coralGablesFL.beforeShiftChange(coralGablesFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Ontario, CA', () => {
+  it('should match Ontario, CA known shifts', () => {
+    const tests = [
+      ['2020-01-01T07:10:30-0800', 'C', false],
+      ['2020-01-02T07:10:30-0800', 'A', false],
+      ['2020-01-03T07:10:30-0800', 'B', false],
+      ['2020-01-05T06:10:30-0800', 'A', true],
+      ['2020-01-06T08:10:30-0800', 'A', false],
+      ['2020-06-01T07:10:30-0700', 'B', false],
+      ['2020-06-02T07:10:30-0700', 'C', false],
+      ['2020-06-03T07:10:30-0700', 'A', false],
+      ['2020-06-05T06:10:30-0700', 'C', true],
+      ['2020-06-06T08:10:30-0700', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (ontarioCA.calculateShift(test[0])).should.equal(test[1]);
+      (ontarioCA.beforeShiftChange(ontarioCA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
