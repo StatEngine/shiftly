@@ -734,7 +734,7 @@ export function SanFranciscoCA() {
 export function CasaGrandeAZ() {
   return new ShiftConfiguration({
     firstDay: '2020-08-12',
-    pattern: 'AABBCCAABBCC',
+    pattern: 'AABBCC',
     shiftStart: '0800',
     timeZone: 'US/Arizona',
   });
