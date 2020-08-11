@@ -68,6 +68,7 @@ import { ShiftConfiguration,
   HallCountyGA,
   CoralGablesFL,
   OntarioCA,
+  CasaGrandeAZ
 } from '../src';
 
 const richmond = richmondVA();
@@ -133,6 +134,7 @@ const madisonWI = MadisonWI();
 const hallCountyGA = HallCountyGA();
 const coralGablesFL = CoralGablesFL();
 const ontarioCA = OntarioCA();
+const casaGrandeAZ = CasaGrandeAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -296,6 +298,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['83412'].should.equal(HallCountyGA);
     FirecaresLookup['78725'].should.equal(CoralGablesFL);
     FirecaresLookup['91073'].should.equal(OntarioCA);
+    FirecaresLookup['77594'].should.equal(CasaGrandeAZ)
   });
 });
 
@@ -1450,6 +1453,32 @@ describe('Ontario, CA', () => {
     tests.forEach((test) => {
       (ontarioCA.calculateShift(test[0])).should.equal(test[1]);
       (ontarioCA.beforeShiftChange(ontarioCA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Casa Grande, AZ', () => {
+  it('should match Casa Grande, AZ known shifts', () => {
+    const tests = [
+      ['2020-07-30T12:00:00-0800', 'C', false],
+      ['2020-07-31T12:00:00-0800', 'A', false],
+      ['2020-08-01T00:10:00-0800', 'A', true],
+      ['2020-08-02T12:10:00-0700', 'B', false],
+      ['2020-08-03T00:10:00-0700', 'B', true],
+      ['2020-08-04T12:10:00-0700', 'C', false],
+      ['2020-08-05T00:10:00-0700', 'C', true],
+      ['2020-08-06T00:10:00-0700', 'A', true],
+      ['2020-08-07T12:10:00-0700', 'A', false],
+      ['2020-08-08T12:10:00-0700', 'B', false],
+      ['2020-08-09T12:10:00-0700', 'B', false],
+      ['2020-08-10T12:10:00-0700', 'C', false],
+      ['2020-08-11T12:10:00-0700', 'C', false],
+    ]
+
+    tests.forEach((test) => {
+      
+      (casaGrandeAZ.calculateShift(test[0])).should.equal(test[1]);
+      (casaGrandeAZ.beforeShiftChange(casaGrandeAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

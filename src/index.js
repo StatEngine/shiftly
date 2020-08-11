@@ -731,6 +731,14 @@ export function SanFranciscoCA() {
     timeZone: 'US/Eastern',
   });
 }
+export function CasaGrandeAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-08-12',
+    pattern: 'AABBCCAABBCC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -800,4 +808,5 @@ export const FirecaresLookup = {
   83412: HallCountyGA,
   78725: CoralGablesFL,
   91073: OntarioCA,
+  77594: CasaGrandeAZ
 };
