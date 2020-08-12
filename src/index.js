@@ -808,5 +808,5 @@ export const FirecaresLookup = {
   83412: HallCountyGA,
   78725: CoralGablesFL,
   91073: OntarioCA,
-  77594: CasaGrandeAZ
+  77594: CasaGrandeAZ,
 };

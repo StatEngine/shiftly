@@ -68,7 +68,7 @@ import { ShiftConfiguration,
   HallCountyGA,
   CoralGablesFL,
   OntarioCA,
-  CasaGrandeAZ
+  CasaGrandeAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -298,7 +298,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['83412'].should.equal(HallCountyGA);
     FirecaresLookup['78725'].should.equal(CoralGablesFL);
     FirecaresLookup['91073'].should.equal(OntarioCA);
-    FirecaresLookup['77594'].should.equal(CasaGrandeAZ)
+    FirecaresLookup['77594'].should.equal(CasaGrandeAZ);
   });
 });
 
@@ -1473,11 +1473,10 @@ describe('Casa Grande, AZ', () => {
       ['2020-08-09T12:10:00-0700', 'B', false],
       ['2020-08-10T12:10:00-0700', 'C', false],
       ['2020-08-11T12:10:00-0700', 'C', false],
-      ['2020-08-12T12:10:00-0700', 'A', false]
-    ]
+      ['2020-08-12T12:10:00-0700', 'A', false],
+    ];
 
     tests.forEach((test) => {
-      
       (casaGrandeAZ.calculateShift(test[0])).should.equal(test[1]);
       (casaGrandeAZ.beforeShiftChange(casaGrandeAZ.normalize(test[0]))).should.equal(test[2]);
     });
