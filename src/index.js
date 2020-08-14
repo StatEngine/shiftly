@@ -739,6 +739,14 @@ export function CasaGrandeAZ() {
     timeZone: 'US/Arizona',
   });
 }
+export function LACountyCA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-23',
+    pattern: 'BABCACABCBCABABCACABCBCA',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -809,4 +817,5 @@ export const FirecaresLookup = {
   78725: CoralGablesFL,
   91073: OntarioCA,
   77594: CasaGrandeAZ,
+  87255: LACountyCA,
 };
