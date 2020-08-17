@@ -1029,6 +1029,9 @@ describe('Delaware, OH', () => {
       ['2019-03-25T08:10:30-0400', 'B', false],
       ['2019-03-26T08:10:30-0400', 'C', false],
       ['2019-03-22T07:10:30-0400', 'A', true],
+      ['2020-02-29T10:10:30-0500', 'A', false],
+      ['2020-03-01T10:10:30-0500', 'A', false],
+      ['2020-08-05T10:10:30-0500', 'B', false],
     ];
     tests.forEach((test) => {
       (delawareOH.calculateShift(test[0])).should.equal(test[1]);

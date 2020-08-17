@@ -505,12 +505,18 @@ export function JerseyCityNJ() {
 }
 
 export function DelawareOH() {
-  return new ShiftConfiguration({
+  return new ShiftConfiguration([{
     firstDay: '2019-03-21',
     pattern: 'abcabc',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
-  });
+  }, {
+    firstDay: '2020-03-01',
+    pattern: 'abcabc',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  },
+  ]);
 }
 
 export function AnneArundelMD() {
