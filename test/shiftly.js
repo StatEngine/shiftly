@@ -69,6 +69,7 @@ import { ShiftConfiguration,
   CoralGablesFL,
   OntarioCA,
   CasaGrandeAZ,
+  PhoenixAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -135,6 +136,7 @@ const hallCountyGA = HallCountyGA();
 const coralGablesFL = CoralGablesFL();
 const ontarioCA = OntarioCA();
 const casaGrandeAZ = CasaGrandeAZ();
+const phoenixAZ = PhoenixAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1485,6 +1487,27 @@ describe('Casa Grande, AZ', () => {
     tests.forEach((test) => {
       (casaGrandeAZ.calculateShift(test[0])).should.equal(test[1]);
       (casaGrandeAZ.beforeShiftChange(casaGrandeAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Phoenix, AZ', () => {
+  it('should match Phoenix, AZ known shifts', () => {
+    const tests = [
+      ['2020-02-08T12:00:00-0800', 'B', false],
+      ['2020-02-09T12:00:00-0800', 'C', false],
+      ['2020-02-10T00:10:00-0800', 'C', true],
+      ['2020-02-11T12:10:00-0700', 'B', false],
+      ['2020-02-12T00:10:00-0700', 'B', true],
+      ['2020-02-13T12:10:00-0700', 'A', false],
+      ['2020-02-14T12:10:00-0700', 'B', false],
+      ['2020-02-15T12:10:00-0700', 'C', false],
+      ['2020-02-16T12:10:00-0700', 'A', false],
+    ];
+
+    tests.forEach((test) => {
+      (phoenixAZ.calculateShift(test[0])).should.equal(test[1]);
+      (phoenixAZ.beforeShiftChange(phoenixAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

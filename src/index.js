@@ -745,6 +745,14 @@ export function CasaGrandeAZ() {
     timeZone: 'US/Arizona',
   });
 }
+export function PhoenixAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-02-10',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -815,4 +823,5 @@ export const FirecaresLookup = {
   78725: CoralGablesFL,
   91073: OntarioCA,
   77594: CasaGrandeAZ,
+  91936: PhoenixAZ,
 };
