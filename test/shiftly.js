@@ -1032,6 +1032,7 @@ describe('Delaware, OH', () => {
       ['2020-02-29T10:10:30-0500', 'A', false],
       ['2020-03-01T10:10:30-0500', 'A', false],
       ['2020-08-05T10:10:30-0500', 'B', false],
+      ['2020-08-19T10:10:30-0500', 'A', false],
     ];
     tests.forEach((test) => {
       (delawareOH.calculateShift(test[0])).should.equal(test[1]);
@@ -1222,10 +1223,12 @@ describe('Palm Beach County, FL', () => {
 describe('Cedar Rapids, IA', () => {
   it('should match Cedar Rapids known shifts', () => {
     const tests = [
-      ['2019-01-01T08:10:30-0500', 'B', false],
-      ['2019-01-04T08:10:30-0500', 'B', false],
-      ['2019-05-05T08:10:30-0500', 'R', false],
-      ['2019-05-06T08:10:30-0500', 'G', false],
+      ['2020-01-01T10:10:30-0500', 'A', false],
+      ['2020-01-02T10:10:30-0500', 'B', false],
+      ['2020-01-03T10:10:30-0500', 'C', false],
+      ['2020-05-06T10:10:30-0500', 'A', false],
+      ['2020-05-07T10:10:30-0500', 'B', false],
+      ['2020-05-08T10:10:30-0500', 'C', false],
     ];
     tests.forEach((test) => {
       (cedarRapidsIA.calculateShift(test[0])).should.equal(test[1]);

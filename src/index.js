@@ -613,8 +613,8 @@ export function PalmBeachCountyFL() {
 
 export function CedarRapidsIA() {
   return new ShiftConfiguration({
-    firstDay: '2019-01-01',
-    pattern: 'BRG',
+    firstDay: '2020-01-01',
+    pattern: 'ABC',
     shiftStart: '0700',
     timeZone: 'US/Central',
   });
