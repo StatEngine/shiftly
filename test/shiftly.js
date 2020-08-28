@@ -70,6 +70,7 @@ import { ShiftConfiguration,
   OntarioCA,
   CasaGrandeAZ,
   PhoenixAZ,
+  LACountyCA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -137,6 +138,7 @@ const coralGablesFL = CoralGablesFL();
 const ontarioCA = OntarioCA();
 const casaGrandeAZ = CasaGrandeAZ();
 const phoenixAZ = PhoenixAZ();
+const laCountCA = LACountyCA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -301,6 +303,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['78725'].should.equal(CoralGablesFL);
     FirecaresLookup['91073'].should.equal(OntarioCA);
     FirecaresLookup['77594'].should.equal(CasaGrandeAZ);
+    FirecaresLookup['87255'].should.equal(LACountyCA);
   });
 });
 
@@ -1508,6 +1511,43 @@ describe('Phoenix, AZ', () => {
     tests.forEach((test) => {
       (phoenixAZ.calculateShift(test[0])).should.equal(test[1]);
       (phoenixAZ.beforeShiftChange(phoenixAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('LA County, CA', () => {
+  it('should match LA County, CA known shifts', () => {
+    const tests = [
+      ['2020-01-23T08:10:30-0800', 'B', false],
+      ['2020-01-24T08:10:30-0800', 'A', false],
+      ['2020-01-25T08:10:30-0800', 'B', false],
+      ['2020-01-26T08:10:30-0800', 'C', false],
+      ['2020-01-27T09:10:30-0800', 'A', false],
+      ['2020-01-28T09:10:30-0800', 'C', false],
+      ['2020-01-29T09:10:30-0800', 'A', false],
+      ['2020-01-30T09:10:30-0800', 'B', false],
+      ['2020-01-31T09:10:30-0800', 'C', false],
+      ['2020-02-01T09:10:30-0800', 'B', false],
+      ['2020-02-02T09:10:30-0800', 'C', false],
+      ['2020-02-03T09:10:30-0800', 'A', false],
+      ['2020-02-04T08:10:30-0800', 'B', false],
+      ['2020-02-05T08:10:30-0800', 'A', false],
+      ['2020-02-06T08:10:30-0800', 'B', false],
+      ['2020-02-07T08:10:30-0800', 'C', false],
+      ['2020-02-08T09:10:30-0800', 'A', false],
+      ['2020-02-09T09:10:30-0800', 'C', false],
+      ['2020-02-10T09:10:30-0800', 'A', false],
+      ['2020-02-11T09:10:30-0800', 'B', false],
+      ['2020-02-12T09:10:30-0800', 'C', false],
+      ['2020-02-13T09:10:30-0800', 'B', false],
+      ['2020-02-14T09:10:30-0800', 'C', false],
+      ['2020-02-15T10:10:30-0800', 'A', false],
+      ['2020-02-17T07:10:30-0800', 'B', true],
+    ];
+
+    tests.forEach((test) => {
+      (laCountCA.calculateShift(test[0])).should.equal(test[1]);
+      (laCountCA.beforeShiftChange(laCountCA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

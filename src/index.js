@@ -754,6 +754,15 @@ export function PhoenixAZ() {
   });
 }
 
+export function LACountyCA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-23',
+    pattern: 'BABCACABCBCABABCACABCBCA',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -824,4 +833,5 @@ export const FirecaresLookup = {
   91073: OntarioCA,
   77594: CasaGrandeAZ,
   91934: PhoenixAZ,
+  87255: LACountyCA,
 };
