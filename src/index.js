@@ -763,6 +763,15 @@ export function LACountyCA() {
   });
 }
 
+export function OrlandoFL() {
+  return new ShiftConfiguration({
+    firstDay: '2016-10-18',
+    pattern: 'acababacbcacacbabcbcb',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -834,4 +843,5 @@ export const FirecaresLookup = {
   77594: CasaGrandeAZ,
   91934: PhoenixAZ,
   87255: LACountyCA,
+  91165: OrlandoFL,
 };
