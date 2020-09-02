@@ -772,6 +772,15 @@ export function OrlandoFL() {
   });
 }
 
+export function SaintLucieFL() {
+  return new ShiftConfiguration({
+    firstDay: '2016-10-18',
+    pattern: 'abc',
+    shiftStart: '0730',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -844,4 +853,5 @@ export const FirecaresLookup = {
   91934: PhoenixAZ,
   87255: LACountyCA,
   91165: OrlandoFL,
+  95982: SaintLucieFL,
 };

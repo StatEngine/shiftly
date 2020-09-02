@@ -72,6 +72,7 @@ import { ShiftConfiguration,
   PhoenixAZ,
   LACountyCA,
   OrlandoFL,
+  SaintLucieFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -141,6 +142,7 @@ const casaGrandeAZ = CasaGrandeAZ();
 const phoenixAZ = PhoenixAZ();
 const laCountCA = LACountyCA();
 const orlandoFL = OrlandoFL();
+const saintLucieFL = SaintLucieFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1577,3 +1579,21 @@ describe('Orlando, FL', () => {
   });
 });
 
+describe('Saint Lucie, FL', () => {
+  it('should match Saint Lucie, FL known shifts', () => {
+    const tests = [
+      ['2016-10-18T08:10:00-0500', 'A', false],
+      ['2016-10-19T08:10:00-0500', 'B', false],
+      ['2016-10-20T08:10:00-0500', 'C', false],
+      ['2016-10-21T08:10:00-0500', 'A', false],
+      ['2016-10-22T08:10:00-0500', 'B', false],
+      ['2016-10-23T08:10:00-0500', 'C', false],
+      ['2016-10-24T08:10:00-0500', 'A', false],
+      ['2016-10-25T05:10:00-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (saintLucieFL.calculateShift(test[0])).should.equal(test[1]);
+      (saintLucieFL.beforeShiftChange(saintLucieFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
