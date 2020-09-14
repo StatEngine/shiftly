@@ -57,6 +57,7 @@ import { ShiftConfiguration,
   CedarRapidsIA,
   AlexandriaVA,
   PascoWA,
+  RichlandWA,
   JerseyCityNJ,
   RinconValleyAZ,
   EastPierceWA,
@@ -127,6 +128,7 @@ const palmBeachCountyFL = PalmBeachCountyFL();
 const cedarRapidsIA = CedarRapidsIA();
 const alexandriaVA = AlexandriaVA();
 const pascoWA = PascoWA();
+const richlandWA = RichlandWA();
 const jerseyCityNJ = JerseyCityNJ();
 const rinconValleyAZ = RinconValleyAZ();
 const eastPierceWA = EastPierceWA();
@@ -295,6 +297,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['76927'].should.equal(CedarRapidsIA);
     FirecaresLookup['73375'].should.equal(AlexandriaVA);
     FirecaresLookup['91576'].should.equal(PascoWA);
+    FirecaresLookup['93317'].should.equal(RichlandWA); 
     FirecaresLookup['85300'].should.equal(JerseyCityNJ);
     FirecaresLookup['93429'].should.equal(RinconValleyAZ);
     FirecaresLookup['80336'].should.equal(EastPierceWA);
@@ -1277,6 +1280,23 @@ describe('Pasco, WA', () => {
       (pascoWA.calculateShift(test[0])).should.equal(test[1]);
       (pascoWA.beforeShiftChange(
         pascoWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Richland, WA', () => {
+  it('should match Richland, WA known shifts', () => {
+    const tests = [
+      ['2020-01-01T08:10:30-0800', 'A', false],
+      ['2020-01-02T08:10:30-0800', 'B', false],
+      ['2020-01-03T08:10:30-0800', 'B', false],
+      ['2020-01-05T07:10:30-0800', 'C', true],
+      ['2020-01-06T09:10:30-0800', 'A', false],
+    ];
+    tests.forEach((test) => {
+      (richlandWA.calculateShift(test[0])).should.equal(test[1]);
+      (richlandWA.beforeShiftChange(
+        richlandWA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

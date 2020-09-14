@@ -638,6 +638,14 @@ export function PascoWA() {
   });
 }
 
+export function RichlandWA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-06',
+    pattern: 'AABBCC',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
 export function RinconValleyAZ() {
   return new ShiftConfiguration({
     firstDay: '2017-01-01',
@@ -854,4 +862,5 @@ export const FirecaresLookup = {
   87255: LACountyCA,
   91165: OrlandoFL,
   95982: SaintLucieFL,
+  93317: RichlandWA
 };
