@@ -704,7 +704,7 @@ export function MadisonWI() {
   return new ShiftConfiguration({
     firstDay: '2020-01-05',
     pattern: 'ababcbcac',
-    shiftStart: '0800',
+    shiftStart: '0700',
     timeZone: 'US/Central',
   });
 }
