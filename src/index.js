@@ -788,6 +788,14 @@ export function SaintLucieFL() {
     timeZone: 'US/Eastern',
   });
 }
+export function SomertonCocopahAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2016-10-18',
+    pattern: 'acababacbcacacbabcbcb',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -862,5 +870,6 @@ export const FirecaresLookup = {
   87255: LACountyCA,
   91165: OrlandoFL,
   95982: SaintLucieFL,
-  93317: RichlandWA
+  93317: RichlandWA,
+  95377: SomertonCocopahAZ
 };

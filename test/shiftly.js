@@ -73,7 +73,7 @@ import { ShiftConfiguration,
   PhoenixAZ,
   LACountyCA,
   OrlandoFL,
-  SaintLucieFL,
+  SaintLucieFL, SomertonCocopahAZ
 } from '../src';
 
 const richmond = richmondVA();
@@ -145,6 +145,7 @@ const phoenixAZ = PhoenixAZ();
 const laCountCA = LACountyCA();
 const orlandoFL = OrlandoFL();
 const saintLucieFL = SaintLucieFL();
+const somertonCocopahAZ = SomertonCocopahAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -312,6 +313,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['77594'].should.equal(CasaGrandeAZ);
     FirecaresLookup['87255'].should.equal(LACountyCA);
     FirecaresLookup['91165'].should.equal(OrlandoFL);
+    FirecaresLookup['95377'].should.equal(SomertonCocopahAZ);
   });
 });
 
@@ -1614,6 +1616,25 @@ describe('Saint Lucie, FL', () => {
     tests.forEach((test) => {
       (saintLucieFL.calculateShift(test[0])).should.equal(test[1]);
       (saintLucieFL.beforeShiftChange(saintLucieFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Somerton Cocopah, AZ', () => {
+  it('should match Somerton Cocopah, AZ known shifts', () => {
+    const tests = [
+      ['2016-10-18T08:10:00-0800', 'A', false],
+      ['2016-10-19T08:10:00-0800', 'C', false],
+      ['2016-10-20T08:10:00-0800', 'A', false],
+      ['2016-10-21T08:10:00-0800', 'B', false],
+      ['2016-10-22T08:10:00-0800', 'A', false],
+      ['2016-10-23T08:10:00-0800', 'B', false],
+      ['2016-10-24T08:10:00-0800', 'A', false],
+      ['2016-10-25T05:10:00-0800', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (somertonCocopahAZ.calculateShift(test[0])).should.equal(test[1]);
+      (somertonCocopahAZ.beforeShiftChange(somertonCocopahAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
