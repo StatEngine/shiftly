@@ -1630,7 +1630,7 @@ describe('Somerton Cocopah, AZ', () => {
       ['2016-10-22T08:10:00-0800', 'A', false],
       ['2016-10-23T08:10:00-0800', 'B', false],
       ['2016-10-24T08:10:00-0800', 'A', false],
-      ['2016-10-25T05:10:00-0800', 'C', false],
+      ['2016-10-25T08:10:00-0800', 'C', false],
     ];
     tests.forEach((test) => {
       (somertonCocopahAZ.calculateShift(test[0])).should.equal(test[1]);
