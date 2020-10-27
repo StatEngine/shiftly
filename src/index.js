@@ -796,6 +796,14 @@ export function SomertonCocopahAZ() {
     timeZone: 'US/Arizona',
   });
 }
+export function UpperProvidencePA() {
+  return new ShiftConfiguration({
+    firstDay: '2020-10-01',
+    pattern: 'abcde',
+    shiftStart: '0600',
+    timeZone: 'US/Eastern',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -871,5 +879,6 @@ export const FirecaresLookup = {
   91165: OrlandoFL,
   95982: SaintLucieFL,
   93317: RichlandWA,
-  95377: SomertonCocopahAZ
+  95377: SomertonCocopahAZ,
+  100278: UpperProvidencePA
 };

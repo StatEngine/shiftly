@@ -73,7 +73,8 @@ import { ShiftConfiguration,
   PhoenixAZ,
   LACountyCA,
   OrlandoFL,
-  SaintLucieFL, SomertonCocopahAZ
+  SaintLucieFL, SomertonCocopahAZ,
+  UpperProvidencePA
 } from '../src';
 
 const richmond = richmondVA();
@@ -146,6 +147,7 @@ const laCountCA = LACountyCA();
 const orlandoFL = OrlandoFL();
 const saintLucieFL = SaintLucieFL();
 const somertonCocopahAZ = SomertonCocopahAZ();
+const upperProvidencePA = UpperProvidencePA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1635,6 +1637,22 @@ describe('Somerton Cocopah, AZ', () => {
     tests.forEach((test) => {
       (somertonCocopahAZ.calculateShift(test[0])).should.equal(test[1]);
       (somertonCocopahAZ.beforeShiftChange(somertonCocopahAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Upper Providence, PA', () => {
+  it('should match Upper Providence, PA known shifts', () => {
+    const tests = [
+      ['2020-10-01T08:10:00-0400', 'A', false],
+      ['2020-10-02T08:10:00-0400', 'B', false],
+      ['2020-10-03T08:10:00-0400', 'C', false],
+      ['2020-10-04T08:10:00-0400', 'D', false],
+      ['2020-10-05T08:10:00-0400', 'E', false],
+    ];
+    tests.forEach((test) => {
+      (upperProvidencePA.calculateShift(test[0])).should.equal(test[1]);
+      (upperProvidencePA.beforeShiftChange(upperProvidencePA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
