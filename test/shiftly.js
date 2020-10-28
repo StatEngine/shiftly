@@ -74,7 +74,7 @@ import { ShiftConfiguration,
   LACountyCA,
   OrlandoFL,
   SaintLucieFL, SomertonCocopahAZ,
-  UpperProvidencePA
+  UpperProvidencePA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -300,7 +300,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['76927'].should.equal(CedarRapidsIA);
     FirecaresLookup['73375'].should.equal(AlexandriaVA);
     FirecaresLookup['91576'].should.equal(PascoWA);
-    FirecaresLookup['93317'].should.equal(RichlandWA); 
+    FirecaresLookup['93317'].should.equal(RichlandWA);
     FirecaresLookup['85300'].should.equal(JerseyCityNJ);
     FirecaresLookup['93429'].should.equal(RinconValleyAZ);
     FirecaresLookup['80336'].should.equal(EastPierceWA);
@@ -1636,7 +1636,8 @@ describe('Somerton Cocopah, AZ', () => {
     ];
     tests.forEach((test) => {
       (somertonCocopahAZ.calculateShift(test[0])).should.equal(test[1]);
-      (somertonCocopahAZ.beforeShiftChange(somertonCocopahAZ.normalize(test[0]))).should.equal(test[2]);
+      (somertonCocopahAZ.beforeShiftChange(somertonCocopahAZ
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -1652,7 +1653,8 @@ describe('Upper Providence, PA', () => {
     ];
     tests.forEach((test) => {
       (upperProvidencePA.calculateShift(test[0])).should.equal(test[1]);
-      (upperProvidencePA.beforeShiftChange(upperProvidencePA.normalize(test[0]))).should.equal(test[2]);
+      (upperProvidencePA.beforeShiftChange(upperProvidencePA
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

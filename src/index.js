@@ -880,5 +880,5 @@ export const FirecaresLookup = {
   95982: SaintLucieFL,
   93317: RichlandWA,
   95377: SomertonCocopahAZ,
-  100278: UpperProvidencePA
+  100278: UpperProvidencePA,
 };
