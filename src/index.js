@@ -1,13 +1,5 @@
 import moment from 'moment-timezone';
 
-function reverse(s) {
-  const o = [];
-  for (let i = 0, len = s.length; i <= len; i += 1) {
-    o.push(s.charAt(len - i));
-  }
-  return o.join('');
-}
-
 class ShiftInformation {
   /**
    * Individual shift information and pattern for ShiftConfiguration
@@ -30,7 +22,15 @@ class ShiftInformation {
   }
 
   reversePattern() {
-    return `${this.pattern.charAt(0)}${reverse(this.pattern.substring(1, this.pattern.length))}`;
+    const isPatternString = typeof this.pattern === 'string';
+
+    // create shallow copy of the array
+    let pattern = Array.from(isPatternString ? this.pattern.split('') : this.pattern);
+    pattern = pattern.reverse();
+
+    // move the move the starting shift back to the front
+    pattern.splice(0, 0, pattern.pop());
+    return isPatternString ? pattern.join('') : pattern;
   }
 
   afterShiftStartDate(date) {
@@ -798,8 +798,8 @@ export function SomertonCocopahAZ() {
 }
 export function UpperProvidencePA() {
   return new ShiftConfiguration({
-    firstDay: '2020-10-01',
-    pattern: 'abcde',
+    firstDay: '2020-09-28',
+    pattern: 'AE,ADE,ADE,ABCD,BCD,C,C,BE,ABE,ABE,ACDE,ACD,D,D,BC,BCE,BCE,ABDE,ADE,A,A,CD,BCD,BCD,ABCE,ABE,E,E,AD,ACD,ACD,BCDE,BCE,B,B'.split(','),
     shiftStart: '0600',
     timeZone: 'US/Eastern',
   });

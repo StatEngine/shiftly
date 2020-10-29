@@ -1645,11 +1645,10 @@ describe('Somerton Cocopah, AZ', () => {
 describe('Upper Providence, PA', () => {
   it('should match Upper Providence, PA known shifts', () => {
     const tests = [
-      ['2020-10-01T08:10:00-0400', 'A', false],
-      ['2020-10-02T08:10:00-0400', 'B', false],
-      ['2020-10-03T08:10:00-0400', 'C', false],
-      ['2020-10-04T08:10:00-0400', 'D', false],
-      ['2020-10-05T08:10:00-0400', 'E', false],
+      ['2020-09-28T06:10:00-0400', 'AE', false],
+      ['2020-10-27T06:10:00-0400', 'ACD', false],
+      ['2020-10-08T05:10:00-0400', 'ABE', true],
+      ['2020-09-27T06:10:00-0400', 'B', false],
     ];
     tests.forEach((test) => {
       (upperProvidencePA.calculateShift(test[0])).should.equal(test[1]);
