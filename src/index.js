@@ -805,6 +805,15 @@ export function UpperProvidencePA() {
   });
 }
 
+export function OlatheKS() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-01',
+    pattern: 'ABABCBCAC',
+    shiftStart: '0800',
+    timeZone: 'US/Central',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -881,4 +890,5 @@ export const FirecaresLookup = {
   93317: RichlandWA,
   95377: SomertonCocopahAZ,
   100278: UpperProvidencePA,
+  90962: OlatheKS,
 };

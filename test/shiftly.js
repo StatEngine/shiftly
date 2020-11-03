@@ -75,6 +75,7 @@ import { ShiftConfiguration,
   OrlandoFL,
   SaintLucieFL, SomertonCocopahAZ,
   UpperProvidencePA,
+  OlatheKS,
 } from '../src';
 
 const richmond = richmondVA();
@@ -148,6 +149,7 @@ const orlandoFL = OrlandoFL();
 const saintLucieFL = SaintLucieFL();
 const somertonCocopahAZ = SomertonCocopahAZ();
 const upperProvidencePA = UpperProvidencePA();
+const olatheKS = OlatheKS();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1653,6 +1655,24 @@ describe('Upper Providence, PA', () => {
     tests.forEach((test) => {
       (upperProvidencePA.calculateShift(test[0])).should.equal(test[1]);
       (upperProvidencePA.beforeShiftChange(upperProvidencePA
+        .normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Olathe, KS', () => {
+  it('should match Olathe, KS known shifts', () => {
+    const tests = [
+      ['2020-01-01T09:10:00-0500', 'A', false],
+      ['2020-01-02T09:10:00-0500', 'B', false],
+      ['2020-01-03T09:10:00-0500', 'A', false],
+      ['2020-01-04T09:10:00-0500', 'B', false],
+      ['2020-01-04T07:10:00-0500', 'A', true],
+      ['2020-01-05T09:10:00-0500', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (olatheKS.calculateShift(test[0])).should.equal(test[1]);
+      (olatheKS.beforeShiftChange(olatheKS
         .normalize(test[0]))).should.equal(test[2]);
     });
   });
