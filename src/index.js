@@ -510,6 +510,12 @@ export function DelawareOH() {
     shiftStart: '0800',
     timeZone: 'US/Eastern',
   }, {
+    firstDay: '2020-02-29',
+    pattern: 'cba',
+    shiftDuration: 8,
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  }, {
     firstDay: '2020-03-01',
     pattern: 'abcabc',
     shiftStart: '0800',
