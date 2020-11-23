@@ -87,7 +87,7 @@ class ShiftInformation {
     const start = momentDate.hours(this.shiftStartDate.hours())
         .minutes(this.shiftStartDate.minutes())
         .startOf('minute');
-    return { start: start.format(), end: start.add(24, 'hours').format() };
+    return { start: start.format(), end: start.add(this.shiftDuration, 'hours').format() };
   }
 }
 
