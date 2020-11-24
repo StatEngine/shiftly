@@ -162,7 +162,7 @@ describe('ShiftInformation', () => {
   });
 
   it('should work for historic dates', () => {
-    (richmond.reversePattern()).should.equal('abcbcbabcacacbcababac');
+    (richmond.reversePattern()).should.equal('bcbcbabcacacbcababaca');
     (richmond.calculateShift('2016-10-17T11:00:30-0400').should.equal('B'));
   });
 
@@ -190,7 +190,7 @@ describe('ShiftInformation', () => {
   it('should return true for dates and times after shift start date', () => {
     const testDateAfter = '2016-10-22';
     const testDateBefore = '2016-10-10';
-    const onDate = '2016-10-18';
+    const onDate = '2016-10-18 08:00';
     (richmond.shifts[0].afterShiftStartDate(testDateAfter).should.equal(true));
     (richmond.shifts[0].afterShiftStartDate(testDateBefore).should.equal(false));
     (richmond.shifts[0].afterShiftStartDate(onDate).should.equal(true));
@@ -1047,7 +1047,9 @@ describe('Delaware, OH', () => {
       ['2019-03-25T08:10:30-0400', 'B', false],
       ['2019-03-26T08:10:30-0400', 'C', false],
       ['2019-03-22T07:10:30-0400', 'A', true],
-      ['2020-02-29T10:10:30-0500', 'A', false],
+      ['2020-02-29T10:10:30-0500', 'C', false],
+      ['2020-02-29T18:10:30-0500', 'B', false],
+      ['2020-03-01T04:10:30-0500', 'A', true],
       ['2020-03-01T10:10:30-0500', 'A', false],
       ['2020-08-05T10:10:30-0500', 'B', false],
       ['2020-08-19T10:10:30-0500', 'A', false],

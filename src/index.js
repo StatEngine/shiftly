@@ -7,14 +7,16 @@ class ShiftInformation {
    * @param {string} timeZone - The department's timezone.
    * @param {string} shiftStart - The start time of the department's shift.
    * @param {string} firstDay - The first day of the pattern (assumed to be in local tz).
+   * @param {number} shiftDuration - Number of hours per shift.
    */
-  constructor({ pattern, timeZone = 'US/Eastern', shiftStart = '0800', firstDay = '2016-10-30' } = {}) {
+  constructor({ pattern, timeZone = 'US/Eastern', shiftStart = '0800', firstDay = '2016-10-30', shiftDuration = 24 } = {}) {
     this.pattern = pattern;
     this.timeZone = timeZone;
     this.shiftStart = shiftStart;
     this.firstDay = firstDay;
+    this.shiftDuration = shiftDuration;
     this.shiftStartDate = moment.tz(this.shiftStart, 'hmm', this.timeZone);
-    this.patternStart = moment.tz(this.firstDay, this.timeZone).startOf('day');
+    this.patternStart = moment.tz(`${this.firstDay} ${this.shiftStart.slice(0, 2)}:${this.shiftStart.slice(2)}`, this.timeZone).startOf('hour');
   }
 
   normalize(incomingDate) {
@@ -28,14 +30,12 @@ class ShiftInformation {
     let pattern = Array.from(isPatternString ? this.pattern.split('') : this.pattern);
     pattern = pattern.reverse();
 
-    // move the move the starting shift back to the front
-    pattern.splice(0, 0, pattern.pop());
     return isPatternString ? pattern.join('') : pattern;
   }
 
   afterShiftStartDate(date) {
     const incomingDate = this.normalize(date);
-    return (this.daysFromPatternStart(incomingDate) >= 0);
+    return (this.hoursFromPatternStart(incomingDate) >= 0);
   }
 
   beforeShiftChange(date) {
@@ -44,32 +44,31 @@ class ShiftInformation {
         && date.minutes() < startDate.minutes());
   }
 
-  daysFromPatternStart(start) {
-    return start.startOf('day').diff(this.patternStart.startOf('day'), 'days');
+  hoursFromPatternStart(start) {
+    return start.diff(this.patternStart, 'hours');
   }
 
   calculateShift(date, { dateOnly = false } = {}) {
     const momentDate = this.normalize(date);
-    const checkDate = (!dateOnly && this.beforeShiftChange(momentDate)) ? momentDate.subtract(1, 'days') : momentDate;
 
-    let pattern = this.pattern;
-    const daysFromStart = this.daysFromPatternStart(checkDate);
-
-    if (daysFromStart < 0) {
-      pattern = this.reversePattern();
+    if (dateOnly) {
+      momentDate.add(this.shiftStartDate.hour(), 'hours');
     }
 
-    const patternLength = this.pattern.length;
+    let hoursFromStart = this.hoursFromPatternStart(momentDate);
 
-    const mod = Math.abs(daysFromStart) % patternLength;
-    let shift = null;
-
-    for (let i = 0, len = patternLength; i < len; i += 1) {
-      if (i === mod) {
-        shift = pattern[i].toUpperCase();
-        break;
-      }
+    // Adjust for time spans covering DST transition :(
+    if (this.patternStart.isDST() !== momentDate.isDST()) {
+      hoursFromStart += momentDate.isDST() ? 1 : -1;
     }
+
+    if (this.beforeShiftChange(momentDate)) {
+      hoursFromStart -= 1;
+    }
+
+    const pattern = hoursFromStart < 0 ? this.reversePattern() : this.pattern;
+    const index = Math.floor(Math.abs(hoursFromStart) / this.shiftDuration) % pattern.length;
+    const shift = pattern[index].toUpperCase();
 
     return shift;
   }
@@ -88,7 +87,7 @@ class ShiftInformation {
     const start = momentDate.hours(this.shiftStartDate.hours())
         .minutes(this.shiftStartDate.minutes())
         .startOf('minute');
-    return { start: start.format(), end: start.add(24, 'hours').format() };
+    return { start: start.format(), end: start.add(this.shiftDuration, 'hours').format() };
   }
 }
 
@@ -103,7 +102,7 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
     } else {
       this.shifts = [new ShiftInformation(shifts)];
     }
-    this.shifts = this.shifts.sort((a, b) => a.daysFromPatternStart(b.patternStart));
+    this.shifts = this.shifts.sort((a, b) => a.hoursFromPatternStart(b.patternStart));
   }
 
   determineShiftPattern(date) {
@@ -508,6 +507,12 @@ export function DelawareOH() {
   return new ShiftConfiguration([{
     firstDay: '2019-03-21',
     pattern: 'abcabc',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  }, {
+    firstDay: '2020-02-29',
+    pattern: 'cba',
+    shiftDuration: 8,
     shiftStart: '0800',
     timeZone: 'US/Eastern',
   }, {
