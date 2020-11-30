@@ -76,6 +76,7 @@ import { ShiftConfiguration,
   SaintLucieFL, SomertonCocopahAZ,
   UpperProvidencePA,
   OlatheKS,
+  IonaMcGregorFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -150,6 +151,7 @@ const saintLucieFL = SaintLucieFL();
 const somertonCocopahAZ = SomertonCocopahAZ();
 const upperProvidencePA = UpperProvidencePA();
 const olatheKS = OlatheKS();
+const ionaMcGregorFL = IonaMcGregorFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1675,6 +1677,24 @@ describe('Olathe, KS', () => {
     tests.forEach((test) => {
       (olatheKS.calculateShift(test[0])).should.equal(test[1]);
       (olatheKS.beforeShiftChange(olatheKS
+        .normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+
+describe('Iona McGregor, FL', () => {
+  it('should match Iona McGregor, FL known shifts', () => {
+    const tests = [
+      ['2020-11-20T09:10:00-0500', 'A', false],
+      ['2020-11-21T09:10:00-0500', 'B', false],
+      ['2020-11-22T09:10:00-0500', 'C', false],
+      ['2020-11-23T09:10:00-0500', 'A', false],
+      ['2020-11-24T09:10:00-0500', 'B', false],
+    ];
+    tests.forEach((test) => {
+      (ionaMcGregorFL.calculateShift(test[0])).should.equal(test[1]);
+      (ionaMcGregorFL.beforeShiftChange(ionaMcGregorFL
         .normalize(test[0]))).should.equal(test[2]);
     });
   });

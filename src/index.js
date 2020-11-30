@@ -819,6 +819,15 @@ export function OlatheKS() {
   });
 }
 
+export function IonaMcGregorFL() {
+  return new ShiftConfiguration({
+    firstDay: '2020-11-20',
+    pattern: 'ABC',
+    shiftStart: '0700',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -896,4 +905,5 @@ export const FirecaresLookup = {
   95377: SomertonCocopahAZ,
   100278: UpperProvidencePA,
   90962: OlatheKS,
+  84946: IonaMcGregorFL,
 };
