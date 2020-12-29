@@ -828,6 +828,15 @@ export function IonaMcGregorFL() {
   });
 }
 
+export function AshevilleNC() {
+  return new ShiftConfiguration({
+    firstDay: '2020-01-01',
+    pattern: 'CABABCACABCBCABABCACABCBA',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -906,4 +915,5 @@ export const FirecaresLookup = {
   100278: UpperProvidencePA,
   90962: OlatheKS,
   84946: IonaMcGregorFL,
+  73930: AshevilleNC,
 };

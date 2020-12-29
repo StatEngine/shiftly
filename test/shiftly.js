@@ -77,6 +77,7 @@ import { ShiftConfiguration,
   UpperProvidencePA,
   OlatheKS,
   IonaMcGregorFL,
+  AshevilleNC,
 } from '../src';
 
 const richmond = richmondVA();
@@ -152,6 +153,7 @@ const somertonCocopahAZ = SomertonCocopahAZ();
 const upperProvidencePA = UpperProvidencePA();
 const olatheKS = OlatheKS();
 const ionaMcGregorFL = IonaMcGregorFL();
+const ashevilleNC = AshevilleNC();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -320,6 +322,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['87255'].should.equal(LACountyCA);
     FirecaresLookup['91165'].should.equal(OrlandoFL);
     FirecaresLookup['95377'].should.equal(SomertonCocopahAZ);
+    FirecaresLookup['73930'].should.equal(AshevilleNC);
   });
 });
 
@@ -1695,6 +1698,24 @@ describe('Iona McGregor, FL', () => {
     tests.forEach((test) => {
       (ionaMcGregorFL.calculateShift(test[0])).should.equal(test[1]);
       (ionaMcGregorFL.beforeShiftChange(ionaMcGregorFL
+        .normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Asheville, NC', () => {
+  it('should match Asheville, NC known shifts', () => {
+    const tests = [
+      ['2020-01-01T09:10:00-0500', 'C', false],
+      ['2020-01-02T09:10:00-0500', 'A', false],
+      ['2020-01-03T09:10:00-0500', 'B', false],
+      ['2020-01-04T09:10:00-0500', 'A', false],
+      ['2020-01-05T09:10:00-0500', 'B', false],
+      ['2020-01-05T06:10:00-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (ashevilleNC.calculateShift(test[0])).should.equal(test[1]);
+      (ashevilleNC.beforeShiftChange(ashevilleNC
         .normalize(test[0]))).should.equal(test[2]);
     });
   });
