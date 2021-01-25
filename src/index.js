@@ -837,6 +837,15 @@ export function AshevilleNC() {
   });
 }
 
+export function LoudounVA() {
+  return new ShiftConfiguration({
+    firstDay: '2021-01-04',
+    pattern: 'ABC',
+    shiftStart: '0600',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -916,4 +925,5 @@ export const FirecaresLookup = {
   90962: OlatheKS,
   84946: IonaMcGregorFL,
   73930: AshevilleNC,
+  87281: LoudounVA,
 };

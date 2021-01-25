@@ -78,6 +78,7 @@ import { ShiftConfiguration,
   OlatheKS,
   IonaMcGregorFL,
   AshevilleNC,
+  LoudounVA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -154,6 +155,7 @@ const upperProvidencePA = UpperProvidencePA();
 const olatheKS = OlatheKS();
 const ionaMcGregorFL = IonaMcGregorFL();
 const ashevilleNC = AshevilleNC();
+const loudounVA = LoudounVA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -323,6 +325,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['91165'].should.equal(OrlandoFL);
     FirecaresLookup['95377'].should.equal(SomertonCocopahAZ);
     FirecaresLookup['73930'].should.equal(AshevilleNC);
+    FirecaresLookup['87281'].should.equal(LoudounVA);
   });
 });
 
@@ -1717,6 +1720,27 @@ describe('Asheville, NC', () => {
       (ashevilleNC.calculateShift(test[0])).should.equal(test[1]);
       (ashevilleNC.beforeShiftChange(ashevilleNC
         .normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Loudoun, VA', () => {
+  it('should match Loudoun, VA known shifts', () => {
+    const tests = [
+      ['2021-01-04T12:00:00-0500', 'A', false],
+      ['2021-01-05T12:00:00-0600', 'B', false],
+      ['2021-01-06T00:10:00-0800', 'B', true],
+      ['2021-01-07T12:10:00-0700', 'A', false],
+      ['2021-01-08T00:10:00-0700', 'A', true],
+      ['2021-01-09T12:10:00-0700', 'C', false],
+      ['2021-01-10T12:10:00-0700', 'A', false],
+      ['2021-01-11T12:10:00-0700', 'B', false],
+      ['2021-01-12T12:10:00-0700', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (loudounVA.calculateShift(test[0])).should.equal(test[1]);
+      (loudounVA.beforeShiftChange(loudounVA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
