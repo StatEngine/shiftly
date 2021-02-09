@@ -795,8 +795,8 @@ export function SaintLucieFL() {
 }
 export function SomertonCocopahAZ() {
   return new ShiftConfiguration({
-    firstDay: '2016-10-18',
-    pattern: 'acababacbcacacbabcbcb',
+    firstDay: '2020-01-05',
+    pattern: 'ababcbcac',
     shiftStart: '0800',
     timeZone: 'US/Arizona',
   });

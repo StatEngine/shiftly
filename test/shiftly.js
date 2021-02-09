@@ -73,7 +73,8 @@ import { ShiftConfiguration,
   PhoenixAZ,
   LACountyCA,
   OrlandoFL,
-  SaintLucieFL, SomertonCocopahAZ,
+  SaintLucieFL,
+  SomertonCocopahAZ,
   UpperProvidencePA,
   OlatheKS,
   IonaMcGregorFL,
@@ -1637,14 +1638,10 @@ describe('Saint Lucie, FL', () => {
 describe('Somerton Cocopah, AZ', () => {
   it('should match Somerton Cocopah, AZ known shifts', () => {
     const tests = [
-      ['2016-10-18T08:10:00-0800', 'A', false],
-      ['2016-10-19T08:10:00-0800', 'C', false],
-      ['2016-10-20T08:10:00-0800', 'A', false],
-      ['2016-10-21T08:10:00-0800', 'B', false],
-      ['2016-10-22T08:10:00-0800', 'A', false],
-      ['2016-10-23T08:10:00-0800', 'B', false],
-      ['2016-10-24T08:10:00-0800', 'A', false],
-      ['2016-10-25T08:10:00-0800', 'C', false],
+      ['2020-01-05T08:10:00-0700', 'A', false],
+      ['2020-01-06T08:10:00-0700', 'B', false],
+      ['2020-01-08T07:10:00-0700', 'A', true],
+      ['2020-01-09T08:10:00-0700', 'C', false],
     ];
     tests.forEach((test) => {
       (somertonCocopahAZ.calculateShift(test[0])).should.equal(test[1]);
