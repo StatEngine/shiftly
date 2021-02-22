@@ -815,7 +815,7 @@ export function UpperProvidencePA() {
 export function OlatheKS() {
   return new ShiftConfiguration({
     firstDay: '2020-01-01',
-    pattern: 'ABABCBCAC',
+    pattern: 'CBCBABACA',
     shiftStart: '0800',
     timeZone: 'US/Central',
   });

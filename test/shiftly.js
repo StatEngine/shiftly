@@ -1690,12 +1690,12 @@ describe('Upper Providence, PA', () => {
 describe('Olathe, KS', () => {
   it('should match Olathe, KS known shifts', () => {
     const tests = [
-      ['2020-01-01T09:10:00-0500', 'A', false],
+      ['2020-01-01T09:10:00-0500', 'C', false],
       ['2020-01-02T09:10:00-0500', 'B', false],
-      ['2020-01-03T09:10:00-0500', 'A', false],
+      ['2020-01-03T09:10:00-0500', 'C', false],
       ['2020-01-04T09:10:00-0500', 'B', false],
-      ['2020-01-04T07:10:00-0500', 'A', true],
-      ['2020-01-05T09:10:00-0500', 'C', false],
+      ['2020-01-04T07:10:00-0500', 'C', true],
+      ['2020-01-05T09:10:00-0500', 'A', false],
     ];
     tests.forEach((test) => {
       (olatheKS.calculateShift(test[0])).should.equal(test[1]);
