@@ -9,7 +9,9 @@ class ShiftInformation {
    * @param {string} firstDay - The first day of the pattern (assumed to be in local tz).
    * @param {number} shiftDuration - Number of hours per shift.
    */
-  constructor({ pattern, timeZone = 'US/Eastern', shiftStart = '0800', firstDay = '2016-10-30', shiftDuration = 24 } = {}) {
+  constructor({
+    pattern, timeZone = 'US/Eastern', shiftStart = '0800', firstDay = '2016-10-30', shiftDuration = 24,
+  } = {}) {
     this.pattern = pattern;
     this.timeZone = timeZone;
     this.shiftStart = shiftStart;
@@ -85,8 +87,8 @@ class ShiftInformation {
     }
 
     const start = momentDate.hours(this.shiftStartDate.hours())
-        .minutes(this.shiftStartDate.minutes())
-        .startOf('minute');
+      .minutes(this.shiftStartDate.minutes())
+      .startOf('minute');
     return { start: start.format(), end: start.add(this.shiftDuration, 'hours').format() };
   }
 }
@@ -98,7 +100,7 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
    */
   constructor(shifts = { timeZone: 'US/Eastern', shiftStart: '0800', firstDay: '2016-10-30' }) {
     if (Array.isArray(shifts)) {
-      this.shifts = shifts.map(shiftInfo => new ShiftInformation(shiftInfo));
+      this.shifts = shifts.map((shiftInfo) => new ShiftInformation(shiftInfo));
     } else {
       this.shifts = [new ShiftInformation(shifts)];
     }
