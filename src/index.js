@@ -780,8 +780,8 @@ export function LACountyCA() {
 
 export function OrlandoFL() {
   return new ShiftConfiguration({
-    firstDay: '2016-10-18',
-    pattern: 'acababacbcacacbabcbcb',
+    firstDay: '2019-11-13',
+    pattern: 'abc',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
   });

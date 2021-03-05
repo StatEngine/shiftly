@@ -1613,29 +1613,6 @@ describe('LA County, CA', () => {
   });
 });
 
-describe('Orlando, FL', () => {
-  it('should calculate shift for day when dateOnly is true', () => {
-    (orlandoFL.calculateShift('2017-12-29', { dateOnly: true })).should.equal('C');
-  });
-
-  it('should match Orlando, FL known shifts', () => {
-    const tests = [
-      ['2017-07-11T07:10:30-0400', 'C', true],
-      ['2017-07-11T08:10:30-0400', 'B', false],
-      ['2017-07-06T08:10:30-0400', 'C', false],
-      ['2017-07-06T07:10:30-0400', 'B', true],
-      ['2016-10-30T09:00:30-0400', 'A', false],
-      ['2016-10-29T11:00:30-0400', 'C', false],
-      ['2016-11-16T11:00:30-0500', 'B', false],
-    ];
-
-    tests.forEach((test) => {
-      (orlandoFL.calculateShift(test[0])).should.equal(test[1]);
-      (orlandoFL.beforeShiftChange(orlandoFL.normalize(test[0]))).should.equal(test[2]);
-    });
-  });
-});
-
 describe('Saint Lucie, FL', () => {
   it('should match Saint Lucie, FL known shifts', () => {
     const tests = [
@@ -1757,6 +1734,25 @@ describe('Loudoun, VA', () => {
     tests.forEach((test) => {
       (loudounVA.calculateShift(test[0])).should.equal(test[1]);
       (loudounVA.beforeShiftChange(loudounVA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Orlando, FL', () => {
+  it('should match Orlando, FL known shifts', () => {
+    const tests = [
+      ['2019-10-01T12:00:00-0500', 'C', false],
+      ['2019-11-28T12:00:00-0500', 'A', false],
+      ['2020-02-27T12:00:00-0500', 'B', false],
+      ['2020-02-28T12:00:00-0500', 'C', false],
+      ['2020-02-29T12:00:00-0500', 'A', false],
+      ['2021-03-04T12:00:00-0500', 'A', false],
+      ['2021-03-05T12:00:00-0500', 'B', false],
+    ];
+
+    tests.forEach((test) => {
+      (orlandoFL.calculateShift(test[0])).should.equal(test[1]);
+      (orlandoFL.beforeShiftChange(orlandoFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
