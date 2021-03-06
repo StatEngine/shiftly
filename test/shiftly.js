@@ -81,6 +81,7 @@ import {
   IonaMcGregorFL,
   AshevilleNC,
   LoudounVA,
+  BrowardFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -158,6 +159,7 @@ const olatheKS = OlatheKS();
 const ionaMcGregorFL = IonaMcGregorFL();
 const ashevilleNC = AshevilleNC();
 const loudounVA = LoudounVA();
+const browardFL = BrowardFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -328,6 +330,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['95377'].should.equal(SomertonCocopahAZ);
     FirecaresLookup['73930'].should.equal(AshevilleNC);
     FirecaresLookup['87281'].should.equal(LoudounVA);
+    FirecaresLookup['75928'].should.equal(BrowardFL);
   });
 });
 
@@ -350,6 +353,18 @@ describe('Washington, DC', () => {
     const timeFrame = washingtonDC().shiftTimeFrame('2017-07-07');
     (timeFrame.start.should.equal('2017-07-06T07:00:00-04:00'));
     (timeFrame.end.should.equal('2017-07-07T07:00:00-04:00'));
+  });
+});
+
+describe('Broward, FL', () => {
+  it('should match known Broward shifts', () => {
+    const tests = [
+      ['2014-03-24T07:04:28-0400', 'A', false],
+    ];
+
+    tests.forEach((test) => {
+      (browardFL.calculateShift(test[0])).should.equal(test[1]);
+    });
   });
 });
 

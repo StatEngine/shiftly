@@ -848,6 +848,14 @@ export function LoudounVA() {
   });
 }
 
+export function BrowardFL() {
+  return new ShiftConfiguration({
+    firstDay: '2021-03-04',
+    pattern: 'ABC',
+    shiftStart: '0800',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -928,4 +936,5 @@ export const FirecaresLookup = {
   84946: IonaMcGregorFL,
   73930: AshevilleNC,
   87281: LoudounVA,
+  75928: BrowardFL,
 };
