@@ -82,6 +82,7 @@ import {
   AshevilleNC,
   LoudounVA,
   BrowardFL,
+  AlbuquerqueNM,
 } from '../src';
 
 const richmond = richmondVA();
@@ -160,6 +161,7 @@ const ionaMcGregorFL = IonaMcGregorFL();
 const ashevilleNC = AshevilleNC();
 const loudounVA = LoudounVA();
 const browardFL = BrowardFL();
+const albuquerqueNM = AlbuquerqueNM();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1768,6 +1770,26 @@ describe('Orlando, FL', () => {
     tests.forEach((test) => {
       (orlandoFL.calculateShift(test[0])).should.equal(test[1]);
       (orlandoFL.beforeShiftChange(orlandoFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Albuquerque, NM', () => {
+  it('should match Albuquerque, NM known shifts', () => {
+    const tests = [
+      ['2021-03-17T12:00:00-0700', 'C', false],
+      ['2021-03-18T12:00:00-0700', 'C', false],
+      ['2021-03-19T12:00:00-0700', 'B', false],
+      ['2021-03-20T12:00:00-0700', 'B', false],
+      ['2021-03-21T12:00:00-0700', 'A', false],
+      ['2021-03-22T12:00:00-0700', 'A', false],
+      ['2021-03-19T00:00:00-0700', 'C', true],
+      ['2021-03-21T00:00:00-0700', 'B', true],
+    ];
+
+    tests.forEach((test) => {
+      (albuquerqueNM.calculateShift(test[0])).should.equal(test[1]);
+      (albuquerqueNM.beforeShiftChange(albuquerqueNM.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
