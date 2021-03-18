@@ -856,6 +856,14 @@ export function BrowardFL() {
   });
 }
 
+export function AlbuquerqueNM() {
+  return new ShiftConfiguration({
+    firstDay: '2020-08-17',
+    pattern: 'AACCBB',
+    shiftStart: '0800',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -937,4 +945,5 @@ export const FirecaresLookup = {
   73930: AshevilleNC,
   87281: LoudounVA,
   75928: BrowardFL,
+  73343: AlbuquerqueNM,
 };
