@@ -769,6 +769,15 @@ export function PhoenixAZ() {
   });
 }
 
+export function GoodyearAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2020-10-15',
+    pattern: 'CCBBAA',
+    shiftStart: '0700',
+    timeZone: 'US/Arizona',
+  });
+}
+
 export function LACountyCA() {
   return new ShiftConfiguration({
     firstDay: '2020-01-23',
@@ -934,6 +943,7 @@ export const FirecaresLookup = {
   91073: OntarioCA,
   77594: CasaGrandeAZ,
   91934: PhoenixAZ,
+  82740: GoodyearAZ,
   87255: LACountyCA,
   91165: OrlandoFL,
   95982: SaintLucieFL,
