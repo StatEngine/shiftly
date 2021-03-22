@@ -72,6 +72,7 @@ import {
   OntarioCA,
   CasaGrandeAZ,
   PhoenixAZ,
+  GoodyearAZ,
   LACountyCA,
   OrlandoFL,
   SaintLucieFL,
@@ -151,6 +152,7 @@ const coralGablesFL = CoralGablesFL();
 const ontarioCA = OntarioCA();
 const casaGrandeAZ = CasaGrandeAZ();
 const phoenixAZ = PhoenixAZ();
+const goodyearAZ = GoodyearAZ();
 const laCountCA = LACountyCA();
 const orlandoFL = OrlandoFL();
 const saintLucieFL = SaintLucieFL();
@@ -1589,6 +1591,22 @@ describe('Phoenix, AZ', () => {
     tests.forEach((test) => {
       (phoenixAZ.calculateShift(test[0])).should.equal(test[1]);
       (phoenixAZ.beforeShiftChange(phoenixAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Goodyear, AZ', () => {
+  it('should match Goodyear, AZ known shifts', () => {
+    const tests = [
+      ['2020-10-14T04:00:00-0700', 'A', true],
+      ['2020-10-13T07:00:00-0700', 'B', false],
+      ['2020-10-15T08:00:00-0700', 'C', false],
+      ['2020-10-17T06:00:00-0700', 'C', true],
+    ];
+
+    tests.forEach((test) => {
+      (goodyearAZ.calculateShift(test[0])).should.equal(test[1]);
+      (goodyearAZ.beforeShiftChange(goodyearAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
