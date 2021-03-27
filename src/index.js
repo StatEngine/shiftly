@@ -189,12 +189,35 @@ export function OxnardCA() {
 }
 
 export function TucsonAZ() {
-  return new ShiftConfiguration({
+  return new ShiftConfiguration([{
     firstDay: '2017-01-01',
     pattern: 'acbcbcbababacac',
     shiftStart: '0800',
     timeZone: 'US/Arizona',
-  });
+  },
+
+  // transition to new schedule starts
+  {
+    firstDay: '2021-03-31',
+    pattern: 'AC',
+    shiftDuration: 12,
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  },
+  {
+    firstDay: '2021-04-01',
+    pattern: 'BACACAC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  },
+  // transition to new schedule completes on 04/08/2021
+  {
+    firstDay: '2021-04-08',
+    pattern: 'BABCBCACA',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  },
+  ]);
 }
 
 export function ClarkCountyNV() {

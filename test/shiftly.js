@@ -460,6 +460,17 @@ describe('Oxnard, CA', () => {
 });
 
 describe('Tucson, AZ', () => {
+  it('selects correct shift config for new shift', () => {
+    const { pattern } = tucson.determineShiftPattern('2021-03-31T08:10:30-0700');
+    pattern.should.equal('AC');
+
+    const testPattern = tucson
+      .determineShiftPattern('2021-04-09T08:10:30-0700')
+      .pattern;
+
+    testPattern.should.equal('BABCBCACA');
+  });
+
   it('should match Tucson, AZ known shifts', () => {
     const tests = [
       ['2017-12-01T05:10:30-0700', 'C', true],
@@ -467,6 +478,26 @@ describe('Tucson, AZ', () => {
       ['2017-12-02T08:10:30-0700', 'C', false],
       ['2017-12-19T08:10:30-0700', 'A', false],
       ['2017-12-22T08:10:30-0700', 'B', false],
+
+      // new shift schedule starting 3/31
+      ['2021-03-29T08:10:30-0700', 'C', false],
+      ['2021-03-30T08:10:30-0700', 'B', false],
+
+      // A shift works 0800 to 2000 (AM shift)and C shift works 2000 to 0800 (PM shift).
+      ['2021-03-31T08:10:30-0700', 'A', false],
+      ['2021-03-31T11:59:00-0700', 'A', false],
+      ['2021-03-31T20:01:00-0700', 'C', false],
+      ['2021-03-31T20:10:30-0700', 'C', false],
+
+      ['2021-04-01T08:10:30-0700', 'B', false],
+      ['2021-04-02T08:10:30-0700', 'A', false],
+      ['2021-04-03T08:10:30-0700', 'C', false],
+      ['2021-04-04T08:10:30-0700', 'A', false],
+      ['2021-04-05T08:10:30-0700', 'C', false],
+      ['2021-04-07T08:10:30-0700', 'C', false],
+
+      ['2021-04-29T08:10:30-0700', 'C', false],
+      ['2021-11-26T20:10:30-0700', 'C', false],
     ];
 
     tests.forEach((test) => {
