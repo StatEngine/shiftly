@@ -896,6 +896,14 @@ export function AlbuquerqueNM() {
   });
 }
 
+export function NewportNewsVA() {
+  return new ShiftConfiguration({
+    firstDay: '2021-01-19',
+    pattern: 'ABABCBCACABABCBCACABABCBCAC',
+    shiftStart: '0800',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -979,4 +987,5 @@ export const FirecaresLookup = {
   87281: LoudounVA,
   75928: BrowardFL,
   73343: AlbuquerqueNM,
+  90123: NewportNewsVA,
 };
