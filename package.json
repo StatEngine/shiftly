@@ -1,6 +1,6 @@
 {
   "name": "@statengine/shiftly",
-  "version": "0.0.99",
+  "version": "0.0.100",
   "description": "Calculate common public safety shift schedules.",
   "main": "lib/",
   "scripts": {

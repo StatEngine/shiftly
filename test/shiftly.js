@@ -84,6 +84,7 @@ import {
   LoudounVA,
   BrowardFL,
   AlbuquerqueNM,
+  NewportNewsVA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -164,6 +165,7 @@ const ashevilleNC = AshevilleNC();
 const loudounVA = LoudounVA();
 const browardFL = BrowardFL();
 const albuquerqueNM = AlbuquerqueNM();
+const newportnewsVA = NewportNewsVA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1839,6 +1841,42 @@ describe('Albuquerque, NM', () => {
     tests.forEach((test) => {
       (albuquerqueNM.calculateShift(test[0])).should.equal(test[1]);
       (albuquerqueNM.beforeShiftChange(albuquerqueNM.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Newport News, VA', () => {
+  it('should match Newport News, VA known shifts', () => {
+    const tests = [
+      ['2021-01-01T12:00:00-0400', 'A', false],
+      ['2021-01-02T12:00:00-0400', 'B', false],
+      ['2021-01-03T12:00:00-0400', 'A', false],
+      ['2021-01-04T12:00:00-0400', 'B', false],
+      ['2021-01-05T12:00:00-0400', 'C', false],
+      ['2021-01-06T12:00:00-0400', 'B', false],
+      ['2021-01-07T12:00:00-0400', 'C', false],
+      ['2021-01-08T12:00:00-0400', 'A', false],
+      ['2021-01-09T12:00:00-0400', 'C', false],
+      ['2021-01-10T12:00:00-0400', 'A', false],
+      ['2021-01-11T12:00:00-0400', 'B', false],
+      ['2021-01-12T12:00:00-0400', 'A', false],
+      ['2021-01-13T12:00:00-0400', 'B', false],
+      ['2021-01-14T12:00:00-0400', 'C', false],
+      ['2021-01-15T12:00:00-0400', 'B', false],
+      ['2021-01-16T12:00:00-0400', 'C', false],
+      ['2021-01-17T12:00:00-0400', 'A', false],
+      ['2021-01-18T12:00:00-0400', 'C', false],
+      ['2021-01-19T12:00:00-0400', 'A', false],
+      ['2021-01-20T12:00:00-0400', 'B', false],
+      ['2021-01-21T12:00:00-0400', 'A', false],
+      ['2021-01-22T12:00:00-0400', 'B', false],
+      ['2021-01-19T01:00:00-0400', 'C', true],
+      ['2021-01-20T01:00:00-0400', 'A', true],
+    ];
+
+    tests.forEach((test) => {
+      (newportnewsVA.calculateShift(test[0])).should.equal(test[1]);
+      (newportnewsVA.beforeShiftChange(newportnewsVA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
