@@ -85,6 +85,7 @@ import {
   BrowardFL,
   AlbuquerqueNM,
   NewportNewsVA,
+  SanLuisAZ,
 } from '../src';
 
 const richmond = richmondVA();
@@ -166,6 +167,7 @@ const loudounVA = LoudounVA();
 const browardFL = BrowardFL();
 const albuquerqueNM = AlbuquerqueNM();
 const newportnewsVA = NewportNewsVA();
+const sanluisAZ = SanLuisAZ();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -1877,6 +1879,47 @@ describe('Newport News, VA', () => {
     tests.forEach((test) => {
       (newportnewsVA.calculateShift(test[0])).should.equal(test[1]);
       (newportnewsVA.beforeShiftChange(newportnewsVA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('San Luis, AZ', () => {
+  it('should match San Luis, AZ known shifts', () => {
+    const tests = [
+      ['2021-01-15T12:00:00-07:00', 'A', false],
+      ['2021-01-16T12:00:00-07:00', 'C', false],
+      ['2021-01-17T12:00:00-07:00', 'A', false],
+      ['2021-01-18T12:00:00-07:00', 'B', false],
+      ['2021-01-19T12:00:00-07:00', 'A', false],
+      ['2021-01-20T12:00:00-07:00', 'B', false],
+      ['2021-01-21T12:00:00-07:00', 'C', false],
+      ['2021-01-22T12:00:00-07:00', 'B', false],
+      ['2021-01-23T12:00:00-07:00', 'C', false],
+      ['2021-01-24T12:00:00-07:00', 'A', false],
+      ['2021-01-25T12:00:00-07:00', 'C', false],
+      ['2021-01-26T12:00:00-07:00', 'A', false],
+      ['2021-01-27T12:00:00-07:00', 'B', false],
+      ['2021-01-28T12:00:00-07:00', 'A', false],
+      ['2021-01-29T12:00:00-07:00', 'B', false],
+      ['2021-01-30T12:00:00-07:00', 'C', false],
+      ['2021-01-31T12:00:00-07:00', 'B', false],
+      ['2021-02-01T12:00:00-07:00', 'C', false],
+      ['2021-02-02T12:00:00-07:00', 'A', false],
+      ['2021-02-03T12:00:00-07:00', 'C', false],
+      ['2021-02-04T12:00:00-07:00', 'A', false],
+      ['2021-02-05T12:00:00-07:00', 'B', false],
+      ['2021-02-06T12:00:00-07:00', 'A', false],
+      ['2021-02-07T12:00:00-07:00', 'B', false],
+      ['2021-02-08T12:00:00-07:00', 'C', false],
+      ['2021-02-09T12:00:00-07:00', 'B', false],
+      ['2021-02-10T12:00:00-07:00', 'C', false],
+      ['2021-02-11T12:00:00-07:00', 'A', false],
+      ['2021-02-12T12:00:00-07:00', 'C', false],
+    ];
+
+    tests.forEach((test) => {
+      (sanluisAZ.calculateShift(test[0])).should.equal(test[1]);
+      (sanluisAZ.beforeShiftChange(sanluisAZ.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
