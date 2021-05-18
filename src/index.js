@@ -904,6 +904,14 @@ export function NewportNewsVA() {
   });
 }
 
+export function SanLuisAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2021-01-16',
+    pattern: 'CABABCBCA',
+    shiftStart: '0800',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -988,4 +996,5 @@ export const FirecaresLookup = {
   75928: BrowardFL,
   73343: AlbuquerqueNM,
   90123: NewportNewsVA,
+  94279: SanLuisAZ,
 };
