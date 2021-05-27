@@ -100,7 +100,7 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
    */
   constructor(shifts = { timeZone: 'US/Eastern', shiftStart: '0800', firstDay: '2016-10-30' }) {
     if (Array.isArray(shifts)) {
-      this.shifts = shifts.map((shiftInfo) => new ShiftInformation(shiftInfo));
+      this.shifts = shifts.map(shiftInfo => new ShiftInformation(shiftInfo));
     } else {
       this.shifts = [new ShiftInformation(shifts)];
     }
@@ -855,7 +855,7 @@ export function OlatheKS() {
 
 export function IonaMcGregorFL() {
   return new ShiftConfiguration({
-    firstDay: '2020-11-20',
+    firstDay: '2020-11-19',
     pattern: 'ABC',
     shiftStart: '0700',
     timeZone: 'US/Eastern',

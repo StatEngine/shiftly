@@ -1755,11 +1755,14 @@ describe('Olathe, KS', () => {
 describe('Iona McGregor, FL', () => {
   it('should match Iona McGregor, FL known shifts', () => {
     const tests = [
-      ['2020-11-20T09:10:00-0500', 'A', false],
-      ['2020-11-21T09:10:00-0500', 'B', false],
-      ['2020-11-22T09:10:00-0500', 'C', false],
-      ['2020-11-23T09:10:00-0500', 'A', false],
-      ['2020-11-24T09:10:00-0500', 'B', false],
+      // ['2020-11-20T09:10:00-0500', 'A', false],
+      // ['2020-11-21T09:10:00-0500', 'B', false],
+      // ['2020-11-22T09:10:00-0500', 'C', false],
+      // ['2020-11-23T09:10:00-0500', 'A', false],
+      // ['2020-11-24T09:10:00-0500', 'B', false],
+      ['2021-05-21T09:10:00-0500', 'A', false],
+      ['2021-05-22T09:10:00-0500', 'B', false],
+      ['2021-05-23T09:10:00-0500', 'C', false],
     ];
     tests.forEach((test) => {
       (ionaMcGregorFL.calculateShift(test[0])).should.equal(test[1]);
