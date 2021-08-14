@@ -1781,7 +1781,9 @@ describe('Asheville, NC', () => {
       ['2020-01-04T09:10:00-0500', 'A', false],
       ['2020-01-05T09:10:00-0500', 'B', false],
       ['2020-01-05T06:10:00-0500', 'A', true],
-      ['2021-01-01T09:10:00-0500', 'A', false],
+      ['2021-01-08T09:10:00-0500', 'A', false],
+      ['2021-08-13T09:10:00-0500', 'B', false],
+      ['2021-08-12T09:10:00-0500', 'A', false],
     ];
     tests.forEach((test) => {
       (ashevilleNC.calculateShift(test[0])).should.equal(test[1]);

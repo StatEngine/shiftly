@@ -864,8 +864,8 @@ export function IonaMcGregorFL() {
 
 export function AshevilleNC() {
   return new ShiftConfiguration({
-    firstDay: '2020-01-01',
-    pattern: 'CABABCACABCBCABABCACABCB',
+    firstDay: '2021-01-08',
+    pattern: 'ABABCACABCBC',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
   });
