@@ -86,6 +86,7 @@ import {
   AlbuquerqueNM,
   NewportNewsVA,
   SanLuisAZ,
+  BeavercreekOH,
 } from '../src';
 
 const richmond = richmondVA();
@@ -168,6 +169,7 @@ const browardFL = BrowardFL();
 const albuquerqueNM = AlbuquerqueNM();
 const newportnewsVA = NewportNewsVA();
 const sanluisAZ = SanLuisAZ();
+const beavercreekOH = BeavercreekOH();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -339,6 +341,10 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['73930'].should.equal(AshevilleNC);
     FirecaresLookup['87281'].should.equal(LoudounVA);
     FirecaresLookup['75928'].should.equal(BrowardFL);
+    FirecaresLookup['73343'].should.equal(AlbuquerqueNM);
+    FirecaresLookup['90123'].should.equal(NewportNewsVA);
+    FirecaresLookup['94279'].should.equal(SanLuisAZ);
+    FirecaresLookup['74600'].should.equal(BeavercreekOH);
   });
 });
 
@@ -1926,6 +1932,30 @@ describe('San Luis, AZ', () => {
     tests.forEach((test) => {
       (sanluisAZ.calculateShift(test[0])).should.equal(test[1]);
       (sanluisAZ.beforeShiftChange(sanluisAZ.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Beavercreek, OH', () => {
+  it('should match Beavercreek, OH known shifts', () => {
+    const tests = [
+      ['2021-10-24T12:00:00-0500', 'A', false],
+      ['2021-10-25T12:00:00-0500', 'B', false],
+      ['2021-10-26T12:00:00-0500', 'C', false],
+      ['2021-10-27T12:00:00-0500', 'A', false],
+      ['2021-10-28T04:00:00-0500', 'A', true],
+      ['2021-10-29T12:00:00-0500', 'C', false],
+      ['2021-10-30T12:00:00-0500', 'A', false],
+      ['2020-03-01T12:00:00-0500', 'B', false],
+      ['2020-03-01T05:00:00-0500', 'B', true],
+      ['2020-02-29T09:00:00-0500', 'A', false],
+      ['2020-02-29T18:00:00-0500', 'C', false],
+      ['2020-02-28T12:00:00-0500', 'A', false],
+    ];
+
+    tests.forEach((test) => {
+      (beavercreekOH.calculateShift(test[0])).should.equal(test[1]);
+      (beavercreekOH.beforeShiftChange(orlandoFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

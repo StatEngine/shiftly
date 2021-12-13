@@ -912,6 +912,23 @@ export function SanLuisAZ() {
   });
 }
 
+export function BeavercreekOH() {
+  return new ShiftConfiguration([{
+    firstDay: '2020-02-28',
+    pattern: 'ABC',
+    shiftStart: '0700',
+  }, {
+    firstDay: '2020-02-29',
+    pattern: 'ACB',
+    shiftStart: '0700',
+    shiftDuration: 8,
+  }, {
+    firstDay: '2020-03-01',
+    pattern: 'BCA',
+    shiftStart: '0700',
+  }]);
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -997,4 +1014,5 @@ export const FirecaresLookup = {
   73343: AlbuquerqueNM,
   90123: NewportNewsVA,
   94279: SanLuisAZ,
+  74600: BeavercreekOH,
 };
