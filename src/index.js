@@ -929,6 +929,16 @@ export function BeavercreekOH() {
   }]);
 }
 
+export function SpokaneValleyWA() {
+  return new ShiftConfiguration({
+    firstDay: '2021-10-09',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -1015,4 +1025,5 @@ export const FirecaresLookup = {
   90123: NewportNewsVA,
   94279: SanLuisAZ,
   74600: BeavercreekOH,
+  95805: SpokaneValleyWA,
 };

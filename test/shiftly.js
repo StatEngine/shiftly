@@ -87,6 +87,7 @@ import {
   NewportNewsVA,
   SanLuisAZ,
   BeavercreekOH,
+  SpokaneValleyWA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -170,6 +171,7 @@ const albuquerqueNM = AlbuquerqueNM();
 const newportnewsVA = NewportNewsVA();
 const sanluisAZ = SanLuisAZ();
 const beavercreekOH = BeavercreekOH();
+const spokaneValleyWA = SpokaneValleyWA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -345,6 +347,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['90123'].should.equal(NewportNewsVA);
     FirecaresLookup['94279'].should.equal(SanLuisAZ);
     FirecaresLookup['74600'].should.equal(BeavercreekOH);
+    FirecaresLookup['95805'].should.equal(SpokaneValleyWA);
   });
 });
 
@@ -1956,6 +1959,22 @@ describe('Beavercreek, OH', () => {
     tests.forEach((test) => {
       (beavercreekOH.calculateShift(test[0])).should.equal(test[1]);
       (beavercreekOH.beforeShiftChange(orlandoFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Spokane Valley, WA', () => {
+  it('should match Spokane Valley, WA known shifts', () => {
+    const tests = [
+      ['2021-10-09T08:10:00-0700', 'A', false],
+      ['2021-10-10T08:10:00-0700', 'B', false],
+      ['2021-10-11T08:10:00-0700', 'C', false],
+      ['2021-10-09T07:10:00-0700', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (spokaneValleyWA.calculateShift(test[0])).should.equal(test[1]);
+      (spokaneValleyWA.beforeShiftChange(spokaneValleyWA
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
