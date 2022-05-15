@@ -88,6 +88,7 @@ import {
   SanLuisAZ,
   BeavercreekOH,
   SpokaneValleyWA,
+  MilwaukeeWI,
 } from '../src';
 
 const richmond = richmondVA();
@@ -172,6 +173,7 @@ const newportnewsVA = NewportNewsVA();
 const sanluisAZ = SanLuisAZ();
 const beavercreekOH = BeavercreekOH();
 const spokaneValleyWA = SpokaneValleyWA();
+const milwaukeeWI = MilwaukeeWI();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -348,6 +350,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['94279'].should.equal(SanLuisAZ);
     FirecaresLookup['74600'].should.equal(BeavercreekOH);
     FirecaresLookup['95805'].should.equal(SpokaneValleyWA);
+    FirecaresLookup['88821'].should.equal(MilwaukeeWI);
   });
 });
 
@@ -1975,6 +1978,18 @@ describe('Spokane Valley, WA', () => {
       (spokaneValleyWA.calculateShift(test[0])).should.equal(test[1]);
       (spokaneValleyWA.beforeShiftChange(spokaneValleyWA
         .normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Milwaukee, WI', () => {
+  it('should match Milwaukee, WI known shifts', () => {
+    const tests = [
+      ['2021-10-09T08:10:00-0700', 'R', false],
+    ];
+    tests.forEach((test) => {
+      (milwaukeeWI.calculateShift(test[0])).should.equal(test[1]);
+      (milwaukeeWI.beforeShiftChange(milwaukeeWI.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

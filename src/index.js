@@ -614,6 +614,15 @@ export function LexingtonKy() {
   });
 }
 
+export function MilwaukeeWI() {
+  return new ShiftConfiguration({
+    firstDay: '2022-02-16',
+    pattern: 'RGB',
+    shiftStart: '0800',
+    timeZone: 'US/Central',
+  });
+}
+
 export function PlainfieldIL() {
   return new ShiftConfiguration({
     firstDay: '2019-01-01',
@@ -1026,4 +1035,5 @@ export const FirecaresLookup = {
   94279: SanLuisAZ,
   74600: BeavercreekOH,
   95805: SpokaneValleyWA,
+  88821: MilwaukeeWI,
 };
