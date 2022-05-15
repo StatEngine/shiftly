@@ -1985,7 +1985,10 @@ describe('Spokane Valley, WA', () => {
 describe('Milwaukee, WI', () => {
   it('should match Milwaukee, WI known shifts', () => {
     const tests = [
-      ['2021-10-09T08:10:00-0700', 'R', false],
+      ['2022-02-16T08:10:00-0600', 'R', false],
+      ['2022-02-17T08:10:00-0600', 'G', false],
+      ['2022-02-18T08:10:00-0600', 'B', false],
+      ['2022-02-16T07:10:00-0600', 'B', true],
     ];
     tests.forEach((test) => {
       (milwaukeeWI.calculateShift(test[0])).should.equal(test[1]);
