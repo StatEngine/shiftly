@@ -100,7 +100,7 @@ export class ShiftConfiguration { // eslint-disable-line import/prefer-default-e
    */
   constructor(shifts = { timeZone: 'US/Eastern', shiftStart: '0800', firstDay: '2016-10-30' }) {
     if (Array.isArray(shifts)) {
-      this.shifts = shifts.map(shiftInfo => new ShiftInformation(shiftInfo));
+      this.shifts = shifts.map((shiftInfo) => new ShiftInformation(shiftInfo));
     } else {
       this.shifts = [new ShiftInformation(shifts)];
     }
@@ -947,6 +947,14 @@ export function SpokaneValleyWA() {
   });
 }
 
+export function SeminoleCountyFL() {
+  return new ShiftConfiguration({
+    firstDay: '2021-09-23',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1036,4 +1044,5 @@ export const FirecaresLookup = {
   74600: BeavercreekOH,
   95805: SpokaneValleyWA,
   88821: MilwaukeeWI,
+  94718: SeminoleCountyFL,
 };

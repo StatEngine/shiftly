@@ -89,6 +89,7 @@ import {
   BeavercreekOH,
   SpokaneValleyWA,
   MilwaukeeWI,
+  SeminoleCountyFL,
 } from '../src';
 
 const richmond = richmondVA();
@@ -174,6 +175,7 @@ const sanluisAZ = SanLuisAZ();
 const beavercreekOH = BeavercreekOH();
 const spokaneValleyWA = SpokaneValleyWA();
 const milwaukeeWI = MilwaukeeWI();
+const seminoleCountyFL = SeminoleCountyFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -351,6 +353,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['74600'].should.equal(BeavercreekOH);
     FirecaresLookup['95805'].should.equal(SpokaneValleyWA);
     FirecaresLookup['88821'].should.equal(MilwaukeeWI);
+    FirecaresLookup['94718'].should.equal(SeminoleCountyFL);
   });
 });
 
@@ -1993,6 +1996,21 @@ describe('Milwaukee, WI', () => {
     tests.forEach((test) => {
       (milwaukeeWI.calculateShift(test[0])).should.equal(test[1]);
       (milwaukeeWI.beforeShiftChange(milwaukeeWI.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Seminole County, FL', () => {
+  it('should match Seminole County, FL known shifts', () => {
+    const tests = [
+      ['2021-09-23T08:10:00-0400', 'A', false],
+      ['2021-09-24T08:10:00-0400', 'B', false],
+      ['2021-09-25T08:10:00-0400', 'C', false],
+      ['2021-09-26T07:10:00-0400', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (seminoleCountyFL.calculateShift(test[0])).should.equal(test[1]);
+      (seminoleCountyFL.beforeShiftChange(seminoleCountyFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
