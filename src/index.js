@@ -956,6 +956,15 @@ export function SeminoleCountyFL() {
   });
 }
 
+export function LouisvilleKY() {
+  return new ShiftConfiguration({
+    firstDay: '2022-02-03',
+    pattern: '123',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -1045,4 +1054,5 @@ export const FirecaresLookup = {
   95805: SpokaneValleyWA,
   88821: MilwaukeeWI,
   94718: SeminoleCountyFL,
+  87291: LouisvilleKY,
 };

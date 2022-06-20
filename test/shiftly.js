@@ -90,6 +90,7 @@ import {
   SpokaneValleyWA,
   MilwaukeeWI,
   SeminoleCountyFL,
+  LouisvilleKY
 } from '../src';
 
 const richmond = richmondVA();
@@ -176,6 +177,7 @@ const beavercreekOH = BeavercreekOH();
 const spokaneValleyWA = SpokaneValleyWA();
 const milwaukeeWI = MilwaukeeWI();
 const seminoleCountyFL = SeminoleCountyFL();
+const louisvillleKY = LouisvilleKY();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -354,6 +356,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['95805'].should.equal(SpokaneValleyWA);
     FirecaresLookup['88821'].should.equal(MilwaukeeWI);
     FirecaresLookup['94718'].should.equal(SeminoleCountyFL);
+    FirecaresLookup['87291'].should.equal(LouisvilleKY);
   });
 });
 
@@ -2011,6 +2014,20 @@ describe('Seminole County, FL', () => {
     tests.forEach((test) => {
       (seminoleCountyFL.calculateShift(test[0])).should.equal(test[1]);
       (seminoleCountyFL.beforeShiftChange(seminoleCountyFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Louisville, KY', () => {
+  it('should match Louisville, KY known shifts', () => {
+    const tests = [
+      ['2022-02-03T08:10:00-0500', '1', false],
+      ['2022-02-04T08:10:00-0500', '2', false],
+      ['2022-02-06T08:10:00-0500', '1', false],
+    ]
+    tests.forEach((test) => {
+      (louisvillleKY.calculateShift(test[0])).should.equal(test[1]);
+      (louisvillleKY.beforeShiftChange(louisvillleKY.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
