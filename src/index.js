@@ -70,8 +70,11 @@ class ShiftInformation {
 
     const pattern = hoursFromStart < 0 ? this.reversePattern() : this.pattern;
     const index = Math.floor(Math.abs(hoursFromStart) / this.shiftDuration) % pattern.length;
-    const shift = pattern[index].toUpperCase();
-
+    let shift = pattern[index];
+    // Returns an undefined shift if the index is not found
+    if (typeof shift !== 'undefined') {
+      shift = shift.toUpperCase();
+    }
     return shift;
   }
 
