@@ -26,6 +26,7 @@ import {
   StPaulMN,
   WestMetroCO,
   BellevueWA,
+  BothellWA,
   DelrayBeachFL,
   NewRochelleNY,
   MiamiDadeFL,
@@ -113,6 +114,7 @@ const orangeCounty = OrangeCountyFL();
 const stPaulMN = StPaulMN();
 const westMetroCO = WestMetroCO();
 const bellevueWA = BellevueWA();
+const bothellWA = BothellWA();
 const delrayBeachFL = DelrayBeachFL();
 const newRochelleNY = NewRochelleNY();
 const miamiDadeFL = MiamiDadeFL();
@@ -304,6 +306,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['91106'].should.equal(OrangeCountyFL);
     FirecaresLookup['77863'].should.equal(StPaulMN);
     FirecaresLookup['74731'].should.equal(BellevueWA);
+    FirecaresLookup['77571'].should.equal(BothellWA);
     FirecaresLookup['88539'].should.equal(MiamiDadeFL);
     FirecaresLookup['95671'].should.equal(SouthernPlatteMO);
     FirecaresLookup['90552'].should.equal(AdamsCountyCO);
@@ -804,6 +807,25 @@ describe('Bellevue, WA', () => {
     tests.forEach((test) => {
       (bellevueWA.calculateShift(test[0])).should.equal(test[1]);
       (bellevueWA.beforeShiftChange(bellevueWA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Bothell, WA', () => {
+  it('should match Bothell, WA known shifts', () => {
+    const tests = [
+      ['2022-04-16T07:10:00-0700', 'C', true],
+      ['2022-04-16T08:30:00-0700', 'D', false],
+      ['2022-04-17T08:30:00-0700', 'A', false],
+      ['2022-04-18T08:30:00-0700', 'B', false],
+      ['2022-04-19T08:30:00-0700', 'A', false],
+      ['2022-04-20T08:30:00-0700', 'B', false],
+      ['2022-04-21T08:30:00-0700', 'C', false],
+    ];
+    tests.forEach((test) => {
+      console.log(bothellWA.calculateShift(test[0]));
+      (bothellWA.calculateShift(test[0])).should.equal(test[1]);
+      (bothellWA.beforeShiftChange(bothellWA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
