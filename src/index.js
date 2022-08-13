@@ -358,6 +358,15 @@ export function BellevueWA() {
   });
 }
 
+export function BothellWA() {
+  return new ShiftConfiguration({
+    firstDay: '2022-08-07',
+    pattern: 'ABABCDCD',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 export function DelrayBeachFL() {
   return new ShiftConfiguration({
     firstDay: '2018-01-01',
@@ -991,6 +1000,7 @@ export const FirecaresLookup = {
   77863: StPaulMN,
   99082: WestMetroCO,
   74731: BellevueWA,
+  77571: BothellWA,
   79592: DelrayBeachFL,
   88539: MiamiDadeFL,
   95671: SouthernPlatteMO,
