@@ -977,6 +977,15 @@ export function LouisvilleKY() {
   });
 }
 
+export function IndianapolisIN() {
+  return new ShiftConfiguration({
+    firstDay: '2022-03-01',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -1068,4 +1077,5 @@ export const FirecaresLookup = {
   88821: MilwaukeeWI,
   94718: SeminoleCountyFL,
   87291: LouisvilleKY,
+  84888: IndianapolisIN,
 };
