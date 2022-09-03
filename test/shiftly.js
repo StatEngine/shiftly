@@ -91,7 +91,8 @@ import {
   SpokaneValleyWA,
   MilwaukeeWI,
   SeminoleCountyFL,
-  LouisvilleKY
+  LouisvilleKY,
+  IndianapolisIN,
 } from '../src';
 
 const richmond = richmondVA();
@@ -180,6 +181,7 @@ const spokaneValleyWA = SpokaneValleyWA();
 const milwaukeeWI = MilwaukeeWI();
 const seminoleCountyFL = SeminoleCountyFL();
 const louisvillleKY = LouisvilleKY();
+const indianapolisIN = IndianapolisIN();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -360,6 +362,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['88821'].should.equal(MilwaukeeWI);
     FirecaresLookup['94718'].should.equal(SeminoleCountyFL);
     FirecaresLookup['87291'].should.equal(LouisvilleKY);
+    FirecaresLookup['84888'].should.equal(IndianapolisIN);
   });
 });
 
@@ -823,7 +826,6 @@ describe('Bothell, WA', () => {
       ['2022-04-21T08:30:00-0700', 'C', false],
     ];
     tests.forEach((test) => {
-      console.log(bothellWA.calculateShift(test[0]));
       (bothellWA.calculateShift(test[0])).should.equal(test[1]);
       (bothellWA.beforeShiftChange(bothellWA.normalize(test[0]))).should.equal(test[2]);
     });
@@ -2046,10 +2048,25 @@ describe('Louisville, KY', () => {
       ['2022-02-03T08:10:00-0500', '1', false],
       ['2022-02-04T08:10:00-0500', '2', false],
       ['2022-02-06T08:10:00-0500', '1', false],
-    ]
+    ];
     tests.forEach((test) => {
       (louisvillleKY.calculateShift(test[0])).should.equal(test[1]);
       (louisvillleKY.beforeShiftChange(louisvillleKY.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Indianapolis, IN', () => {
+  it('should match Indianapolis, IN known shifts', () => {
+    const tests = [
+      ['2022-03-01T08:10:00-0500', 'A', false],
+      ['2022-03-02T08:10:00-0500', 'B', false],
+      ['2022-03-03T08:10:00-0500', 'C', false],
+      ['2022-03-04T06:10:00-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (indianapolisIN.calculateShift(test[0])).should.equal(test[1]);
+      (indianapolisIN.beforeShiftChange(indianapolisIN.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
