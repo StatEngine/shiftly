@@ -968,6 +968,15 @@ export function SeminoleCountyFL() {
   });
 }
 
+export function SnoqualmieWA() {
+  return new ShiftConfiguration({
+    firstDay: '2022-08-07',
+    pattern: 'CCAABB',
+    shiftStart: '0800',
+    timeZone: 'US/Pacific',
+  });
+}
+
 export function LouisvilleKY() {
   return new ShiftConfiguration({
     firstDay: '2022-02-03',
@@ -1076,6 +1085,7 @@ export const FirecaresLookup = {
   95805: SpokaneValleyWA,
   88821: MilwaukeeWI,
   94718: SeminoleCountyFL,
+  77883: SnoqualmieWA,
   87291: LouisvilleKY,
   84888: IndianapolisIN,
 };
