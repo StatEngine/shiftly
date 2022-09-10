@@ -94,6 +94,7 @@ import {
   SnoqualmieWA,
   LouisvilleKY,
   IndianapolisIN,
+  SouthMetroCO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -184,6 +185,7 @@ const seminoleCountyFL = SeminoleCountyFL();
 const snoqualmieWA = SnoqualmieWA();
 const louisvillleKY = LouisvilleKY();
 const indianapolisIN = IndianapolisIN();
+const southMetroCO = SouthMetroCO();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -191,7 +193,7 @@ describe('ShiftInformation', () => {
   });
 
   it('should allow for different start times', () => {
-    const sc = new ShiftConfiguration({shiftStart: '0700'});
+    const sc = new ShiftConfiguration({ shiftStart: '0700' });
     sc.shifts[0].shiftStart.should.equal('0700');
   });
 
@@ -366,6 +368,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['77883'].should.equal(SnoqualmieWA);
     FirecaresLookup['87291'].should.equal(LouisvilleKY);
     FirecaresLookup['84888'].should.equal(IndianapolisIN);
+    FirecaresLookup['95528'].should.equal(SouthMetroCO);
   });
 });
 
@@ -405,7 +408,7 @@ describe('Broward, FL', () => {
 
 describe('Richmond, VA', () => {
   it('should calculate shift for day when dateOnly is true', () => {
-    (richmond.calculateShift('2017-12-29', {dateOnly: true})).should.equal('C');
+    (richmond.calculateShift('2017-12-29', { dateOnly: true })).should.equal('C');
   });
 
   it('should match Richmond, VA known shifts', () => {
@@ -492,12 +495,12 @@ describe('Oxnard, CA', () => {
 
 describe('Tucson, AZ', () => {
   it('selects correct shift config for new shift', () => {
-    const {pattern} = tucson.determineShiftPattern('2021-03-31T08:10:30-0700');
+    const { pattern } = tucson.determineShiftPattern('2021-03-31T08:10:30-0700');
     pattern.should.equal('AC');
 
     const testPattern = tucson
-        .determineShiftPattern('2021-04-09T08:10:30-0700')
-        .pattern;
+      .determineShiftPattern('2021-04-09T08:10:30-0700')
+      .pattern;
 
     testPattern.should.equal('BABCBCACA');
   });
@@ -894,7 +897,7 @@ describe('Southern Platte, MO', () => {
     tests.forEach((test) => {
       (southernPlatteMO.calculateShift(test[0])).should.equal(test[1]);
       (southernPlatteMO.beforeShiftChange(
-          southernPlatteMO.normalize(test[0]),
+        southernPlatteMO.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1140,7 +1143,7 @@ describe('Jackson Township, IN', () => {
     tests.forEach((test) => {
       (jacksonTownshipIN.calculateShift(test[0])).should.equal(test[1]);
       (jacksonTownshipIN.beforeShiftChange(
-          jacksonTownshipIN.normalize(test[0]),
+        jacksonTownshipIN.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1166,7 +1169,7 @@ describe('Delaware, OH', () => {
     tests.forEach((test) => {
       (delawareOH.calculateShift(test[0])).should.equal(test[1]);
       (delawareOH.beforeShiftChange(
-          delawareOH.normalize(test[0]),
+        delawareOH.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1186,7 +1189,7 @@ describe('Anne Arundel, MD', () => {
     tests.forEach((test) => {
       (anneArundelMD.calculateShift(test[0])).should.equal(test[1]);
       (anneArundelMD.beforeShiftChange(
-          anneArundelMD.normalize(test[0]),
+        anneArundelMD.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1203,7 +1206,7 @@ describe('Columbus, OH', () => {
     tests.forEach((test) => {
       (columbusOH.calculateShift(test[0])).should.equal(test[1]);
       (columbusOH.beforeShiftChange(
-          columbusOH.normalize(test[0]),
+        columbusOH.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1223,7 +1226,7 @@ describe('Roseville, CA', () => {
     tests.forEach((test) => {
       (rosevilleCA.calculateShift(test[0])).should.equal(test[1]);
       (rosevilleCA.beforeShiftChange(
-          rosevilleCA.normalize(test[0]),
+        rosevilleCA.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1246,7 +1249,7 @@ describe('Torrington, CT', () => {
     tests.forEach((test) => {
       (torringtonCT.calculateShift(test[0])).should.equal(test[1]);
       (torringtonCT.beforeShiftChange(
-          torringtonCT.normalize(test[0]),
+        torringtonCT.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1264,7 +1267,7 @@ describe('Memphis, TN', () => {
     tests.forEach((test) => {
       (memphisTN.calculateShift(test[0])).should.equal(test[1]);
       (memphisTN.beforeShiftChange(
-          memphisTN.normalize(test[0]),
+        memphisTN.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1282,7 +1285,7 @@ describe('Jackson County, OR', () => {
     tests.forEach((test) => {
       (jacksonCountyOR.calculateShift(test[0])).should.equal(test[1]);
       (jacksonCountyOR.beforeShiftChange(
-          jacksonCountyOR.normalize(test[0]),
+        jacksonCountyOR.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1300,7 +1303,7 @@ describe('Lexington, KY', () => {
     tests.forEach((test) => {
       (lexingtonKY.calculateShift(test[0])).should.equal(test[1]);
       (lexingtonKY.beforeShiftChange(
-          lexingtonKY.normalize(test[0]),
+        lexingtonKY.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1318,7 +1321,7 @@ describe('Plainfield, IL', () => {
     tests.forEach((test) => {
       (plainfieldIL.calculateShift(test[0])).should.equal(test[1]);
       (plainfieldIL.beforeShiftChange(
-          plainfieldIL.normalize(test[0]),
+        plainfieldIL.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1336,7 +1339,7 @@ describe('Manchester, CT', () => {
     tests.forEach((test) => {
       (manchesterCT.calculateShift(test[0])).should.equal(test[1]);
       (manchesterCT.beforeShiftChange(
-          manchesterCT.normalize(test[0]),
+        manchesterCT.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1354,7 +1357,7 @@ describe('Palm Beach County, FL', () => {
     tests.forEach((test) => {
       (palmBeachCountyFL.calculateShift(test[0])).should.equal(test[1]);
       (palmBeachCountyFL.beforeShiftChange(
-          palmBeachCountyFL.normalize(test[0]),
+        palmBeachCountyFL.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1373,7 +1376,7 @@ describe('Cedar Rapids, IA', () => {
     tests.forEach((test) => {
       (cedarRapidsIA.calculateShift(test[0])).should.equal(test[1]);
       (cedarRapidsIA.beforeShiftChange(
-          cedarRapidsIA.normalize(test[0]),
+        cedarRapidsIA.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1391,7 +1394,7 @@ describe('Alexandria, VA', () => {
     tests.forEach((test) => {
       (alexandriaVA.calculateShift(test[0])).should.equal(test[1]);
       (alexandriaVA.beforeShiftChange(
-          alexandriaVA.normalize(test[0]),
+        alexandriaVA.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1409,7 +1412,7 @@ describe('Pasco, WA', () => {
     tests.forEach((test) => {
       (pascoWA.calculateShift(test[0])).should.equal(test[1]);
       (pascoWA.beforeShiftChange(
-          pascoWA.normalize(test[0]),
+        pascoWA.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1427,7 +1430,7 @@ describe('Richland, WA', () => {
     tests.forEach((test) => {
       (richlandWA.calculateShift(test[0])).should.equal(test[1]);
       (richlandWA.beforeShiftChange(
-          richlandWA.normalize(test[0]),
+        richlandWA.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1445,7 +1448,7 @@ describe('Jersey City, NJ', () => {
     tests.forEach((test) => {
       (jerseyCityNJ.calculateShift(test[0])).should.equal(test[1]);
       (jerseyCityNJ.beforeShiftChange(
-          jerseyCityNJ.normalize(test[0]),
+        jerseyCityNJ.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1480,7 +1483,7 @@ describe('East Pierce, WA', () => {
     tests.forEach((test) => {
       (eastPierceWA.calculateShift(test[0])).should.equal(test[1]);
       (eastPierceWA.beforeShiftChange(
-          eastPierceWA.normalize(test[0]),
+        eastPierceWA.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1497,7 +1500,7 @@ describe('Cape Coral, FL', () => {
     tests.forEach((test) => {
       (capeCoralFL.calculateShift(test[0])).should.equal(test[1]);
       (capeCoralFL.beforeShiftChange(
-          capeCoralFL.normalize(test[0]),
+        capeCoralFL.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1515,7 +1518,7 @@ describe('Northwest, AZ', () => {
     tests.forEach((test) => {
       (northwestAZ.calculateShift(test[0])).should.equal(test[1]);
       (northwestAZ.beforeShiftChange(
-          northwestAZ.normalize(test[0]),
+        northwestAZ.normalize(test[0]),
       )).should.equal(test[2]);
     });
   });
@@ -1758,7 +1761,7 @@ describe('Somerton Cocopah, AZ', () => {
     tests.forEach((test) => {
       (somertonCocopahAZ.calculateShift(test[0])).should.equal(test[1]);
       (somertonCocopahAZ.beforeShiftChange(somertonCocopahAZ
-          .normalize(test[0]))).should.equal(test[2]);
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -1774,7 +1777,7 @@ describe('Upper Providence, PA', () => {
     tests.forEach((test) => {
       (upperProvidencePA.calculateShift(test[0])).should.equal(test[1]);
       (upperProvidencePA.beforeShiftChange(upperProvidencePA
-          .normalize(test[0]))).should.equal(test[2]);
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -1792,7 +1795,7 @@ describe('Olathe, KS', () => {
     tests.forEach((test) => {
       (olatheKS.calculateShift(test[0])).should.equal(test[1]);
       (olatheKS.beforeShiftChange(olatheKS
-          .normalize(test[0]))).should.equal(test[2]);
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -1812,7 +1815,7 @@ describe('Iona McGregor, FL', () => {
     tests.forEach((test) => {
       (ionaMcGregorFL.calculateShift(test[0])).should.equal(test[1]);
       (ionaMcGregorFL.beforeShiftChange(ionaMcGregorFL
-          .normalize(test[0]))).should.equal(test[2]);
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -1833,7 +1836,7 @@ describe('Asheville, NC', () => {
     tests.forEach((test) => {
       (ashevilleNC.calculateShift(test[0])).should.equal(test[1]);
       (ashevilleNC.beforeShiftChange(ashevilleNC
-          .normalize(test[0]))).should.equal(test[2]);
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -2010,7 +2013,7 @@ describe('Spokane Valley, WA', () => {
     tests.forEach((test) => {
       (spokaneValleyWA.calculateShift(test[0])).should.equal(test[1]);
       (spokaneValleyWA.beforeShiftChange(spokaneValleyWA
-          .normalize(test[0]))).should.equal(test[2]);
+        .normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
@@ -2077,7 +2080,6 @@ describe('Louisville, KY', () => {
   });
 });
 
-
 describe('Indianapolis, IN', () => {
   it('should match Indianapolis, IN known shifts', () => {
     const tests = [
@@ -2089,6 +2091,21 @@ describe('Indianapolis, IN', () => {
     tests.forEach((test) => {
       (indianapolisIN.calculateShift(test[0])).should.equal(test[1]);
       (indianapolisIN.beforeShiftChange(indianapolisIN.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('South Metro, CO', () => {
+  it('should match South Metro, CO known shifts', () => {
+    const tests = [
+      ['2022-01-02T08:10:00-0700', 'C', false],
+      ['2022-01-04T08:10:00-0700', 'B', false],
+      ['2022-01-06T08:10:00-0700', 'A', false],
+      ['2022-01-08T06:10:00-0700', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (southMetroCO.calculateShift(test[0])).should.equal(test[1]);
+      (southMetroCO.beforeShiftChange(southMetroCO.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

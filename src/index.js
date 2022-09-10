@@ -995,6 +995,15 @@ export function IndianapolisIN() {
   });
 }
 
+export function SouthMetroCO() {
+  return new ShiftConfiguration({
+    firstDay: '2022-01-02',
+    pattern: 'CCBBAA',
+    shiftStart: '0700',
+    timeZone: 'US/Mountain',
+  });
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -1088,4 +1097,6 @@ export const FirecaresLookup = {
   77883: SnoqualmieWA,
   87291: LouisvilleKY,
   84888: IndianapolisIN,
+  95528: SouthMetroCO,
+
 };
