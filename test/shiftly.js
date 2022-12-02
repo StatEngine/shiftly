@@ -95,6 +95,7 @@ import {
   LouisvilleKY,
   IndianapolisIN,
   SouthMetroCO,
+  NorthPortFL
 } from '../src';
 
 const richmond = richmondVA();
@@ -186,6 +187,7 @@ const snoqualmieWA = SnoqualmieWA();
 const louisvillleKY = LouisvilleKY();
 const indianapolisIN = IndianapolisIN();
 const southMetroCO = SouthMetroCO();
+const northPortFL = NorthPortFL();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -369,6 +371,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['87291'].should.equal(LouisvilleKY);
     FirecaresLookup['84888'].should.equal(IndianapolisIN);
     FirecaresLookup['95528'].should.equal(SouthMetroCO);
+    FirecaresLookup['90490'].should.equal(NorthPortFL);
   });
 });
 
@@ -2106,6 +2109,20 @@ describe('South Metro, CO', () => {
     tests.forEach((test) => {
       (southMetroCO.calculateShift(test[0])).should.equal(test[1]);
       (southMetroCO.beforeShiftChange(southMetroCO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('North Port, FL', () => {
+  it('should match North Port FL, known shifts', () => {
+    const tests = [
+      ['2022-07-18T08:10:00-0400', 'A', false],
+      ['2022-07-20T08:10:00-0400', 'C', false],
+      ['2022-07-21T07:10:00-0400', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (northPortFL.calculateShift(test[0])).should.equal(test[1]);
+      (northPortFL.beforeShiftChange(northPortFL.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

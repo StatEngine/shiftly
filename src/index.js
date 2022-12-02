@@ -1004,6 +1004,16 @@ export function SouthMetroCO() {
   });
 }
 
+export function NorthPortFL() {
+  return new ShiftConfiguration({
+    firstDay: '2022-07-18',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  })
+
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -1098,5 +1108,5 @@ export const FirecaresLookup = {
   87291: LouisvilleKY,
   84888: IndianapolisIN,
   95528: SouthMetroCO,
-
+  90490: NorthPortFL,
 };
