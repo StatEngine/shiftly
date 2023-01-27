@@ -1010,8 +1010,16 @@ export function NorthPortFL() {
     pattern: 'ABC',
     shiftStart: '0800',
     timeZone: 'US/Eastern',
-  })
+  });
+}
 
+export function ArvadaCO() {
+  return new ShiftConfiguration({
+    firstDay: '2023-01-01',
+    pattern: 'AACCBB',
+    shiftStart: '0700',
+    timeZone: 'US/Mountain',
+  })
 }
 
 export const FirecaresLookup = {
@@ -1109,4 +1117,5 @@ export const FirecaresLookup = {
   84888: IndianapolisIN,
   95528: SouthMetroCO,
   90490: NorthPortFL,
+  73905: ArvadaCO,
 };

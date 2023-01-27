@@ -95,7 +95,8 @@ import {
   LouisvilleKY,
   IndianapolisIN,
   SouthMetroCO,
-  NorthPortFL
+  NorthPortFL,
+  ArvadaCO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -188,6 +189,7 @@ const louisvillleKY = LouisvilleKY();
 const indianapolisIN = IndianapolisIN();
 const southMetroCO = SouthMetroCO();
 const northPortFL = NorthPortFL();
+const arvadaCO = ArvadaCO();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -372,6 +374,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['84888'].should.equal(IndianapolisIN);
     FirecaresLookup['95528'].should.equal(SouthMetroCO);
     FirecaresLookup['90490'].should.equal(NorthPortFL);
+    FirecaresLookup['73905'].should.equal(ArvadaCO);
   });
 });
 
@@ -2123,6 +2126,21 @@ describe('North Port, FL', () => {
     tests.forEach((test) => {
       (northPortFL.calculateShift(test[0])).should.equal(test[1]);
       (northPortFL.beforeShiftChange(northPortFL.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Arvada, CO', () => {
+  it('should match Arvada CO, known shifts', () => {
+    const tests = [
+      ['2023-01-01T07:10:00-0700', 'A', false],
+      ['2023-01-03T07:10:00-0700', 'C', false],
+      ['2023-01-05T07:10:00-0700', 'B', false],
+      ['2023-01-07T06:10:00-0700', 'B', true],
+    ];
+    tests.forEach((test) => {
+      (arvadaCO.calculateShift(test[0])).should.equal(test[1]);
+      (arvadaCO.beforeShiftChange(arvadaCO.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
