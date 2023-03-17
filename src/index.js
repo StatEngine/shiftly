@@ -1022,6 +1022,15 @@ export function ArvadaCO() {
   })
 }
 
+export function HarrisonburgVA() {
+  return new ShiftConfiguration({
+    firstDay: '2021-12-14',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  })
+}
+
 export const FirecaresLookup = {
   98606: washingtonDC,
   93345: richmondVA,
@@ -1118,4 +1127,5 @@ export const FirecaresLookup = {
   95528: SouthMetroCO,
   90490: NorthPortFL,
   73905: ArvadaCO,
+  83708: HarrisonburgVA,
 };

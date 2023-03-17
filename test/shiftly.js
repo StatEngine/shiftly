@@ -97,6 +97,7 @@ import {
   SouthMetroCO,
   NorthPortFL,
   ArvadaCO,
+  HarrisonburgVA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -190,6 +191,7 @@ const indianapolisIN = IndianapolisIN();
 const southMetroCO = SouthMetroCO();
 const northPortFL = NorthPortFL();
 const arvadaCO = ArvadaCO();
+const harrisonburgVA = HarrisonburgVA();
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -375,6 +377,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['95528'].should.equal(SouthMetroCO);
     FirecaresLookup['90490'].should.equal(NorthPortFL);
     FirecaresLookup['73905'].should.equal(ArvadaCO);
+    FirecaresLookup['83708'].should.equal(HarrisonburgVA);
   });
 });
 
@@ -2141,6 +2144,20 @@ describe('Arvada, CO', () => {
     tests.forEach((test) => {
       (arvadaCO.calculateShift(test[0])).should.equal(test[1]);
       (arvadaCO.beforeShiftChange(arvadaCO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Harrisonburg, VA', () => {
+  it('should match Harrisonburg VA, known shifts', () => {
+    const tests = [
+      ['2021-12-14T08:10:00-0700', 'A', false],
+      ['2021-12-15T08:10:00-0700', 'B', false],
+      ['2021-12-16T08:10:00-0700', 'C', false],
+    ];
+    tests.forEach((test) => {
+      (harrisonburgVA.calculateShift(test[0])).should.equal(test[1]);
+      (harrisonburgVA.beforeShiftChange(harrisonburgVA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
