@@ -822,6 +822,15 @@ export function GoodyearAZ() {
   });
 }
 
+export function TimberMesaAZ() {
+  return new ShiftConfiguration({
+    firstDay: '2022-07-22',
+    pattern: 'AABBCC',
+    shiftStart: '0800',
+    timeZone: 'US/Arizona',
+  });
+}
+
 export function LACountyCA() {
   return new ShiftConfiguration({
     firstDay: '2020-01-23',
@@ -1118,4 +1127,5 @@ export const FirecaresLookup = {
   95528: SouthMetroCO,
   90490: NorthPortFL,
   73905: ArvadaCO,
+  96985: TimberMesaAZ
 };
