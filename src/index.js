@@ -824,8 +824,8 @@ export function GoodyearAZ() {
 
 export function TimberMesaAZ() {
   return new ShiftConfiguration({
-    firstDay: '2022-07-22',
-    pattern: 'AABBCC',
+    firstDay: '2023-03-27',
+    pattern: 'CCAABB',
     shiftStart: '0800',
     timeZone: 'US/Arizona',
   });
