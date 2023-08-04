@@ -1028,8 +1028,18 @@ export function ArvadaCO() {
     pattern: 'AACCBB',
     shiftStart: '0700',
     timeZone: 'US/Mountain',
-  })
+  });
 }
+
+export function ChesapeakeVA() {
+  return new ShiftConfiguration({
+    firstDay: '2023-01-01',
+    pattern: 'CABCBABABCACBCBCABACA',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1127,5 +1137,6 @@ export const FirecaresLookup = {
   95528: SouthMetroCO,
   90490: NorthPortFL,
   73905: ArvadaCO,
-  96985: TimberMesaAZ
+  96985: TimberMesaAZ,
+  77326: ChesapeakeVA
 };
