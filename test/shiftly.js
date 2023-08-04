@@ -97,6 +97,7 @@ import {
   SouthMetroCO,
   NorthPortFL,
   ArvadaCO,
+  ChesapeakeVA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -190,6 +191,8 @@ const indianapolisIN = IndianapolisIN();
 const southMetroCO = SouthMetroCO();
 const northPortFL = NorthPortFL();
 const arvadaCO = ArvadaCO();
+const chesapeakeVA = ChesapeakeVA();
+
 
 describe('ShiftInformation', () => {
   it('should correctly parse shiftStart', () => {
@@ -375,6 +378,7 @@ describe('Firecares Lookup', () => {
     FirecaresLookup['95528'].should.equal(SouthMetroCO);
     FirecaresLookup['90490'].should.equal(NorthPortFL);
     FirecaresLookup['73905'].should.equal(ArvadaCO);
+    FirecaresLookup['77326'].should.equal(ChesapeakeVA);
   });
 });
 
@@ -2144,3 +2148,19 @@ describe('Arvada, CO', () => {
     });
   });
 });
+
+describe('Chesapeake, VA', () => {
+  it('should match Chesapeake VA, known shifts', () => {
+    const tests = [
+      ['2023-01-01T08:10:00-0500', 'C', false],
+      ['2023-01-03T08:10:00-0500', 'B', false],
+      ['2023-01-05T08:10:00-0500', 'B', false],
+      ['2023-01-07T07:10:00-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (chesapeakeVA.calculateShift(test[0])).should.equal(test[1]);
+      (chesapeakeVA.beforeShiftChange(chesapeakeVA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
