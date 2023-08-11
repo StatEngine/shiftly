@@ -698,12 +698,17 @@ export function RichlandWA() {
   });
 }
 export function RinconValleyAZ() {
-  return new ShiftConfiguration({
+  return new ShiftConfiguration([{
     firstDay: '2017-01-01',
     pattern: 'acbcbcbababacac',
     shiftStart: '0700',
     timeZone: 'US/Arizona',
-  });
+  }, {
+    firstDay: '2023-07-09',
+    pattern: 'AABBCC',
+    shiftStart: '0700',
+    timeZone: 'US/Arizona'
+  }]);
 }
 
 export function EastPierceWA() {
