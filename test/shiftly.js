@@ -98,6 +98,7 @@ import {
   NorthPortFL,
   ArvadaCO,
   ChesapeakeVA,
+  KansasCityMO,
 } from '../src';
 
 const richmond = richmondVA();
@@ -192,6 +193,7 @@ const southMetroCO = SouthMetroCO();
 const northPortFL = NorthPortFL();
 const arvadaCO = ArvadaCO();
 const chesapeakeVA = ChesapeakeVA();
+const kansasCityMO = KansasCityMO();
 
 
 describe('ShiftInformation', () => {
@@ -2165,6 +2167,21 @@ describe('Chesapeake, VA', () => {
     tests.forEach((test) => {
       (chesapeakeVA.calculateShift(test[0])).should.equal(test[1]);
       (chesapeakeVA.beforeShiftChange(chesapeakeVA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Kansas City, MO', () => {
+  it('should match Kansas City MO, known shifts', () => {
+    const tests = [
+      ['2022-01-01T08:10:00-0500', 'B', false],
+      ['2022-01-02T08:10:00-0500', 'C', false],
+      ['2022-01-03T08:10:00-0500', 'A', false],
+      ['2022-01-04T06:10:00-0500', 'A', true],
+    ];
+    tests.forEach((test) => {
+      (kansasCityMO.calculateShift(test[0])).should.equal(test[1]);
+      (kansasCityMO.beforeShiftChange(kansasCityMO.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });

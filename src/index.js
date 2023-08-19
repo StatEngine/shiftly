@@ -1045,6 +1045,15 @@ export function ChesapeakeVA() {
   });
 }
 
+export function KansasCityMO() {
+  return new ShiftConfiguration({
+    firstDay: '2022-01-01',
+    pattern: 'BCA',
+    shiftStart: '0700',
+    timeZone: 'US/Central',
+  });
+}
+
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1143,5 +1152,6 @@ export const FirecaresLookup = {
   90490: NorthPortFL,
   73905: ArvadaCO,
   96985: TimberMesaAZ,
-  77326: ChesapeakeVA
+  77326: ChesapeakeVA,
+  85484: KansasCityMO
 };
