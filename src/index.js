@@ -1054,6 +1054,15 @@ export function KansasCityMO() {
   });
 }
 
+export function HarrisonburgVA() {
+  return new ShiftConfiguration({
+    firstDay: '2021-12-14',
+    pattern: 'ABC',
+    shiftStart: '0800',
+    timeZone: 'US/Eastern',
+  });
+}
+
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1153,5 +1162,6 @@ export const FirecaresLookup = {
   73905: ArvadaCO,
   96985: TimberMesaAZ,
   77326: ChesapeakeVA,
-  85484: KansasCityMO
+  85484: KansasCityMO,
+  83708: HarrisonburgVA,
 };
