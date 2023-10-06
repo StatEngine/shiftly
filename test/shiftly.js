@@ -99,6 +99,7 @@ import {
   ArvadaCO,
   ChesapeakeVA,
   KansasCityMO,
+  HarrisonburgVA,
 } from '../src';
 
 const richmond = richmondVA();
@@ -194,6 +195,7 @@ const northPortFL = NorthPortFL();
 const arvadaCO = ArvadaCO();
 const chesapeakeVA = ChesapeakeVA();
 const kansasCityMO = KansasCityMO();
+const harrisonburgVA = HarrisonburgVA();
 
 
 describe('ShiftInformation', () => {
@@ -2182,6 +2184,21 @@ describe('Kansas City, MO', () => {
     tests.forEach((test) => {
       (kansasCityMO.calculateShift(test[0])).should.equal(test[1]);
       (kansasCityMO.beforeShiftChange(kansasCityMO.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Harrisonburg, VA', () => {
+  it('should match Harrisonburg VA, known shifts', () => {
+    const tests = [
+      ['2021-12-14T08:10:00-0500', 'A', false],
+      ['2021-12-15T08:10:00-0500', 'B', false],
+      ['2021-12-16T08:10:00-0500', 'C', false],
+      ['2021-12-17T07:10:00-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (harrisonburgVA.calculateShift(test[0])).should.equal(test[1]);
+      (harrisonburgVA.beforeShiftChange(harrisonburgVA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
