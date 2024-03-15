@@ -578,6 +578,15 @@ export function ColumbusOH() {
     firstDay: '2020-03-01',
     pattern: '123',
     shiftStart: '0800',
+  }, {
+    firstDay: '2024-02-29',
+    pattern: '213',
+    shiftStart: '0800',
+    shiftDuration: '8'
+  }, {
+    firstDay: '2024-03-01',
+    pattern: '312',
+    shiftStart: '0800',
   }]);
 }
 
