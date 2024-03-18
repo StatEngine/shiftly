@@ -569,27 +569,6 @@ export function AnneArundelMD() {
   });
 }
 
-export function ColumbusOH() {
-  return new ShiftConfiguration([{
-    firstDay: '2019-05-02',
-    pattern: '123',
-    shiftStart: '0800',
-  }, {
-    firstDay: '2020-03-01',
-    pattern: '123',
-    shiftStart: '0800',
-  }, {
-    firstDay: '2024-02-29',
-    pattern: '213',
-    shiftStart: '0800',
-    shiftDuration: '8'
-  }, {
-    firstDay: '2024-03-01',
-    pattern: '312',
-    shiftStart: '0800',
-  }]);
-}
-
 export function RosevilleCA() {
   return new ShiftConfiguration({
     firstDay: '2019-01-06',
@@ -1119,7 +1098,6 @@ export const FirecaresLookup = {
   85090: JacksonTownshipIN,
   79555: DelawareOH,
   73693: AnneArundelMD,
-  78503: ColumbusOH,
   77855: RosevilleCA,
   97104: TorringtonCT,
   88403: MemphisTN,
