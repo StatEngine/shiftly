@@ -37,13 +37,17 @@ class ShiftInformation {
 
   afterShiftStartDate(date) {
     const incomingDate = this.normalize(date);
-    return (this.hoursFromPatternStart(incomingDate) >= 0);
+    return (this.minutesFromPatternStart(incomingDate) >= 0);
   }
 
   beforeShiftChange(date) {
     const startDate = this.shiftStartDate;
     return date.hours() < startDate.hours() || (date.hours() === startDate.hours()
         && date.minutes() < startDate.minutes());
+  }
+
+  minutesFromPatternStart(start) {
+    return start.diff(this.patternStart, 'minutes');
   }
 
   hoursFromPatternStart(start) {
