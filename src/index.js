@@ -1055,6 +1055,27 @@ export function HarrisonburgVA() {
   });
 }
 
+export function ColumbusOH() {
+  return new ShiftConfiguration([{
+    firstDay: '2019-05-02',
+    pattern: '123',
+    shiftStart: '0800',
+  }, {
+    firstDay: '2020-03-01',
+    pattern: '123',
+    shiftStart: '0800',
+  }, {
+    firstDay: '2024-02-29',
+    pattern: '2213',
+    shiftStart: '0000',
+    shiftDuration: '8'
+  }, {
+    firstDay: '2024-03-01',
+    pattern: '312',
+    shiftStart: '0800',
+  }]);
+}
+
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1155,4 +1176,5 @@ export const FirecaresLookup = {
   77326: ChesapeakeVA,
   85484: KansasCityMO,
   83708: HarrisonburgVA,
+  78503: ColumbusOH,
 };
