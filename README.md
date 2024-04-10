@@ -3,6 +3,8 @@ Utility for calculating common public safety shift schedules.
 
 ## Installation
 
+Node version: 10.x.x
+
 Using npm:
 ```
 npm install @statengine/shiftly

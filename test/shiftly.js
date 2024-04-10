@@ -100,6 +100,7 @@ import {
   ChesapeakeVA,
   KansasCityMO,
   HarrisonburgVA,
+  DerryNH,
 } from '../src';
 
 const richmond = richmondVA();
@@ -196,6 +197,7 @@ const arvadaCO = ArvadaCO();
 const chesapeakeVA = ChesapeakeVA();
 const kansasCityMO = KansasCityMO();
 const harrisonburgVA = HarrisonburgVA();
+const derryNH = DerryNH();
 
 
 describe('ShiftInformation', () => {
@@ -2199,6 +2201,21 @@ describe('Harrisonburg, VA', () => {
     tests.forEach((test) => {
       (harrisonburgVA.calculateShift(test[0])).should.equal(test[1]);
       (harrisonburgVA.beforeShiftChange(harrisonburgVA.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
+
+describe('Derry, NH', () => {
+  it('should match Derry NH, known shifts', () => {
+    const tests = [
+      ['2024-04-04T07:46:00-0400', '1', false],
+      ['2024-04-04T07:44:00-0400', '4', true],
+      ['2024-04-03T08:10:00-0400', '4', false],
+      ['2024-02-20T08:36:45-0500', '1', false],
+    ];
+    tests.forEach((test) => {
+      (derryNH.calculateShift(test[0])).should.equal(test[1]);
+      (derryNH.beforeShiftChange(harrisonburgVA.normalize(test[0]))).should.equal(test[2]);
     });
   });
 });
