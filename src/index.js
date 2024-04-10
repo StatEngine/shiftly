@@ -1076,6 +1076,15 @@ export function ColumbusOH() {
   }]);
 }
 
+export function DerryNH() {
+  return new ShiftConfiguration({
+    firstDay: '2024-04-04',
+    pattern: '1234',
+    shiftStart: '0745',
+    timeZone: 'US/Eastern',
+  });
+}
+
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1177,4 +1186,5 @@ export const FirecaresLookup = {
   85484: KansasCityMO,
   83708: HarrisonburgVA,
   78503: ColumbusOH,
+  79666: DerryNH,
 };
