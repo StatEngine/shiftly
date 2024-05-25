@@ -1085,6 +1085,14 @@ export function DerryNH() {
   });
 }
 
+export function PflugervilleTX() {
+  return new ShiftConfiguration({
+    firstDay: '2024-05-03',
+    pattern: 'ABC',
+    shiftStart: '0700',
+    timeZone: 'US/Central',
+  });
+}
 
 export const FirecaresLookup = {
   98606: washingtonDC,
@@ -1187,4 +1195,5 @@ export const FirecaresLookup = {
   83708: HarrisonburgVA,
   78503: ColumbusOH,
   79666: DerryNH,
+  97301: PflugervilleTX,
 };

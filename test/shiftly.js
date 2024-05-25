@@ -101,6 +101,7 @@ import {
   KansasCityMO,
   HarrisonburgVA,
   DerryNH,
+  PflugervilleTX,
 } from '../src';
 
 const richmond = richmondVA();
@@ -198,6 +199,7 @@ const chesapeakeVA = ChesapeakeVA();
 const kansasCityMO = KansasCityMO();
 const harrisonburgVA = HarrisonburgVA();
 const derryNH = DerryNH();
+const pflugervilleTX = PflugervilleTX();
 
 
 describe('ShiftInformation', () => {
@@ -2220,3 +2222,18 @@ describe('Derry, NH', () => {
   });
 });
 
+describe('Pflugerville, TX', () => {
+  it('should match Pflugerville TX, known shifts', () => {
+    const tests = [
+      ['2024-05-01T07:46:00-0500', 'B', false],
+      ['2024-05-03T07:44:00-0500', 'A', false],
+      ['2024-04-02T08:10:00-0500', 'C', false],
+      ['2024-01-01T08:36:45-0600', 'A', false],
+      ['2024-05-03T06:36:45-0500', 'C', true],
+    ];
+    tests.forEach((test) => {
+      (pflugervilleTX.calculateShift(test[0])).should.equal(test[1]);
+      (pflugervilleTX.beforeShiftChange(pflugervilleTX.normalize(test[0]))).should.equal(test[2]);
+    });
+  });
+});
